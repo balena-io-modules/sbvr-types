@@ -25,7 +25,7 @@ do ->
 					if !_.isString(value)
 						callback('is not a string: ' + value)
 					else if length? and value.length > length
-						callback('longer than 255 characters (' + value.length + ')')
+						callback('longer than ' + length + ' characters (' + value.length + ')')
 					else
 						callback(null, value)
 			date: (value, required, callback) ->

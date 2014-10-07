@@ -42,13 +42,13 @@
 					return
 				switch component.toLowerCase()
 					when 'r', 'red'
-						processedValue |= componentValue >> 16
+						processedValue |= componentValue << 16
 					when 'g', 'green'
-						processedValue |= componentValue >> 8
+						processedValue |= componentValue << 8
 					when 'b', 'blue'
 						processedValue |= componentValue
 					when 'a', 'alpha'
-						processedValue |= componentValue >> 24
+						processedValue |= componentValue << 24
 					else
 						callback('has an unknown component: ' + component)
 						return

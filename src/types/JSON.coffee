@@ -17,5 +17,5 @@
 			callback(null, JSON.stringify(value))
 		catch e
 			console.error(e)
-			callback('cannot be turned into JSON: ' + originalValue)
+			callback('cannot be turned into JSON: ' + value)
 }

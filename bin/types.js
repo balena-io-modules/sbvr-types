@@ -56,7 +56,7 @@
               if (!_.isString(value)) {
                 return callback('is not a string: ' + value);
               } else if ((length != null) && value.length > length) {
-                return callback('longer than 255 characters (' + value.length + ')');
+                return callback('longer than ' + length + ' characters (' + value.length + ')');
               } else {
                 return callback(null, value);
               }
@@ -154,11 +154,11 @@
               switch (component.toLowerCase()) {
                 case 'r':
                 case 'red':
-                  processedValue |= componentValue >> 16;
+                  processedValue |= componentValue << 16;
                   break;
                 case 'g':
                 case 'green':
-                  processedValue |= componentValue >> 8;
+                  processedValue |= componentValue << 8;
                   break;
                 case 'b':
                 case 'blue':
@@ -166,7 +166,7 @@
                   break;
                 case 'a':
                 case 'alpha':
-                  processedValue |= componentValue >> 24;
+                  processedValue |= componentValue << 24;
                   break;
                 default:
                   callback('has an unknown component: ' + component);
@@ -305,7 +305,7 @@
           } catch (_error) {
             e = _error;
             console.error(e);
-            return callback('cannot be turned into JSON: ' + originalValue);
+            return callback('cannot be turned into JSON: ' + value);
           }
         }
       },

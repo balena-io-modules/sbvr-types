@@ -7,8 +7,8 @@
 			name: 'Edm.Int64'
 
 	nativeFactTypes:
-		'Integer': TypeUtils.nativeFactTypeTemplates.comparison
-		'Real': TypeUtils.nativeFactTypeTemplates.comparison
+		Integer: TypeUtils.nativeFactTypeTemplates.comparison
+		Real: TypeUtils.nativeFactTypeTemplates.comparison
 
 	validate: TypeUtils.validate.integer
 }

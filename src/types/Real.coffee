@@ -7,8 +7,8 @@
 			name: 'Edm.Double'
 
 	nativeFactTypes:
-		'Integer': TypeUtils.nativeFactTypeTemplates.comparison
-		'Real': TypeUtils.nativeFactTypeTemplates.comparison
+		Integer: TypeUtils.nativeFactTypeTemplates.comparison
+		Real: TypeUtils.nativeFactTypeTemplates.comparison
 
 	validate: (value, required, callback) ->
 		processedValue = parseFloat(value)

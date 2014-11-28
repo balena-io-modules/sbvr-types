@@ -7,11 +7,11 @@
 			name: 'Edm.String'
 
 	nativeProperties:
-		'has':
-			'Length': (from) -> ['CharacterLength', from]
+		has:
+			Length: (from) -> ['CharacterLength', from]
 
 	nativeFactTypes:
-		'Text': TypeUtils.nativeFactTypeTemplates.equality
+		Text: TypeUtils.nativeFactTypeTemplates.equality
 
 	validate: TypeUtils.validate.text()
 }

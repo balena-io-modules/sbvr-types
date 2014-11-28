@@ -111,7 +111,7 @@
           }
         },
         nativeProperties: {
-          'has': {
+          has: {
             'Red Component': function(from) {
               return ['BitwiseAnd', ['BitwiseShiftRight', from, 16], 255];
             },
@@ -177,6 +177,21 @@
           return callback(null, processedValue);
         }
       },
+      "ConceptType": {
+        types: {
+          postgres: 'INTEGER',
+          mysql: 'INTEGER',
+          websql: 'INTEGER',
+          odata: {
+            name: 'Edm.Int64'
+          }
+        },
+        nativeFactTypes: {
+          Integer: TypeUtils.nativeFactTypeTemplates.comparison,
+          Real: TypeUtils.nativeFactTypeTemplates.comparison
+        },
+        validate: TypeUtils.validate.integer
+      },
       "Date Time": {
         types: {
           postgres: 'TIMESTAMP',
@@ -214,6 +229,21 @@
             name: 'Edm.String'
           }
         }
+      },
+      "ForeignKey": {
+        types: {
+          postgres: 'INTEGER',
+          mysql: 'INTEGER',
+          websql: 'INTEGER',
+          odata: {
+            name: 'Edm.Int64'
+          }
+        },
+        nativeFactTypes: {
+          Integer: TypeUtils.nativeFactTypeTemplates.comparison,
+          Real: TypeUtils.nativeFactTypeTemplates.comparison
+        },
+        validate: TypeUtils.validate.integer
       },
       "Hashed": (function() {
         var compare, isNodejs;
@@ -264,8 +294,8 @@
           }
         },
         nativeFactTypes: {
-          'Integer': TypeUtils.nativeFactTypeTemplates.comparison,
-          'Real': TypeUtils.nativeFactTypeTemplates.comparison
+          Integer: TypeUtils.nativeFactTypeTemplates.comparison,
+          Real: TypeUtils.nativeFactTypeTemplates.comparison
         },
         validate: TypeUtils.validate.integer
       },
@@ -319,8 +349,8 @@
           }
         },
         nativeFactTypes: {
-          'Integer': TypeUtils.nativeFactTypeTemplates.comparison,
-          'Real': TypeUtils.nativeFactTypeTemplates.comparison
+          Integer: TypeUtils.nativeFactTypeTemplates.comparison,
+          Real: TypeUtils.nativeFactTypeTemplates.comparison
         },
         validate: function(value, required, callback) {
           var processedValue;
@@ -368,14 +398,14 @@
           }
         },
         nativeProperties: {
-          'has': {
-            'Length': function(from) {
+          has: {
+            Length: function(from) {
               return ['CharacterLength', from];
             }
           }
         },
         nativeFactTypes: {
-          'Text': TypeUtils.nativeFactTypeTemplates.equality
+          Text: TypeUtils.nativeFactTypeTemplates.equality
         },
         validate: TypeUtils.validate.text()
       },

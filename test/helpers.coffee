@@ -9,13 +9,18 @@ exports.describe = (typeName, fn) ->
 	type = types[typeName]
 	test = (methodName) ->
 		(inputs..., expected) ->
-			it "should accept #{util.inspect(inputs)} and return #{expected}", ->
-				type[methodName] inputs..., (err, result) ->
-					expect(err).to.not.exist
-					if result instanceof Date and expected instanceof Date
-						expect(result).to.equalDate(expected)
-					else
-						expect(result).to.deep.equal(expected)
+			if expected instanceof Error
+				it "should reject #{util.inspect(inputs)} with #{expected.message}", ->
+					type[methodName] inputs..., (err, result) ->
+						expect(err).to.equal(expected.message)
+			else
+				it "should accept #{util.inspect(inputs)} and return #{expected}", ->
+					type[methodName] inputs..., (err, result) ->
+						expect(err).to.not.exist
+						if result instanceof Date and expected instanceof Date
+							expect(result).to.equalDate(expected)
+						else
+							expect(result).to.deep.equal(expected)
 
 	describe typeName, ->
 		fn(

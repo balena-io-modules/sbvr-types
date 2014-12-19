@@ -8,3 +8,4 @@ helpers.describe 'Boolean', (test) ->
 	describe 'validate', ->
 		test.validate(0, true, 0)
 		test.validate(1, true, 1)
+		test.validate("true", true, new Error('is not a boolean: "true" (string)'))

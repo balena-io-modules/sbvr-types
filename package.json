@@ -13,7 +13,6 @@
   "license": "BSD",
   "dependencies": {
     "bcrypt": "~0.7.6",
-    "bluebird": "~2.2.1",
     "lodash": "~2.4.1"
   },
   "devDependencies": {

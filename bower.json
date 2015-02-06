@@ -1,0 +1,25 @@
+{
+  "name": "sbvr-types",
+  "version": "0.0.3",
+  "description": "SBVR type definitions.",
+  "main": "bin/types.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "license": "BSD",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bcryptjs": "~2.1.0",
+    "bluebird": "^2.6.0",
+    "lodash": "~2.4.1"
+  }
+}

@@ -91,10 +91,11 @@
         fetchProcessing: function(data, callback) {
           return callback(null, data === 1);
         },
-        validate: function(value, required, callback) {
-          value = Number(value);
+        validate: function(originalValue, required, callback) {
+          var value;
+          value = Number(originalValue);
           if (_.isNaN(value) || (value !== 0 && value !== 1)) {
-            return callback('is not a boolean: ' + originalValue);
+            return callback("is not a boolean: " + (JSON.stringify(originalValue)) + " (" + (typeof originalValue) + ")");
           } else {
             return callback(null, value);
           }
@@ -246,11 +247,13 @@
         validate: TypeUtils.validate.integer
       },
       "Hashed": (function() {
-        var compare, isNodejs;
-        isNodejs = typeof process !== "undefined" && process !== null;
-        compare = isNodejs ? Promise.promisify(require('bcrypt').compare) : function(value, hash) {
-          return Promise.fulfilled(value === hash);
-        };
+        var bcrypt;
+        try {
+          bcrypt = require('bcrypt');
+        } catch (_error) {
+          bcrypt = require('bcryptjs');
+        }
+        bcrypt = Promise.promisifyAll(bcrypt);
         return {
           types: {
             postgres: 'CHAR(60)',
@@ -261,27 +264,15 @@
             }
           },
           validate: function(value, required, callback) {
-            var bcrypt;
             if (!_.isString(value)) {
               return callback('is not a string');
-            } else if (!isNodejs) {
-              if (value.length > 60) {
-                return callback('longer than 60 characters (' + value.length + ')');
-              } else {
-                return callback(null, value);
-              }
             } else {
-              bcrypt = require('bcrypt');
-              return bcrypt.genSalt(function(err, salt) {
-                if (err) {
-                  return callback(err);
-                } else {
-                  return bcrypt.hash(value, salt, callback);
-                }
-              });
+              return bcrypt.genSaltAsync().then(function(salt) {
+                return bcrypt.hashAsync(value, salt);
+              }).nodeify(callback);
             }
           },
-          compare: compare
+          compare: bcrypt.compareAsync
         };
       })(),
       "Integer": {

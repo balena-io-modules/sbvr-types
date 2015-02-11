@@ -272,7 +272,7 @@
               }).nodeify(callback);
             }
           },
-          compare: bcrypt.compareAsync
+          compare: _.bind(bcrypt.compareAsync, bcrypt)
         };
       })(),
       "Integer": {

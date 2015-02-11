@@ -11,7 +11,7 @@ exports.describe = (typeName, fn) ->
 	type = types[typeName]
 	test = (methodName) ->
 		(inputs..., expected) ->
-			if expected instanceof Error
+			if _.isError(expected)
 				it "should reject #{util.inspect(inputs)} with #{expected.message}", (done) ->
 					type[methodName] inputs..., (err, result) ->
 						expect(err).to.equal(expected.message)

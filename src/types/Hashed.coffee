@@ -21,5 +21,5 @@ do ->
 					bcrypt.hashAsync(value, salt)
 				.nodeify(callback)
 
-		compare: bcrypt.compareAsync
+		compare: _.bind(bcrypt.compareAsync, bcrypt)
 	}

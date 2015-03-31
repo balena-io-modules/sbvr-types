@@ -229,6 +229,23 @@
           odata: {
             name: 'Edm.String'
           }
+        },
+        validate: function(value, required, callback) {
+          var e;
+          if (Buffer.isBuffer(value)) {
+            return callback(null, value);
+          } else if (_.isString(value)) {
+            try {
+              value = new Buffer(value, 'hex');
+            } catch (_error) {
+              e = _error;
+              callback("could not be converted to binary: " + e.message);
+              return;
+            }
+            return callback(null, value);
+          } else {
+            return callback("could not be converted to binary: " + (typeof value));
+          }
         }
       },
       "ForeignKey": {

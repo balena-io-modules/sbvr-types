@@ -1,3 +1,5 @@
+v0.1.2
+
 * Added a validate function for the file type so it can actually be used.
 
 v0.1.1

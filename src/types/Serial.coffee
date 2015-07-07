@@ -1,10 +1,10 @@
 {
 	types:
 		postgres: 'SERIAL'
-		mysql: (necessity, index) ->
-			return 'INTEGER' + necessity + index + ' AUTO_INCREMENT'
-		websql: (necessity, index) ->
-			return 'INTEGER' + necessity + index + ' AUTOINCREMENT'
+		mysql: (necessity, index, defaultValue = '') ->
+			return 'INTEGER' + defaultValue + necessity + index + ' AUTO_INCREMENT'
+		websql: (necessity, index, defaultValue = '') ->
+			return 'INTEGER' + defaultValue + necessity + index + ' AUTOINCREMENT'
 		odata:
 			name: 'Edm.Int64'
 

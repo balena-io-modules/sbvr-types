@@ -9,11 +9,22 @@ _ = require 'lodash'
 
 exports.describe = (typeName, fn) ->
 	type = types[typeName]
-	test = (methodName) ->
+	test = (methodName, isAsync = true) ->
+		method = do ->
+			_method = _.get(type, methodName)
+			if isAsync
+				return _method
+			else
+				return (args..., callback) ->
+					try
+						result = _method(args...)
+					catch err
+					callback(err, result)
+
 		(inputs..., expected) ->
 			if _.isError(expected)
 				it "should reject #{util.inspect(inputs)} with #{expected.message}", (done) ->
-					type[methodName] inputs..., (err, result) ->
+					method inputs..., (err, result) ->
 						expect(err).to.equal(expected.message)
 						done()
 			else
@@ -24,7 +35,7 @@ exports.describe = (typeName, fn) ->
 					else
 						"return #{expected}"
 				it "should accept #{util.inspect(inputs)} and #{matches}" , (done) ->
-					type[methodName] inputs..., (err, result) ->
+					method inputs..., (err, result) ->
 						expect(err).to.not.exist
 						if isFunc
 							expected(result, done)
@@ -38,6 +49,10 @@ exports.describe = (typeName, fn) ->
 	describe typeName, ->
 		fn(
 			type: type
+			types:
+				postgres: test('types.postgres', false)
+				mysql: test('types.mysql', false)
+				websql: test('types.websql', false)
 			fetch: test('fetchProcessing')
 			validate: test('validate')
 		)

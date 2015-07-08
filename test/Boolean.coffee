@@ -1,6 +1,14 @@
 helpers = require './helpers'
+{ expect } = require 'chai'
+util = require 'util'
 
 helpers.describe 'Boolean', (test) ->
+	describe 'types', ->
+		for db, typeTest of test.types
+			describe db, ->
+				typeTest ' NOT NULL', '', 'INTEGER DEFAULT 0 NOT NULL'
+				typeTest ' NOT NULL', '', ' DEFAULT 1', 'INTEGER DEFAULT 1 NOT NULL'
+
 	describe 'fetchProcessing', ->
 		test.fetch(0, false)
 		test.fetch(1, true)

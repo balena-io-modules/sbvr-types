@@ -1,3 +1,5 @@
+* Added the ability to specify a default value to database types that are generated via a function.
+
 v0.1.2
 
 * Added a validate function for the file type so it can actually be used.

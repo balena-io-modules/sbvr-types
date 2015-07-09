@@ -1,4 +1,10 @@
+v0.1.4
+
 * Added the ability to specify a default value to database types that are generated via a function.
+
+v0.1.3
+
+* Switched to being a scoped package.
 
 v0.1.2
 

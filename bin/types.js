@@ -1,5 +1,5 @@
 (function() {
-  var __hasProp = {}.hasOwnProperty;
+  var hasProp = {}.hasOwnProperty;
 
   (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -79,28 +79,37 @@
       };
     })();
     return {
-      "Boolean": {
-        types: {
-          postgres: 'INTEGER DEFAULT 0',
-          mysql: 'INTEGER DEFAULT 0',
-          websql: 'INTEGER DEFAULT 0',
-          odata: {
-            name: 'Edm.Boolean'
+      "Boolean": (function() {
+        var typeFunc;
+        typeFunc = function(necessity, index, defaultValue) {
+          if (defaultValue == null) {
+            defaultValue = ' DEFAULT 0';
           }
-        },
-        fetchProcessing: function(data, callback) {
-          return callback(null, data === 1);
-        },
-        validate: function(originalValue, required, callback) {
-          var value;
-          value = Number(originalValue);
-          if (_.isNaN(value) || (value !== 0 && value !== 1)) {
-            return callback("is not a boolean: " + (JSON.stringify(originalValue)) + " (" + (typeof originalValue) + ")");
-          } else {
-            return callback(null, value);
+          return 'INTEGER' + defaultValue + necessity + index;
+        };
+        return {
+          types: {
+            postgres: typeFunc,
+            mysql: typeFunc,
+            websql: typeFunc,
+            odata: {
+              name: 'Edm.Boolean'
+            }
+          },
+          fetchProcessing: function(data, callback) {
+            return callback(null, data === 1);
+          },
+          validate: function(originalValue, required, callback) {
+            var value;
+            value = Number(originalValue);
+            if (_.isNaN(value) || (value !== 0 && value !== 1)) {
+              return callback("is not a boolean: " + (JSON.stringify(originalValue)) + " (" + (typeof originalValue) + ")");
+            } else {
+              return callback(null, value);
+            }
           }
-        }
-      },
+        };
+      })(),
       "Color": {
         types: {
           postgres: 'INTEGER',
@@ -146,7 +155,7 @@
           } else {
             processedValue = 0;
             for (component in value) {
-              if (!__hasProp.call(value, component)) continue;
+              if (!hasProp.call(value, component)) continue;
               componentValue = value[component];
               if (_.isNaN(componentValue) || componentValue > 255) {
                 callback('has invalid component value of ' + componentValue + ' for component ' + component);
@@ -373,11 +382,17 @@
       "Serial": {
         types: {
           postgres: 'SERIAL',
-          mysql: function(necessity, index) {
-            return 'INTEGER' + necessity + index + ' AUTO_INCREMENT';
+          mysql: function(necessity, index, defaultValue) {
+            if (defaultValue == null) {
+              defaultValue = '';
+            }
+            return 'INTEGER' + defaultValue + necessity + index + ' AUTO_INCREMENT';
           },
-          websql: function(necessity, index) {
-            return 'INTEGER' + necessity + index + ' AUTOINCREMENT';
+          websql: function(necessity, index, defaultValue) {
+            if (defaultValue == null) {
+              defaultValue = '';
+            }
+            return 'INTEGER' + defaultValue + necessity + index + ' AUTOINCREMENT';
           },
           odata: {
             name: 'Edm.Int64'

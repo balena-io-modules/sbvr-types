@@ -240,14 +240,14 @@
           }
         },
         validate: function(value, required, callback) {
-          var e;
+          var e, error;
           if (Buffer.isBuffer(value)) {
             return callback(null, value);
           } else if (_.isString(value)) {
             try {
               value = new Buffer(value, 'hex');
-            } catch (_error) {
-              e = _error;
+            } catch (error) {
+              e = error;
               callback("could not be converted to binary: " + e.message);
               return;
             }
@@ -273,10 +273,10 @@
         validate: TypeUtils.validate.integer
       },
       "Hashed": (function() {
-        var bcrypt;
+        var bcrypt, error;
         try {
           bcrypt = require('bcrypt');
-        } catch (_error) {
+        } catch (error) {
           bcrypt = require('bcryptjs');
         }
         bcrypt = Promise.promisifyAll(bcrypt);
@@ -337,20 +337,20 @@
           }
         },
         fetchProcessing: function(data, callback) {
-          var e;
+          var e, error;
           try {
             return callback(null, JSON.parse(data));
-          } catch (_error) {
-            e = _error;
+          } catch (error) {
+            e = error;
             return callback(e);
           }
         },
         validate: function(value, required, callback) {
-          var e;
+          var e, error;
           try {
             return callback(null, JSON.stringify(value));
-          } catch (_error) {
-            e = _error;
+          } catch (error) {
+            e = error;
             console.error(e);
             return callback('cannot be turned into JSON: ' + value);
           }

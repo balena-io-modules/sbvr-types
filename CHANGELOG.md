@@ -1,3 +1,7 @@
+v0.1.5
+
+* Made the bcrypt dependencies optional.
+
 v0.1.4
 
 * Added the ability to specify a default value to database types that are generated via a function.

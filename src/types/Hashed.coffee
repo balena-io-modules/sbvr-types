@@ -19,7 +19,7 @@ do ->
 				bcrypt.genSaltAsync()
 				.then (salt) ->
 					bcrypt.hashAsync(value, salt)
-				.nodeify(callback)
+				.asCallback(callback)
 
 		compare: _.bind(bcrypt.compareAsync, bcrypt)
 	}

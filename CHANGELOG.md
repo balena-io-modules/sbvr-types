@@ -1,3 +1,5 @@
+* Updated to bluebird 3.
+
 v0.1.5
 
 * Made the bcrypt dependencies optional.

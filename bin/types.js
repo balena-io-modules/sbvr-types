@@ -295,7 +295,7 @@
             } else {
               return bcrypt.genSaltAsync().then(function(salt) {
                 return bcrypt.hashAsync(value, salt);
-              }).nodeify(callback);
+              }).asCallback(callback);
             }
           },
           compare: _.bind(bcrypt.compareAsync, bcrypt)

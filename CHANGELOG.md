@@ -1,3 +1,5 @@
+v1.0.0
+
 * Updated to bluebird 3.
 
 v0.1.5

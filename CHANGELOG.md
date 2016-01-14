@@ -1,3 +1,5 @@
+v0.1.6
+
 * Update bower.json to match package.json
 
 v0.1.5

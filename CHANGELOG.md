@@ -1,3 +1,5 @@
+* Fix bower.json format.
+
 v0.1.6
 
 * Update bower.json to match package.json

@@ -18,8 +18,8 @@
     "tests"
   ],
   "dependencies": {
-    "bcryptjs": "~2.1.0",
+    "bcryptjs": "^2.3.0"
     "bluebird": "^2.6.0",
-    "lodash": "~2.4.1"
+    "lodash": "^3.10.0"
   }
 }

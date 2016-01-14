@@ -1,3 +1,5 @@
+v0.1.7
+
 * Fix bower.json format.
 
 v0.1.6

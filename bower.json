@@ -1,6 +1,6 @@
 {
   "name": "sbvr-types",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "SBVR type definitions.",
   "main": "bin/types.js",
   "moduleType": [

@@ -1,6 +1,6 @@
 {
   "name": "sbvr-types",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "SBVR type definitions.",
   "main": "bin/types.js",
   "moduleType": [
@@ -18,8 +18,8 @@
     "tests"
   ],
   "dependencies": {
-    "bcryptjs": "~2.1.0",
-    "bluebird": "^2.6.0",
-    "lodash": "~2.4.1"
+    "bcryptjs": "^2.3.0"
+    "bluebird": "^3.0.6",
+    "lodash": "^3.10.0"
   }
 }

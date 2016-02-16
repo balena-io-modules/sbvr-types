@@ -1,3 +1,5 @@
+* Updated to lodash ^4.0.0
+
 v1.0.1
 
 * Update bower.json to match package.json

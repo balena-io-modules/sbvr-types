@@ -1,3 +1,7 @@
+v1.1.1
+
+* Fixed bower.json
+
 v1.1.0
 
 * Updated to lodash ^4.0.0

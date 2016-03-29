@@ -7,7 +7,9 @@
 			name: 'Edm.DateTime'
 
 	fetchProcessing: (data, callback) ->
-		callback(null, new Date(data))
+		if data?
+			data = new Date(data)
+		callback(null, data)
 
 	validate: TypeUtils.validate.date
 }

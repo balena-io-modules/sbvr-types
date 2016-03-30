@@ -212,7 +212,10 @@
           }
         },
         fetchProcessing: function(data, callback) {
-          return callback(null, new Date(data));
+          if (data != null) {
+            data = new Date(data);
+          }
+          return callback(null, data);
         },
         validate: TypeUtils.validate.date
       },
@@ -226,7 +229,10 @@
           }
         },
         fetchProcessing: function(data, callback) {
-          return callback(null, new Date(data));
+          if (data != null) {
+            data = new Date(data);
+          }
+          return callback(null, data);
         },
         validate: TypeUtils.validate.date
       },
@@ -442,7 +448,10 @@
           }
         },
         fetchProcessing: function(data, callback) {
-          return callback(null, new Date('Thu, 01 Jan 1970 ' + data));
+          if (data != null) {
+            data = new Date('Thu, 01 Jan 1970 ' + data);
+          }
+          return callback(null, data);
         },
         validate: function(value, required, callback) {
           return TypeUtils.validate.date(value, required, function(err, value) {

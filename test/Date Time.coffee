@@ -6,6 +6,7 @@ helpers.describe 'Date Time', (test) ->
 		test.fetch(now, now)
 		test.fetch(now.toString(), now)
 		test.fetch(now.getTime(), now)
+		test.fetch(null, null)
 
 	describe 'validate', ->
 		test.validate(now, true, now)

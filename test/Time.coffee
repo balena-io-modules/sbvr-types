@@ -7,6 +7,7 @@ helpers.describe 'Time', (test) ->
 	now.setDate(1)
 	describe 'fetchProcessing', ->
 		test.fetch(now.toTimeString(), now)
+		test.fetch(null, null)
 
 	describe 'validate', ->
 		test.validate(now, true, now.toLocaleTimeString())

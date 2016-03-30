@@ -1,3 +1,5 @@
+* Return null for null dates rather than the unix epoch.
+
 v1.1.1
 
 * Fixed bower.json

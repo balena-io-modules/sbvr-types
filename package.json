@@ -5,10 +5,10 @@
   "main": "bin/types.js",
   "scripts": {
     "pretest": "npm run-script prepublish",
-    "test": "node node_modules/mocha/bin/mocha",
-    "prepublish": "node node_modules/coffee-script/bin/coffee build.coffee"
+    "test": "mocha",
+    "prepublish": "coffee build.coffee"
   },
-  "repository": "git@bitbucket.org:rulemotion/sbvr-parser.git",
+  "repository": "git@bitbucket.org:rulemotion/sbvr-types.git",
   "author": "",
   "license": "BSD",
   "dependencies": {

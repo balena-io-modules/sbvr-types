@@ -31,7 +31,7 @@ exports.describe = (typeName, fn) ->
 				isFunc = _.isFunction(expected)
 				matches =
 					if isFunc
-						"pass custom tests"
+						'pass custom tests'
 					else
 						"return #{expected}"
 				it "should accept #{util.inspect(inputs)} and #{matches}" , (done) ->

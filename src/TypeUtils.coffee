@@ -3,15 +3,15 @@ do ->
 	return {
 		nativeFactTypeTemplates:
 			equality:
-				'is equal to':				equality
-				'equals':					equality
+				'is equal to': equality
+				'equals': equality
 			comparison:
-				'is greater than':			(from, to) -> ['GreaterThan', from, to]
-				'is greater than or equal to':	(from, to) -> ['GreaterThanOrEqual', from, to]
-				'is less than':				(from, to) -> ['LessThan', from, to]
-				'is less than or equal to':		(from, to) -> ['LessThanOrEqual', from, to]
-				'is equal to':				equality
-				'equals':					equality
+				'is greater than': (from, to) -> ['GreaterThan', from, to]
+				'is greater than or equal to': (from, to) -> ['GreaterThanOrEqual', from, to]
+				'is less than': (from, to) -> ['LessThan', from, to]
+				'is less than or equal to': (from, to) -> ['LessThanOrEqual', from, to]
+				'is equal to': equality
+				'equals': equality
 
 		validate:
 			integer: (value, required, callback) ->

@@ -9,7 +9,7 @@
     "test": "mocha",
     "prepublish": "coffee build.coffee"
   },
-  "repository": "git@bitbucket.org:rulemotion/sbvr-types.git",
+  "repository": "https://github.com/resin-io-modules/sbvr-types.git",
   "author": "",
   "license": "BSD",
   "dependencies": {

@@ -1,3 +1,5 @@
+* Add Date Time Range type
+
 v1.2.0
 
 * Return null for null dates rather than the unix epoch.

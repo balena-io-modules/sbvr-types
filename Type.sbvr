@@ -87,3 +87,18 @@ Fact type:  Color has Blue Component
 	Necessity: Each Color has exactly one Blue Component
 Fact type:  Color has Alpha Component
 	Necessity: Each Color has exactly one Alpha Component
+
+Term:		Begin
+	Concept Type: Date Time
+Term:		End
+	Concept Type: Date Time
+Term:		Bounds
+	Concept Type: Short Text
+Term:		Date Time Range
+	Concept Type: Short Text
+Fact type:	Date Time Range has Begin
+	Necessity: Each Date Time Range has exactly one Begin
+Fact Type:	Date Time Range has End
+	Necessity: Each Date Time Range has at most one End
+Fact Type:	Date Time Range has Bounds
+	Necessity: Each Date Time Range has exactly one Bounds

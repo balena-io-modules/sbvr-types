@@ -1,22 +1,22 @@
 helpers = require './helpers'
 
 helpers.describe 'Date Time Range', (test) ->
-	begin = new Date()
-	end = null + ''
+	start = new Date()
+	end = 'null'
 	bounds = '[)'
 	describe 'fetchProcessing', ->
-		test.fetch(bounds[0] + begin + ', ' + end + bounds[1], {
-			Begin: begin.toString()
+		test.fetch(bounds[0] + start + ', ' + end + bounds[1], {
+			Start: start.toString()
 			End: end
 			Bounds: bounds
 		})
 
 	describe 'validate', ->
-		begin = new Date()
+		start = new Date()
 		end = null
 		bounds = '[)'
 		test.validate({
-			Begin: begin
+			Start: start
 			End: end
 			Bounds: bounds
-		}, true,  bounds[0] + begin + ', ' + end + bounds[1])
+		}, true,  bounds[0] + start + ', ' + end + bounds[1])

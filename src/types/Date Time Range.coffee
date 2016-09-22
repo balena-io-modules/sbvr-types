@@ -20,9 +20,10 @@
 
 	fetchProcessing: (data, callback) ->
 		if data?
+			[start, end] = data.slice(1, -1).split(',')
 			res =
-				Start: data.split(',')[0].slice(1)
-				End: data.split(',')[1].trim().slice(0, -1)
+				Start: start
+				End: end.trim()
 				Bounds: data[0] + data[data.length - 1]
 			callback(null, res)
 		else

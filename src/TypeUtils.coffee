@@ -37,4 +37,17 @@ do ->
 					callback('is not a valid date: ' + value)
 				else
 					callback(null, processedValue)
+
+		dataTypeGen: (dbType, engine, dataType, necessity, index = '', defaultValue) ->
+			necessity = if necessity then ' NOT NULL' else ' NULL'
+			defaultValue = if defaultValue then " DEFAULT #{defaultValue}"
+			if index != ''
+				index = ' ' + index
+			if dbType?
+				if _.isFunction(dbType)
+					return dbType(necessity, index)
+				defaultValue ?= ''
+				return dbType + defaultValue + necessity + index
+			else
+				throw new Error("Unknown data type '#{dataType}' for engine: #{engine}")
 	}

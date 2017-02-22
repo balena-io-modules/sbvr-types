@@ -1,3 +1,8 @@
+v1.2.1
+
+* Added linting.
+* Added README file.
+
 v1.2.0
 
 * Return null for null dates rather than the unix epoch.

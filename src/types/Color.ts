@@ -46,7 +46,6 @@ class Color implements SBVRType<number, RGBA> {
 				return
 			}
 	 	} else {
-			let processedValue = 0
 			_.forOwn(value, (componentValue:number, component:string) => {
 				if (_.isNaN(componentValue) || componentValue > 255) {
 					callback('has invalid component value of ' + componentValue + ' for component ' + component)

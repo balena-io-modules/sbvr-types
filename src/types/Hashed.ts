@@ -20,7 +20,7 @@ class Hashed implements SBVRType<string, string> {
 		if (!_.isString(value)) {
 			callback('is not a string')
 		} else {
-			(bcrypt as any).genSaltAsync()
+			bcrypt.genSaltAsync()
 			.then( (salt:any) => bcrypt.hashAsync(value, salt) )
 			.asCallback(callback)
 		}

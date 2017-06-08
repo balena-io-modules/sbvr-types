@@ -8,12 +8,12 @@ const bcrypt:any = Promise.promisifyAll(bcryptC)
 class Hashed implements SBVRType<string, string> {
 
 	types = {
-		  postgres: 'CHAR(60)'
-		, mysql: 'CHAR(60)'
-		, websql: 'CHAR(60)'
-		, odata: {
+		postgres: 'CHAR(60)',
+		mysql: 'CHAR(60)',
+		websql: 'CHAR(60)',
+		odata: {
 			name: 'Edm.String'
-		}
+		},
 	}
 
 	validate = (value:string, required:boolean, callback:Callback<string>) => {

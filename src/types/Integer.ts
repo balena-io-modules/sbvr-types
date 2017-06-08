@@ -1,18 +1,19 @@
 import * as TypeUtils from "../TypeUtils"
 
 class Integer implements SBVRType<number, any>{
-	types =
-		{ postgres: 'INTEGER'
-		, mysql: 'INTEGER'
-		, websql: 'INTEGER'
-		, odata: {
-				name: 'Edm.Int64'
-			}
-		}
+	types = { 
+		postgres: 'INTEGER',
+		mysql: 'INTEGER',
+		websql: 'INTEGER',
+		odata: {
+			name: 'Edm.Int64'
+		},
+	}
 
 	nativeFactTypes = {
-		  Integer: TypeUtils.nativeFactTypeTemplates.comparison
-		, Real: TypeUtils.nativeFactTypeTemplates.comparison }
+		Integer: TypeUtils.nativeFactTypeTemplates.comparison,
+		Real: TypeUtils.nativeFactTypeTemplates.comparison,
+	}
 
 	validate = TypeUtils.validate.integer
 }

@@ -1,11 +1,11 @@
 class FileT implements SBVRType<Buffer, any> {
 	types = {
-		  postgres: 'BYTEA'
-		, mysql: 'BLOB'
-		, websql: 'BLOB'
-		, odata: {
+		postgres: 'BYTEA',
+		mysql: 'BLOB',
+		websql: 'BLOB',
+		odata: {
 			name: 'Edm.String' // TODO: What should this really be?
-		}
+		},
 	}
 	validate = (value:any, required:boolean, callback:Callback<Buffer>) => {
 		if(Buffer.isBuffer(value)) {

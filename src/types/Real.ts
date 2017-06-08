@@ -3,12 +3,12 @@ import * as _ from 'lodash'
 
 class Real implements SBVRType<number, any> {
 	types = {
-		  postgres: 'REAL'
-		, mysql: 'REAL'
-		, websql: 'REAL'
-		, odata: {
+		postgres: 'REAL',
+		mysql: 'REAL',
+		websql: 'REAL',
+		odata: {
 			name: 'Edm.Double'
-		}
+		},
 	}
 
 	nativeFactTypes = {

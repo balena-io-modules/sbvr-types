@@ -2,12 +2,12 @@ import * as TypeUtils from '../TypeUtils'
 
 class Time implements SBVRType<string, Date> {
 	types = {
-		  postgres: 'TIME'
-		, mysql: 'TIME'
-		, websql: 'TEXT'
-		, odata: {
+		postgres: 'TIME',
+		mysql: 'TIME',
+		websql: 'TEXT',
+		odata: {
 			name: 'Edm.DateTime'
-		}
+		},
 	}
 
 	fetchProcessing = (data:string, callback:Callback<Date>) => {

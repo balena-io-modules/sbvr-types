@@ -4,12 +4,12 @@ type InternalDate = Date | number
 
 class DateTime implements SBVRType<InternalDate, Date> {
 	types = {
-		  postgres: 'TIMESTAMP'
-		, mysql: 'TIMESTAMP'
-		, websql: 'INTEGER'
-		, odata: {
+		postgres: 'TIMESTAMP',
+		mysql: 'TIMESTAMP',
+		websql: 'INTEGER',
+		odata: {
 			name: 'Edm.DateTime'
-		}
+		},
 	}
 	fetchProcessing =  (data:InternalDate, callback:Callback<Date>) => {
 		callback(null, new Date(data))

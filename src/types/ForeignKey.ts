@@ -2,12 +2,12 @@ import * as TypeUtils from '../TypeUtils'
 
 class ForeignKey implements SBVRType<number, any> {
 	types = {
-		  postgres: 'INTEGER'
-		, mysql: 'INTEGER'
-		, websql: 'INTEGER'
-		, odata: {
+		postgres: 'INTEGER',
+		mysql: 'INTEGER',
+		websql: 'INTEGER',
+		odata: {
 			name: 'Edm.Int64'
-		}
+		},
 	}
 
 	nativeFactTypes = {

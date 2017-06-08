@@ -5,17 +5,17 @@ const equality = (from:string, to:string) => ['Equals', from, to]
 const TypeUtils = {
 	nativeFactTypeTemplates: {
 		equality: {
-			  'is equal to': equality
-			, 'equals': equality
-		} ,
+			'is equal to': equality,
+			'equals': equality,
+		},
 		comparison: {
-			'is greater than': (from:string, to:string) => ['GreaterThan', from, to]
-			, 'is greater than or equal to': (from:string, to:string) => ['GreaterThanOrEqual', from, to]
-			, 'is less than': (from:string, to:string) => ['LessThan', from, to]
-			, 'is less than or equal to': (from:string, to:string) => ['LessThanOrEqual', from, to]
-			, 'is equal to': equality
-			, 'equals': equality
-		}
+			'is greater than': (from:string, to:string) => ['GreaterThan', from, to],
+			'is greater than or equal to': (from:string, to:string) => ['GreaterThanOrEqual', from, to],
+			'is less than': (from:string, to:string) => ['LessThan', from, to],
+			'is less than or equal to': (from:string, to:string) => ['LessThanOrEqual', from, to],
+			'is equal to': equality,
+			'equals': equality,
+		},
 	},
 
 	validate: {
@@ -50,8 +50,8 @@ const TypeUtils = {
 			} else {
 				callback(null, processedValue)
 			}
-		}
-	}
+		},
+	},
 }
 
 export = TypeUtils

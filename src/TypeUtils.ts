@@ -20,7 +20,7 @@ const TypeUtils = {
 
 	validate: {
 		integer: (value:any, required:boolean, callback:Callback<number>) => {
-			let processedValue = parseInt(value, 10)
+			let processedValue = _.parseInt(value)
 			if(_.isNaN(processedValue)) {
 				callback('is not a number: ' + value)
 			} else {

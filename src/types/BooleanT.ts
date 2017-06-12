@@ -3,13 +3,7 @@ const typeFunc = (necessity:string, index:string, defaultValue:string = ' DEFAUL
 	return 'INTEGER' + defaultValue + necessity + index
 }
 
-const abs = (n:number) => {
-	if (n >= 0) {
-		return n
-	} else {
-		return -n
-	}
-}
+
 
 class BooleanT implements SBVRType<number, boolean> {
 	types = {
@@ -26,8 +20,8 @@ class BooleanT implements SBVRType<number, boolean> {
 
 	validate = (originalValue:any, required:boolean, callback:Callback<number>) => {
 		// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"
-		let value = Number(originalValue)
-		if (_.isNaN(value) || abs(value) >= 2) {
+		const value = Number(originalValue)
+		if (_.isNaN(value) || (value !== 0 && value !== 1)) {
 			callback("is not a boolean: #{JSON.stringify(originalValue)} (#{typeof originalValue})")
 		}
 		else {

@@ -22,7 +22,7 @@ class Time implements SBVRType<string, Date> {
 			if (err) {
 				callback(err)
 			} else {
-				callback(null, (value as Date).toLocaleTimeString())
+				callback(null, value!.toLocaleTimeString())
 			}
 		})
 	}

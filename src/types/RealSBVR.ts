@@ -1,7 +1,7 @@
 import * as TypeUtils from '../TypeUtils'
 import * as _ from 'lodash'
 
-class Real implements SBVRType<number, any> {
+export class RealSBVR implements SBVRType<number, any> {
 	types = {
 		postgres: 'REAL',
 		mysql: 'REAL',

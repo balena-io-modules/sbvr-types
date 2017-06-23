@@ -1,3 +1,5 @@
+import * as _ from 'lodash'
+
 class RGBA {
 	r: number
 	g: number
@@ -5,7 +7,7 @@ class RGBA {
 	a: number
 }
 
-class Color implements SBVRType<number, RGBA> {
+export class ColorSBVR implements SBVRType<number, RGBA> {
 	types = {
 		postgres: 'INTEGER',
 		mysql: 'INTEGER',
@@ -24,10 +26,10 @@ class Color implements SBVRType<number, RGBA> {
 	}
 	nativeProperties = {
 		has: {
-			'Red Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, "16"], "255"],
-			'Green Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, "8"], "255"],
-			'Blue Component': (from:string) => ['BitwiseShiftRight', from, "255"],
-			'Alpha Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, "24"], "255"],
+			'Red Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 16], 255],
+			'Green Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 8], 255],
+			'Blue Component': (from:string) => ['BitwiseShiftRight', from, 255],
+			'Alpha Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 24], 255],
 		}
 	}
 	fetchProcessing =  (data:number, callback:Callback<RGBA>) => {

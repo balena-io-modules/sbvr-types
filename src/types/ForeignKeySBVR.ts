@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-class ForeignKey implements SBVRType<number, any> {
+export class ForeignKeySBVR implements SBVRType<number, any> {
 	types = {
 		postgres: 'INTEGER',
 		mysql: 'INTEGER',

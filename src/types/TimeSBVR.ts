@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-class Time implements SBVRType<string, Date> {
+export class TimeSBVR implements SBVRType<string, Date> {
 	types = {
 		postgres: 'TIME',
 		mysql: 'TIME',

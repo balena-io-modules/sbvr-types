@@ -1,6 +1,6 @@
 import * as TypeUtils from "../TypeUtils"
 
-class ConcreteTypes implements SBVRType<number, number> {
+export class ConceptTypeSBVR implements SBVRType<number, number> {
 	types = {
 		postgres: 'INTEGER'
 		, mysql: 'INTEGER'

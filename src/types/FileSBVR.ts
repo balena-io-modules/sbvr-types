@@ -1,4 +1,6 @@
-class FileT implements SBVRType<Buffer, any> {
+import * as _ from 'lodash'
+
+export class FileSBVR implements SBVRType<Buffer, any> {
 	types = {
 		postgres: 'BYTEA',
 		mysql: 'BLOB',

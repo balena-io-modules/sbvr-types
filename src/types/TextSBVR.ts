@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-class Text implements SBVRType<string, string> {
+export class TextSBVR implements SBVRType<string, string> {
 	types = {
 		postgres: 'TEXT',
 		mysql: 'TEXT',

@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-class ShortText implements SBVRType<string, string> {
+export class ShortTextSBVR implements SBVRType<string, string> {
 	types = {
 		postgres: 'VARCHAR(255)',
 		mysql: 'VARCHAR(255)',

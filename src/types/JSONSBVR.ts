@@ -1,12 +1,12 @@
-class JSONT implements SBVRType<string, JSON> {
+export class JSONSBVR implements SBVRType<string, JSON> {
 	types = {
-		  postgres: 'TEXT'
-		, mysql: 'TEXT'
-		, websql: 'TEXT'
-		, odata: {
-				name: 'Edm.String' // TODO: What should this really be?
-			}
-		}
+		postgres: 'TEXT',
+		mysql: 'TEXT',
+		websql: 'TEXT',
+		odata: {
+			name: 'Edm.String' // TODO: What should this really be?
+		},
+	}
 
  	public fetchProcessing = (data:string, callback:Callback<JSON>) => {
 		try {

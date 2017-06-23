@@ -2,7 +2,7 @@ import * as TypeUtils from "../TypeUtils"
 
 type InternalDate = Date | number
 
-class DateTime implements SBVRType<InternalDate, Date> {
+export class DateTimeSBVR implements SBVRType<InternalDate, Date> {
 	types = {
 		postgres: 'TIMESTAMP',
 		mysql: 'TIMESTAMP',

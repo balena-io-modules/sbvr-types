@@ -1,11 +1,10 @@
-const equality = (from:string, to:string) => ['Equals', from, to]
+import * as _ from 'lodash'
+
 const typeFunc = (necessity:string, index:string, defaultValue:string = ' DEFAULT 0') => {
 	return 'INTEGER' + defaultValue + necessity + index
 }
 
-
-
-class BooleanT implements SBVRType<number, boolean> {
+export class BooleanSBVR implements SBVRType<number, boolean> {
 	types = {
 		  postgres: typeFunc
 		, mysql: typeFunc
@@ -29,3 +28,4 @@ class BooleanT implements SBVRType<number, boolean> {
 		}
 	}
 }
+

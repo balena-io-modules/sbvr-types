@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-class Interval implements SBVRType<number, number> {
+export class IntervalSBVR implements SBVRType<number, number> {
 	types = {
 		postgres: 'INTERVAL',
 		mysql: 'INTEGER',

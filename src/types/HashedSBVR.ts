@@ -5,7 +5,7 @@ import * as _ from 'lodash'
 const bcrypt:any = Promise.promisifyAll(bcryptC)
 
 
-class Hashed implements SBVRType<string, string> {
+export class HashedSBVR implements SBVRType<string, string> {
 
 	types = {
 		postgres: 'CHAR(60)',

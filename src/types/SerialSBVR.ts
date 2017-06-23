@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-class Serial implements SBVRType<number, number> {
+export class SerialSBVR implements SBVRType<number, number> {
 	types = {
 		postgres: 'SERIAL',
 		mysql: (necessity:string, index:string, defaultValue:string = '') => {

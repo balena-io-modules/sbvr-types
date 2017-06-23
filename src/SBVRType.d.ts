@@ -28,11 +28,8 @@ declare class ODataTypeBuilder {
   complexType?: string;
 }
 
-// It would be nice to be a bit smarter about these verb and term types. Unfortunately indexed types can only be string or number atm and this excludes evern type aliases or a sum of possible string literals
-type Verb = string
-type Term = string
-
-type AbstractSQL = (string | string[])[]
+//TODO: Change this once we define the AbstractSQL type
+type AbstractSQL = any[]
 
 declare class NativeProperties {
   [verb: string]: {

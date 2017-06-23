@@ -1,9 +1,5 @@
-import * as bcryptC from 'bcrypt'
-import * as Promise from 'bluebird'
+import * as bcrypt from 'bcrypt'
 import * as _ from 'lodash'
-
-const bcrypt:any = Promise.promisifyAll(bcryptC)
-
 
 export class HashedSBVR implements SBVRType<string, string> {
 
@@ -20,10 +16,10 @@ export class HashedSBVR implements SBVRType<string, string> {
 		if (!_.isString(value)) {
 			callback('is not a string')
 		} else {
-			bcrypt.genSaltAsync()
-			.then( (salt:any) => bcrypt.hashAsync(value, salt) )
-			.asCallback(callback)
+			bcrypt.genSalt()
+			.then( (salt:string) => bcrypt.hash(value, salt) )
+			.then(callback)
 		}
 	}
-	compare = _.bind(bcrypt.compareAsync, bcrypt)
+	compare = _.bind(bcrypt.compare, bcrypt)
 }

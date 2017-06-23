@@ -2,7 +2,8 @@
   "name": "@resin/sbvr-types",
   "version": "1.4.0",
   "description": "SBVR type definitions.",
-  "main": "bin/types.js",
+  "main": "dist/SBVRTypes.node.min.js",
+  "browser": "dist/SBVRTypes.browser.min.js",
   "scripts": {
     "lint": "resin-lint src test build.coffee",
     "pretest": "npm run lint && npm run prepublishOnly",
@@ -23,6 +24,9 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.5",
+    "@types/lodash": "^4.14.65",
+    "@types/node": "^7.0.27",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-datetime": "^1.5.0",
@@ -30,8 +34,13 @@
     "mocha": "^5.0.4",
     "require-npm4-to-publish": "^1.0.0",
     "resin-lint": "^1.3.0",
-    "@types/bluebird": "^3.5.5",
-    "@types/lodash": "^4.14.65",
-    "@types/node": "^7.0.27"
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.4",
+    "webpack": "^2.6.1",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "optionalDependencies": {
+    "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3"
   }
 }

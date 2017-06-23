@@ -1,2 +1,7 @@
 /node_modules
+<<<<<<< HEAD
 /bin/types.js
+=======
+/bower_components
+/dist
+>>>>>>> Refactored build steps to use webpack and produce both node and browser targets

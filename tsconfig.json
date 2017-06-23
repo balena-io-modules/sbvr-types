@@ -8,6 +8,8 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "strictNullChecks": true,
+    "pretty": true,
+    "sourceMap": true,
     "typeRoots": ["src/SBVRType.d.ts"],
     "types": ["node"]
   },

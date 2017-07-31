@@ -11,6 +11,9 @@ Term:       File
 Term:       Serial
 	Concept Type: Integer
 	Note: An auto-incrementing 'Integer'.
+Term:       Case Insensitive Text
+	Concept Type: Text
+	Note: A 'Text' type that is compared case insensitively.
 Term:       JSON
 	Concept Type: Text
 	Note: A 'Text' type that will only allow valid JSON.

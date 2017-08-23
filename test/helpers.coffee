@@ -26,6 +26,7 @@ exports.describe = (typeName, fn) ->
 				it "should reject #{util.inspect(inputs)} with #{expected.message}", (done) ->
 					method inputs..., (err, result) ->
 						expect(err).to.equal(expected.message)
+						expect(result).to.be.undefined
 						done()
 			else
 				isFunc = _.isFunction(expected)

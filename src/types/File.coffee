@@ -9,6 +9,12 @@
 		if Buffer.isBuffer(value)
 			callback(null, value)
 		else if _.isString(value)
+			if value.length % 2 != 0
+				callback('could not be converted to binary: hex string must have an even length')
+				return
+			if !/^[a-fA-F0-9]*$/.test(value)
+				callback('could not be converted to binary: hex string must contain only hex characters')
+				return
 			try
 				value = new Buffer(value, 'hex')
 			catch e

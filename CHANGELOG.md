@@ -1,3 +1,5 @@
+v1.2.2
+
 * Strictly validate the hex string, rather than rely on validation by nodejs which varies vased on version
 * Fixed "File" test for nodejs 8
 * Added a "Case Insensitive Text" type

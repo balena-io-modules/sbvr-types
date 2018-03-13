@@ -28,6 +28,7 @@ exports.describe = (typeName, fn) ->
 						expect(err).to.equal(expected.message)
 						expect(result).to.be.undefined
 						done()
+					return
 			else
 				isFunc = _.isFunction(expected)
 				matches =
@@ -46,6 +47,7 @@ exports.describe = (typeName, fn) ->
 							else
 								expect(result).to.deep.equal(expected)
 							done()
+					return
 
 	describe typeName, ->
 		fn(

@@ -1,10 +1,10 @@
 {
 	types:
-		postgres: 'INTEGER'
-		mysql: 'INTEGER'
-		websql: 'INTEGER'
+		postgres: 'BIGINT'
+		mysql: 'BIGINT'
+		websql: 'BIGINT'
 		odata:
-			name: 'Edm.Int32'
+			name: 'Edm.Int64'
 
 	nativeFactTypes:
 		Integer: TypeUtils.nativeFactTypeTemplates.comparison

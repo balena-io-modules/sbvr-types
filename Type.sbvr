@@ -8,6 +8,9 @@ Term:       Time
 Term:       Interval
 Term:       File
 
+Term:       Big Integer
+	Concept type: Integer
+
 Term:       Serial
 	Concept Type: Integer
 	Note: An auto-incrementing 'Integer'.

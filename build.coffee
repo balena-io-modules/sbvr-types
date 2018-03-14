@@ -2,7 +2,7 @@
 
 fs = require 'fs'
 path = require 'path'
-coffee = require 'coffee-script'
+coffee = require 'coffeescript'
 
 indent = (str, times = 1) ->
 	str.replace(/\r/g, '').replace(/^/mg, [0...times].map(-> '\t').join(''))

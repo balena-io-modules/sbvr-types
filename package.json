@@ -1,6 +1,6 @@
 {
   "name": "@resin/sbvr-types",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "SBVR type definitions.",
   "main": "bin/types.js",
   "scripts": {
@@ -14,19 +14,19 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "bluebird": "^3.0.6",
-    "lodash": "^4.0.0"
+    "bluebird": "^3.5.1",
+    "lodash": "^4.17.5"
   },
   "optionalDependencies": {
     "bcrypt": "~0.8.0",
     "bcryptjs": "^2.3.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "chai-as-promised": "^5.0.0",
-    "chai-datetime": "^1.3.0",
-    "coffee-script": "~1.10.0",
-    "mocha": "^2.1.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-datetime": "^1.5.0",
+    "coffeescript": "^1.12.7",
+    "mocha": "^5.0.4",
     "require-npm4-to-publish": "^1.0.0",
     "resin-lint": "^1.3.0"
   }

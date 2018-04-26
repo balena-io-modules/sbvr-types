@@ -23,6 +23,9 @@ Term:       JSON
 Term:       Hashed
 	Concept Type: Text
 	Note: A 'Text' type that will automatically be converted to a hash.
+Term:       SHA
+	Concept Type: Text
+	Note: A 'Text' type that will automatically be converted to a sha256 hash.
 
 Term:       Length
 	Concept Type: Integer

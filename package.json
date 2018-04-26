@@ -1,6 +1,6 @@
 {
   "name": "@resin/sbvr-types",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "SBVR type definitions.",
   "main": "bin/types.js",
   "scripts": {
@@ -19,7 +19,8 @@
   },
   "optionalDependencies": {
     "bcrypt": "~0.8.0",
-    "bcryptjs": "^2.3.0"
+    "bcryptjs": "^2.3.0",
+    "sha.js": "^2.4.11"
   },
   "devDependencies": {
     "chai": "^4.1.2",

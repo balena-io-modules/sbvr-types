@@ -10,7 +10,7 @@ try {
 }
 
 interface Comparator {
-	compare: (data: any, encrypted: string) => Promise<boolean>
+  compare(data: any, encrypted: string): Promise<boolean>;
 }
 
 export const Hashed: SBVRType<string, string> & Comparator = {

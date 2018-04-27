@@ -1,9 +1,9 @@
 interface SBVRType<I,O> {
   types: ConcreteTypes;
 
-  validate(value: any, required: boolean, cb:Callback<I>): void;
+  validate(value: any, required: boolean, cb: Callback<I>): void;
 
-  fetchProcessing?(data:I, cb:Callback<O>): void;
+  fetchProcessing?(data: I, cb: Callback<O>): void;
 
   nativeProperties?: NativeProperties;
 

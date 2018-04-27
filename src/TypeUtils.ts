@@ -21,7 +21,7 @@ const TypeUtils = {
 	validate: {
 		integer: (value: any, required: boolean, callback: Callback<number>) => {
 			let processedValue = _.parseInt(value)
-			if(_.isNaN(processedValue)) {
+			if (_.isNaN(processedValue)) {
 				callback('is not a number: ' + value)
 			} else {
 				callback(null, processedValue)
@@ -29,7 +29,7 @@ const TypeUtils = {
 		},
 		text: (length?:number) => {
 			return (value: any, required: boolean, callback: Callback<string>) => {
-				if(!_.isString(value)) {
+				if (!_.isString(value)) {
  					callback('is not a string: ' + value)
 				} else if (_.isNumber(length) && value.length > length) {
 					callback('longer than ' + length + ' characters (' + value.length + ')')
@@ -41,11 +41,11 @@ const TypeUtils = {
 		date: (value: any, required:boolean, callback:Callback<Date>) => {
 			let processedValue: Date
 			let asNumber = Number(value)
-			if(_.isNaN(asNumber)) {
+			if (_.isNaN(asNumber)) {
 				asNumber = value
 			}
 			processedValue = new Date(asNumber)
-			if(_.isNaN(processedValue.getTime())) {
+			if (_.isNaN(processedValue.getTime())) {
 				callback('is not a valid date: ' + value)
 			} else {
 				callback(null, processedValue)

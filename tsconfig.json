@@ -11,7 +11,7 @@
     "pretty": true,
     "sourceMap": true,
     "typeRoots": ["src/SBVRType.d.ts"],
-    "types": ["node"]
+    "types": ["node", "mocha", "chai", "chai-datetime"]
   },
   "include": [
     "./src/*.ts",

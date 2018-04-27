@@ -1,19 +1,19 @@
 import * as TypeUtils from '../TypeUtils'
 
-export class ForeignKeySBVR implements SBVRType<number, any> {
-	types = {
+export const ForeignKey: SBVRType<number, any> = {
+	types: {
 		postgres: 'INTEGER',
 		mysql: 'INTEGER',
 		websql: 'INTEGER',
 		odata: {
 			name: 'Edm.Int64'
 		},
-	}
+	},
 
-	nativeFactTypes = {
+	nativeFactTypes: {
 		  Integer: TypeUtils.nativeFactTypeTemplates.comparison
 		, Real: TypeUtils.nativeFactTypeTemplates.comparison
-	}
+	},
 
-	validate = TypeUtils.validate.integer
+	validate: TypeUtils.validate.integer
 }

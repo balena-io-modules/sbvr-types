@@ -7,8 +7,8 @@ class RGBA {
 	a: number
 }
 
-export class ColorSBVR implements SBVRType<number, RGBA> {
-	types = {
+export const Color: SBVRType<number, RGBA> = {
+	types: {
 		postgres: 'INTEGER',
 		mysql: 'INTEGER',
 		websql: 'INTEGER',
@@ -23,36 +23,39 @@ export class ColorSBVR implements SBVRType<number, RGBA> {
 				</ComplexType>
 			`
 			}
-	}
-	nativeProperties = {
+	},
+
+	nativeProperties: {
 		has: {
 			'Red Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 16], 255],
 			'Green Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 8], 255],
 			'Blue Component': (from:string) => ['BitwiseShiftRight', from, 255],
 			'Alpha Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 24], 255],
 		}
-	}
-	fetchProcessing =  (data:number, callback:Callback<RGBA>) => {
+	},
+
+	fetchProcessing: (data, callback) => {
 		callback(null, {
 			r: (data >> 16) & 0xFF,
 			g: (data >> 8) & 0xFF,
 			b: data & 0xFF,
 			a: (data >> 24) & 0xFF,
 		})
-	}
-	validate = (value:any, required:boolean, callback:Callback<number>) => {
+	},
+
+	validate: (value, required, callback) => {
 		let processedValue = 0
 		if (!_.isObject(value)) {
 			processedValue = _.parseInt(value)
 
 			if (_.isNaN(processedValue)) {
-				callback('is neither an integer or color object: ' + value)
+				callback(`is neither an integer or color object: ${value}`)
 				return
 			}
 	 	} else {
 			_.forOwn(value, (componentValue:number, component:string) => {
 				if (_.isNaN(componentValue) || componentValue > 255) {
-					callback('has invalid component value of ' + componentValue + ' for component ' + component)
+					callback(`has invalid component value of ${componentValue} for component ${component}`)
 					return false
 				}
 				switch (component.toLowerCase()) {
@@ -77,12 +80,11 @@ export class ColorSBVR implements SBVRType<number, RGBA> {
 					break
 					
 					default:
-						callback('has an unknown component: ' + component)
+						callback(`has an unknown component: ${component}`)
 						return false
 				}
 			})
 		}
 		callback(null, processedValue)
 	}
-
 }

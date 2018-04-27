@@ -1,23 +1,22 @@
 import * as TypeUtils from '../TypeUtils'
 import * as _ from 'lodash'
 
-export class RealSBVR implements SBVRType<number, any> {
-	types = {
+export const Real: SBVRType<number, any> = {
+	types: {
 		postgres: 'REAL',
 		mysql: 'REAL',
 		websql: 'REAL',
 		odata: {
 			name: 'Edm.Double'
 		},
-	}
+	},
 
-	nativeFactTypes = {
+	nativeFactTypes: {
 		  Integer: TypeUtils.nativeFactTypeTemplates.comparison
 		, Real: TypeUtils.nativeFactTypeTemplates.comparison
-	}
+	},
 
-
-	validate = (value:any, required:boolean, callback:Callback<number>) => {
+	validate: (value, required, callback) => {
 		let processedValue = parseFloat(value)
 		if (_.isNaN(processedValue)) {
 			callback('is not a number: ' + value)

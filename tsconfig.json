@@ -4,7 +4,7 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "outDir": "out/",
+    "outDir": "dist/",
     "preserveConstEnums": true,
     "removeComments": true,
     "strictNullChecks": true,

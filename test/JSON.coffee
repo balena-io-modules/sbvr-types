@@ -1,6 +1,6 @@
 helpers = require './helpers'
 
-helpers.describe 'JSON', (test) ->
+helpers.describe 'SBVRJSON', (test) ->
 	obj =
 		a: 'a'
 		b: 2

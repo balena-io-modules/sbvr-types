@@ -1,15 +1,16 @@
 import * as _ from 'lodash'
 
-export class FileSBVR implements SBVRType<Buffer, any> {
-	types = {
+export const File: SBVRType<Buffer, any> = {
+	types: {
 		postgres: 'BYTEA',
 		mysql: 'BLOB',
 		websql: 'BLOB',
 		odata: {
 			name: 'Edm.String' // TODO: What should this really be?
 		},
-	}
-	validate = (value:any, required:boolean, callback:Callback<Buffer>) => {
+	},
+
+	validate: (value, required, callback) => {
 		if(Buffer.isBuffer(value)) {
 			callback(null, value)
 		}
@@ -25,12 +26,12 @@ export class FileSBVR implements SBVRType<Buffer, any> {
 			try {
 				value = new Buffer(value, 'hex')
 			} catch (e) {
-				callback("could not be converted to binary: #{e.message}")
+				callback(`could not be converted to binary: ${e.message}`)
 				return
 			}
 			callback(null, value)
 		} else {
-			callback("could not be converted to binary: #{typeof value}")
+			callback(`could not be converted to binary: ${typeof value}`)
 		}
 	}
 }

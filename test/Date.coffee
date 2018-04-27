@@ -1,6 +1,6 @@
 helpers = require './helpers'
 
-helpers.describe 'Date', (test) ->
+helpers.describe 'SBVRDate', (test) ->
 	now = new Date()
 	describe 'fetchProcessing', ->
 		test.fetch(now, now)

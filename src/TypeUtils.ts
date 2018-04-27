@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 
-const equality = (from:string, to:string) => ['Equals', from, to]
+const equality = (from: string, to: string) => ['Equals', from, to]
 
 const TypeUtils = {
 	nativeFactTypeTemplates: {
@@ -9,17 +9,17 @@ const TypeUtils = {
 			'equals': equality,
 		},
 		comparison: {
-			'is greater than': (from:string, to:string) => ['GreaterThan', from, to],
-			'is greater than or equal to': (from:string, to:string) => ['GreaterThanOrEqual', from, to],
-			'is less than': (from:string, to:string) => ['LessThan', from, to],
-			'is less than or equal to': (from:string, to:string) => ['LessThanOrEqual', from, to],
+			'is greater than': (from: string, to: string) => ['GreaterThan', from, to],
+			'is greater than or equal to': (from: string, to: string) => ['GreaterThanOrEqual', from, to],
+			'is less than': (from: string, to: string) => ['LessThan', from, to],
+			'is less than or equal to': (from: string, to: string) => ['LessThanOrEqual', from, to],
 			'is equal to': equality,
 			'equals': equality,
 		},
 	},
 
 	validate: {
-		integer: (value:any, required:boolean, callback:Callback<number>) => {
+		integer: (value: any, required: boolean, callback: Callback<number>) => {
 			let processedValue = _.parseInt(value)
 			if(_.isNaN(processedValue)) {
 				callback('is not a number: ' + value)
@@ -28,7 +28,7 @@ const TypeUtils = {
 			}
 		},
 		text: (length?:number) => {
-			return (value:any, required:boolean, callback:Callback<string>) => {
+			return (value: any, required: boolean, callback: Callback<string>) => {
 				if(!_.isString(value)) {
  					callback('is not a string: ' + value)
 				} else if (_.isNumber(length) && value.length > length) {
@@ -38,7 +38,7 @@ const TypeUtils = {
 				}
 			}
 		},
-		date: (value:any, required:boolean, callback:Callback<Date>) => {
+		date: (value: any, required:boolean, callback:Callback<Date>) => {
 			let processedValue: Date
 			let asNumber = Number(value)
 			if(_.isNaN(asNumber)) {

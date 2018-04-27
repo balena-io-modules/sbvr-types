@@ -1,19 +1,19 @@
-import * as TypeUtils from "../TypeUtils"
+import * as TypeUtils from '../TypeUtils'
 
-export class IntegerSBVR implements SBVRType<number, any>{
-	types = { 
+export const Integer: SBVRType<number, any> = {
+	types: {
 		postgres: 'INTEGER',
 		mysql: 'INTEGER',
 		websql: 'INTEGER',
 		odata: {
 			name: 'Edm.Int64'
 		},
-	}
+	},
 
-	nativeFactTypes = {
+	nativeFactTypes: {
 		Integer: TypeUtils.nativeFactTypeTemplates.comparison,
 		Real: TypeUtils.nativeFactTypeTemplates.comparison,
-	}
+	},
 
-	validate = TypeUtils.validate.integer
+	validate: TypeUtils.validate.integer
 }

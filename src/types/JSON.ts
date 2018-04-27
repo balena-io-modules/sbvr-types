@@ -1,22 +1,22 @@
-export class JSONSBVR implements SBVRType<string, JSON> {
-	types = {
+export const SBVRJSON: SBVRType<string, JSON> = {
+	types: {
 		postgres: 'TEXT',
 		mysql: 'TEXT',
 		websql: 'TEXT',
 		odata: {
 			name: 'Edm.String' // TODO: What should this really be?
 		},
-	}
+	},
 
- 	public fetchProcessing = (data:string, callback:Callback<JSON>) => {
+ 	fetchProcessing: (data, callback) => {
 		try {
 			callback(null, JSON.parse(data))
 		} catch (e) {
 			callback(e)
 		}
-	}
+	},
 
-	public validate = (value:any, required:boolean, callback:Callback<string>) => {
+	validate: (value, required, callback) => {
 		try {
 			callback(null, JSON.stringify(value))
 		} catch (e) {

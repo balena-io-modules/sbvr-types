@@ -12,7 +12,7 @@ interface SBVRType<I,O> {
 
 type Callback<T> = (err?: any, data?: T) => void
 
-declare class ConcreteTypes {
+declare interface ConcreteTypes {
   postgres: DBTypeBuilder;
   mysql: DBTypeBuilder;
   websql: DBTypeBuilder;
@@ -23,7 +23,7 @@ type DBTypeBuilder =
     string
   | ((necessity: string, index: string) => string)
 
-declare class ODataTypeBuilder {
+declare interface ODataTypeBuilder {
   name: string;
   complexType?: string;
 }
@@ -31,14 +31,17 @@ declare class ODataTypeBuilder {
 //TODO: Change this once we define the AbstractSQL type
 type AbstractSQL = any[]
 
-declare class NativeProperties {
+declare interface NativeProperties {
   [verb: string]: {
     [term: string]: (from: string) => AbstractSQL;
   }
 }
 
-declare class NativeFactTypes {
+declare interface NativeFactTypes {
   [term: string]: {
     [verb: string]: (from: string, to: string) => AbstractSQL;
   }
 }
+
+type InternalDate = Date | null | string | number
+type NullableDate = Date | null

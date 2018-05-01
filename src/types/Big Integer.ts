@@ -1,6 +1,6 @@
 import * as TypeUtils from "../TypeUtils"
 
-export const BigInt: SBVRType<number, number> = {
+export const BigInteger: SBVRType<number, number> = {
 	types: {
 		postgres: 'BIGINT',
 		mysql: 'BIGINT',

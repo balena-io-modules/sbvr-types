@@ -1,6 +1,6 @@
 import * as TypeUtils from "../TypeUtils"
 
-export const CIText: SBVRType<string, string> = {
+export const CaseInsensitiveText: SBVRType<string, string> = {
 	types: {
 		postgres: 'CITEXT',
 		mysql: 'TEXT COLLATE utf8_unicode_ci',

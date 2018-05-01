@@ -9,11 +9,7 @@ try {
 	bcrypt = require('bcryptjs')
 }
 
-interface Comparator {
-  compare(data: any, encrypted: string): Promise<boolean>;
-}
-
-export const Hashed: SBVRType<string, string> & Comparator = {
+export const Hashed: SBVRType<string, string> = {
 	types: {
 		postgres: 'CHAR(60)',
 		mysql: 'CHAR(60)',
@@ -30,6 +26,7 @@ export const Hashed: SBVRType<string, string> & Comparator = {
 			bcrypt.genSalt()
 			.then((salt) => bcrypt.hash(value, salt))
 			.then((encrypted) => callback(null, encrypted))
+			.catch((err) => callback(err))
 		}
 	},
 

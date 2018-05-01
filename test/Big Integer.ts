@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('BigInt', (test: any) => {
+runTest<number, number>('BigInt', (test) => {
 	describe('validate', () => {
 		test.validate(1, true, 1)
 		test.validate('1', true, 1)

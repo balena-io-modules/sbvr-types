@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('SBVRDate', (test: any) => {
+runTest<InternalDate, NullableDate>('SBVRDate', (test) => {
 	const now = new Date()
 	describe('fetchProcessing', () => {
 		test.fetch(now, now)

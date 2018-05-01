@@ -1,4 +1,4 @@
-export const SBVRJSON: SBVRType<string, JSON> = {
+export const SBVRJSON: SBVRType<string, Object> = {
 	types: {
 		postgres: 'TEXT',
 		mysql: 'TEXT',

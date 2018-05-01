@@ -1,12 +1,5 @@
 import * as _ from 'lodash'
 
-class RGBA {
-	r: number
-	g: number
-	b: number
-	a: number
-}
-
 export const Color: SBVRType<number, RGBA> = {
 	types: {
 		postgres: 'INTEGER',
@@ -45,11 +38,12 @@ export const Color: SBVRType<number, RGBA> = {
 
 	validate: (value, required, callback) => {
 		let processedValue = 0
+		let err = ''
 		if (!_.isObject(value)) {
 			processedValue = _.parseInt(value)
 
 			if (_.isNaN(processedValue)) {
-				callback(`is neither an integer or color object: ${value}`)
+				err = `is neither an integer or color object: ${value}`
 				return
 			}
 	 	} else {
@@ -80,11 +74,16 @@ export const Color: SBVRType<number, RGBA> = {
 					break
 					
 					default:
-						callback(`has an unknown component: ${component}`)
+						err = `has an unknown component: ${component}`
 						return false
 				}
 			})
 		}
-		callback(null, processedValue)
+		if (err) {
+			callback(err)
+		} else {
+			callback(null, processedValue)
+		}
+		
 	}
 }

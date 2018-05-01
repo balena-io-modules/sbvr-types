@@ -1,6 +1,6 @@
 import * as TypeUtils from '../TypeUtils'
 
-export const ForeignKey: SBVRType<number, any> = {
+export const ForeignKey: SBVRType<number, number> = {
 	types: {
 		postgres: 'INTEGER',
 		mysql: 'INTEGER',

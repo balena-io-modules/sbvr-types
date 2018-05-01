@@ -1,5 +1,5 @@
 export { Boolean }     from './types/Boolean'
-export { BigInt }  from './types/Big Integer'
+export { BigInt }      from './types/Big Integer'
 export { CIText }      from './types/Case Insensitive Text'
 export { Color }       from './types/Color'
 export { ConceptType } from './types/ConceptType'

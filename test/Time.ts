@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('Time', (test: any) => {
+runTest<InternalDate, NullableDate>('Time', (test) => {
 	const now = new Date()
 	now.setFullYear(1970, 0, 1)
 	describe('fetchProcessing', () => {

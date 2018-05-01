@@ -8,9 +8,24 @@ interface SBVRType<I,O> {
   nativeProperties?: NativeProperties;
 
   nativeFactTypes?: NativeFactTypes;
+
+  compare?(data: O, encrypted: I): PromiseLike<boolean>;
+}
+
+interface SBVRTypeTest<I,O> {
+  type: SBVRType<I,O>;
+
+  validate(value: any, required: boolean, result: MbDelayed<I>): void;
+
+  fetch(data: I, result: MbDelayed<O>): void;
+
+  types: any
 }
 
 type Callback<T> = (err?: any, data?: T) => void
+type Delayed<T> = (result: T, done: Function) => void
+
+type MbDelayed<T> = Delayed<T> | T | Error
 
 declare interface ConcreteTypes {
   postgres: DBTypeBuilder;
@@ -43,5 +58,12 @@ declare interface NativeFactTypes {
   }
 }
 
-type InternalDate = Date | null | string | number
+type InternalDate = Date | string | number | null
 type NullableDate = Date | null
+
+interface RGBA {
+	r: number
+	g: number
+	b: number
+	a: number
+}

@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('File', (test: any) => {
+runTest<Buffer, Buffer>('File', (test) => {
 	describe('validate', () => {
 		const hex = '5261777221'
 		const buf = new Buffer(hex, 'hex')

@@ -1,3 +1,4 @@
+/// <reference path="../src/SBVRType.d.ts" />
 const chai = require('chai')
 chai.use(require('chai-as-promised'))
 chai.use(require('chai-datetime'))
@@ -6,7 +7,7 @@ import * as util from 'util'
 import * as _ from 'lodash'
 import { expect } from 'chai'
 
-exports.describe = (typeName: string, fn: Function) => {
+export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => any) {
 	const type = types[typeName]
 	const test = (methodName: string, isAsync: boolean = true) => {
 		const method = (...args: any[]) => {

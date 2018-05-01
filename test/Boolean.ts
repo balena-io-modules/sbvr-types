@@ -1,10 +1,10 @@
 export {}
 
-const helpers = require ('./helpers')
+import { runTest } from './helpers'
 
-helpers.describe('Boolean', (test: any) => {
+runTest<number, boolean> ('Boolean', (test) => {
 	describe('types', () => {
-		for (let db of test.types) {
+		for (let db in test.types) {
 			let typeTest = test.types[db]
 			describe(db, () => {
 				typeTest(' NOT NULL', '', 'INTEGER DEFAULT 0 NOT NULL')

@@ -1,7 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-helpers.describe('SBVRJSON', (test: any) => {
+runTest<string, Object>('SBVRJSON', (test) => {
 	const obj = {
 		a: 'a',
 		b: 2

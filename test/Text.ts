@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('Text', (test: any) => {
+runTest<string, string>('Text', (test) => {
 	const string = 'hello world'
 	describe('validate', () => {
 		test.validate(string, true, string)

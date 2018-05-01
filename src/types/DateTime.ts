@@ -12,9 +12,9 @@ export const DateTime: SBVRType<InternalDate, NullableDate> = {
 	},
 
 	fetchProcessing: (data, callback) => {
-		let processedValue: Date
-		if(_.isDate(data) || data === null) {
-			processedValue = data as Date
+		let processedValue: InternalDate
+		if(_.isDate(data) || data == null) {
+			processedValue = data
 		} else {
 			processedValue = new Date(data as string)
 		}

@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('Color', (test: any) => {
+runTest<number, RGBA> ('Color', (test) => {
 	describe('fetchProcessing', () => {
 		test.fetch(0, {
 			r: 0,

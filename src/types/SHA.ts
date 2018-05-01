@@ -19,11 +19,8 @@ try {
 	}
 }
 
-interface Comparator {
-  compare(data: any, encrypted: string): Promise<boolean>;
-}
 
-export const SHA: SBVRType<string, string> & Comparator = {
+export const SHA: SBVRType<string, string> = {
 	types: {
 		postgres: 'CHAR(76)',
 		mysql: 'CHAR(76)',

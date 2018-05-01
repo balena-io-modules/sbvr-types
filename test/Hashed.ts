@@ -1,16 +1,17 @@
-export {}
-
-const helpers = require('./helpers')
-
+import { runTest } from './helpers'
 import { expect } from 'chai'
-import {} from 'chai-as-promised'
+import 'chai-as-promised'
 
-helpers.describe('Hashed', (test: any) => {
+runTest<string, string>('Hashed', (test) => {
 	const password = 'my password'
 	describe('validate', () => {
-		test.validate(password, true, (result: any, done: any) => {
-			expect(test.type.compare(password, result)).to.eventually.be.true
-			.and.notify(done)
+		test.validate(password, true, (result, done) => {
+			if (test.type.compare) {
+				expect(test.type.compare(password, result)).to.eventually.be.true
+				.and.notify(done)
+			} else {
+				throw new Error('Compare property missing on returned Hashed value')
+			}
 		})
 	})
 })

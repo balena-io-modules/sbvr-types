@@ -1,8 +1,6 @@
-export {}
+import { runTest } from './helpers'
 
-const helpers = require ('./helpers')
-
-helpers.describe('Serial', (test: any) => {
+runTest<number, number>('Serial', (test) => {
 	describe('types', () => {
 		describe('mysql', () => {
 			test.types.mysql(' NOT NULL', '', 'INTEGER NOT NULL AUTO_INCREMENT')

@@ -1,6 +1,6 @@
 import { runTest } from './helpers'
 
-runTest<string, Object>('SBVRJSON', (test) => {
+runTest<string, Object>('JSON', (test) => {
 	const obj = {
 		a: 'a',
 		b: 2

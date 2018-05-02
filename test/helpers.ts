@@ -3,9 +3,9 @@ const chai = require('chai')
 chai.use(require('chai-as-promised'))
 chai.use(require('chai-datetime'))
 const types = require('../dist/index')
+const expect = chai.expect
 import * as util from 'util'
 import * as _ from 'lodash'
-import { expect } from 'chai'
 
 export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => any) {
 	const type = types[typeName]

@@ -67,3 +67,6 @@ interface RGBA {
 	b: number
 	a: number
 }
+
+// For tests
+declare module 'aws-sdk-mock';

@@ -8,7 +8,7 @@ runTest<string, string>('SHA', (test) => {
 		test.validate(password, true, (result, done) => {
 			if (test.type.compare) {
 				expect(test.type.compare(password, result)).to.eventually.be.true
-			.and.notify(done)
+				.and.notify(done)
 			} else {
 				throw new Error('Compare property missing on returned Hashed value')
 			}

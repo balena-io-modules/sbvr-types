@@ -20,7 +20,7 @@ export const SBVRJSON: SBVRType<string, Object> = {
 		try {
 			callback(null, JSON.stringify(value))
 		} catch (e) {
-			console.error(e)
+			console.error('Error validating JSON type: ', e)
 			callback('cannot be turned into JSON: ' + value)
 		}
 	}

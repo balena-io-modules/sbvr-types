@@ -17,7 +17,7 @@ export const Real: SBVRType<number, any> = {
 	},
 
 	validate: (value, required, callback) => {
-		let processedValue = parseFloat(value)
+		const processedValue = parseFloat(value)
 		if (_.isNaN(processedValue)) {
 			callback('is not a number: ' + value)
 		} else {

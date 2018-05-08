@@ -10,14 +10,14 @@ import { expect } from 'chai'
 export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => any) {
 	const type = types[typeName]
 	const test = (methodName: string, isAsync: boolean = true) => {
-		const method = (...args: any[]) => {
-			const inputs = args.slice(0, args.length - 1)
-			const callback = args[args.length - 1]
-			let _method = _.get(type, methodName)
-			if (isAsync) {
-				return _method.apply(null, args)
-			}
-			else {
+		let method : (...args: any[]) => any
+		const _method = _.get(type, methodName)
+		if (isAsync) {
+			method = _method
+		} else {
+			method = (...args: any[]) => {
+				const inputs = args.slice(0, args.length - 1)
+				const callback = args[args.length - 1]
 				try {
 					const result = _method.apply(null, inputs)
 					callback(null, result)
@@ -32,11 +32,11 @@ export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => 
 			const expected = args[args.length - 1]
 			if (_.isError(expected)) {
 				it(`should reject ${util.inspect(inputs)} with ${expected.message}`, (done) => {
-					method.apply(null, [...inputs, (err: Error, result: any) => {
+					method(...inputs, (err: Error, result: any) => {
 						expect(err).to.equal(expected.message)
 						expect(result).to.be.undefined
-						return done()
-					}])
+						done()
+					})
 					return
 				})
 			} else {
@@ -49,8 +49,8 @@ export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => 
 					matches = `return ${expected}`
 				}
 
-				it(`should accept ${util.inspect(inputs)} and ${matches}` , (done) => {+
-					method.apply(null, [...inputs, (err: Error, result: any) => {
+				it(`should accept ${util.inspect(inputs)} and ${matches}` , (done) => {
+					method(...inputs, (err: Error, result: any) => {
 						expect(err).to.not.exist
 						if (isFunc) {
 							expected(result, done)
@@ -60,10 +60,9 @@ export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => 
 							} else {
 								expect(result).to.deep.equal(expected)
 							}
-							return done()
+							done()
 						}
-					}])
-					return 
+					})
 				})
 			}
 		}

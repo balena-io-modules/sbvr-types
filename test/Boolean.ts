@@ -4,8 +4,8 @@ import { runTest } from './helpers'
 
 runTest<number, boolean> ('Boolean', (test) => {
 	describe('types', () => {
-		for (let db in test.types) {
-			let typeTest = test.types[db]
+		for (const db in test.types) {
+			const typeTest = test.types[db]
 			describe(db, () => {
 				typeTest(' NOT NULL', '', 'INTEGER DEFAULT 0 NOT NULL')
 				typeTest(' NOT NULL', '', ' DEFAULT 1', 'INTEGER DEFAULT 1 NOT NULL')

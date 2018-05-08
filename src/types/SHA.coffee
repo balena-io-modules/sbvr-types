@@ -1,21 +1,23 @@
+# We are using the P-H-C storing format:
+# https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
 do ->
 	try
 		crypto = require('crypto')
 		sha256 = (value) ->
 			hash = crypto.createHash('sha256')
 			hash.update(value)
-			"SHA256:HEX:#{hash.digest('hex')}"
+			"$sha256$#{hash.digest('base64')}"
 	catch
 		shajs = require('sha.js')
 		sha256 = (value) ->
 			hash = shajs('sha256')
 			hash.update(value)
-			"SHA256:HEX:#{hash.digest('hex')}"
+			"$sha256$#{hash.digest('base64')}"
 	return {
 		types:
-			postgres: 'CHAR(76)'
-			mysql: 'CHAR(76)'
-			websql: 'CHAR(76)'
+			postgres: 'CHAR(54)'
+			mysql: 'CHAR(54)'
+			websql: 'CHAR(54)'
 			odata:
 				name: 'Edm.String'
 

@@ -42,39 +42,43 @@ export const Color: SBVRType<number, RGBA> = {
 			processedValue = _.parseInt(value)
 
 			if (_.isNaN(processedValue)) {
-				return callback(`is neither an integer or color object: ${value}`)
+				callback(`is neither an integer or color object: ${value}`)
+				return
 			}
 	 	} else {
 			for (const component in value) {
-				if (!value.hasOwnProperty(component)) continue;
+				if (!value.hasOwnProperty(component)) {
+					continue
+				}
 				const componentValue = value[component]
 				if (_.isNaN(componentValue) || componentValue > 255) {
-					return callback(`has invalid component value of ${componentValue} for component ${component}`)
-				} else {
-					switch (component.toLowerCase()) {
-						case 'r':
-						case 'red':
-							processedValue |= componentValue << 16
-						break
-	
-						case 'g':
-						case 'green':
-							processedValue |= componentValue << 8
-						break
-	
-						case 'b':
-						case 'blue':
-							processedValue |= componentValue
-						break
-	
-						case 'a':
-						case 'alpha':
-							processedValue |= componentValue << 24
-						break
-						
-						default:
-							return callback(`has an unknown component: ${component}`)
-					}
+					callback(`has invalid component value of ${componentValue} for component ${component}`)
+					return
+				} 
+				switch (component.toLowerCase()) {
+					case 'r':
+					case 'red':
+						processedValue |= componentValue << 16
+					break
+
+					case 'g':
+					case 'green':
+						processedValue |= componentValue << 8
+					break
+
+					case 'b':
+					case 'blue':
+						processedValue |= componentValue
+					break
+
+					case 'a':
+					case 'alpha':
+						processedValue |= componentValue << 24
+					break
+					
+					default:
+						callback(`has an unknown component: ${component}`)
+						return
 				}
 			}
 		}

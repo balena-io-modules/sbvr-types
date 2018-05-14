@@ -5,6 +5,9 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "outDir": "dist/",
+    "lib": [
+      "es6"
+    ],
     "preserveConstEnums": true,
     "removeComments": true,
     "strictNullChecks": true,

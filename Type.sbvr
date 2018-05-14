@@ -27,6 +27,9 @@ Term:       SHA
 	Concept Type: Text
 	Note: A 'Text' type that will automatically be converted to a sha256 hash.
 
+Term:       AWS File
+	Concept Type: Text
+
 Term:       Length
 	Concept Type: Integer
 

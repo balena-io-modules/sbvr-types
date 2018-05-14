@@ -16,12 +16,14 @@
   "license": "BSD",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "moment": "^2.22.1"
   },
   "optionalDependencies": {
     "bcrypt": "^2.0.1",
     "bcryptjs": "^2.3.0",
-    "sha.js": "^2.4.11"
+    "sha.js": "^2.4.11",
+    "aws-sdk": "^2.230.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",
@@ -32,6 +34,7 @@
     "@types/lodash": "^4.14.65",
     "@types/mocha": "^5.2.0",
     "@types/node": "^8.0.0",
+    "aws-sdk-mock": "^2.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-datetime": "^1.5.0",

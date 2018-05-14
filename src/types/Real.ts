@@ -1,5 +1,5 @@
-import * as TypeUtils from '../TypeUtils'
-import * as _ from 'lodash'
+import * as TypeUtils from '../TypeUtils';
+import * as _ from 'lodash';
 
 export const Real: SBVRType<number, any> = {
 	types: {
@@ -7,21 +7,21 @@ export const Real: SBVRType<number, any> = {
 		mysql: 'REAL',
 		websql: 'REAL',
 		odata: {
-			name: 'Edm.Double'
+			name: 'Edm.Double',
 		},
 	},
 
 	nativeFactTypes: {
-		  Integer: TypeUtils.nativeFactTypeTemplates.comparison
-		, Real: TypeUtils.nativeFactTypeTemplates.comparison
+		Integer: TypeUtils.nativeFactTypeTemplates.comparison,
+		Real: TypeUtils.nativeFactTypeTemplates.comparison,
 	},
 
 	validate: (value, required, callback) => {
-		const processedValue = parseFloat(value)
+		const processedValue = parseFloat(value);
 		if (_.isNaN(processedValue)) {
-			callback('is not a number: ' + value)
+			callback('is not a number: ' + value);
 		} else {
-			callback(null, processedValue)
+			callback(null, processedValue);
 		}
-	}
-}
+	},
+};

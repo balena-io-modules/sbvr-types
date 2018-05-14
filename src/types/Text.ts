@@ -1,4 +1,4 @@
-import * as TypeUtils from '../TypeUtils'
+import * as TypeUtils from '../TypeUtils';
 
 export const Text: SBVRType<string, string> = {
 	types: {
@@ -6,19 +6,19 @@ export const Text: SBVRType<string, string> = {
 		mysql: 'TEXT',
 		websql: 'TEXT',
 		odata: {
-			name: 'Edm.String'
+			name: 'Edm.String',
 		},
 	},
 
 	nativeProperties: {
 		has: {
-			Length: (from) => ['CharacterLength', from]
-		}
+			Length: (from) => ['CharacterLength', from],
+		},
 	},
 
 	nativeFactTypes: {
-		Text: TypeUtils.nativeFactTypeTemplates.equality
+		Text: TypeUtils.nativeFactTypeTemplates.equality,
 	},
 
-	validate: TypeUtils.validate.text()
-}
+	validate: TypeUtils.validate.text(),
+};

@@ -1,5 +1,5 @@
-import * as TypeUtils from "../TypeUtils"
-import * as _ from 'lodash'
+import * as TypeUtils from '../TypeUtils';
+import * as _ from 'lodash';
 
 export const DateTime: SBVRType<InternalDate, NullableDate> = {
 	types: {
@@ -7,19 +7,19 @@ export const DateTime: SBVRType<InternalDate, NullableDate> = {
 		mysql: 'TIMESTAMP',
 		websql: 'INTEGER',
 		odata: {
-			name: 'Edm.DateTime'
+			name: 'Edm.DateTime',
 		},
 	},
 
 	fetchProcessing: (data, callback) => {
-		let processedValue: InternalDate
+		let processedValue: InternalDate;
 		if(_.isDate(data) || data == null) {
-			processedValue = data
+			processedValue = data;
 		} else {
-			processedValue = new Date(data as string)
+			processedValue = new Date(data as string);
 		}
-		callback(null, processedValue)
+		callback(null, processedValue);
 	},
 
-	validate: TypeUtils.validate.date
-}
+	validate: TypeUtils.validate.date,
+};

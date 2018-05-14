@@ -4,24 +4,24 @@ export const SBVRJSON: SBVRType<string, Object> = {
 		mysql: 'TEXT',
 		websql: 'TEXT',
 		odata: {
-			name: 'Edm.String' // TODO: What should this really be?
+			name: 'Edm.String', // TODO: What should this really be?
 		},
 	},
 
- 	fetchProcessing: (data, callback) => {
+	fetchProcessing: (data, callback) => {
 		try {
-			callback(null, JSON.parse(data))
+			callback(null, JSON.parse(data));
 		} catch (e) {
-			callback(e)
+			callback(e);
 		}
 	},
 
 	validate: (value, required, callback) => {
 		try {
-			callback(null, JSON.stringify(value))
+			callback(null, JSON.stringify(value));
 		} catch (e) {
-			console.error('Error validating JSON type: ', e)
-			callback('cannot be turned into JSON: ' + value)
+			console.error('Error validating JSON type: ', e);
+			callback('cannot be turned into JSON: ' + value);
 		}
-	}
-}
+	},
+};

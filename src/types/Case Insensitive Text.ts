@@ -1,4 +1,4 @@
-import * as TypeUtils from "../TypeUtils"
+import * as TypeUtils from '../TypeUtils';
 
 export const CaseInsensitiveText: SBVRType<string, string> = {
 	types: {
@@ -6,10 +6,10 @@ export const CaseInsensitiveText: SBVRType<string, string> = {
 		mysql: 'TEXT COLLATE utf8_unicode_ci',
 		websql: 'TEXT COLLATE NOCASE',
 		odata: {
-			name: 'Edm.String'
-		}
+			name: 'Edm.String',
+		},
 	},
 
-	validate: TypeUtils.validate.text()
-}
+	validate: TypeUtils.validate.text(),
+};
 

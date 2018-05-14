@@ -1,22 +1,22 @@
-import * as _ from 'lodash'
-import * as Promise from 'bluebird'
+import * as _ from 'lodash';
+import * as Promise from 'bluebird';
 
-let sha256: (value: string) => string
+let sha256: (value: string) => string;
 
 try {
-	const crypto = require('crypto')
+	const crypto = require('crypto');
 	sha256 = (value) => {
-		const hash = crypto.createHash('sha256')
-		hash.update(value)
-		return `SHA256:HEX:${hash.digest('hex')}`
-	}
+		const hash = crypto.createHash('sha256');
+		hash.update(value);
+		return `SHA256:HEX:${hash.digest('hex')}`;
+	};
 } catch (e) {
-	const crypto = require('sha.js')
+	const crypto = require('sha.js');
 	sha256 = (value) => {
-		const hash = crypto('sha256')
-		hash.update(value)
-		return `SHA256:HEX:${hash.digest('hex')}`
-	}
+		const hash = crypto('sha256');
+		hash.update(value);
+		return `SHA256:HEX:${hash.digest('hex')}`;
+	};
 }
 
 
@@ -26,22 +26,22 @@ export const SHA: SBVRType<string, string> = {
 		mysql: 'CHAR(76)',
 		websql: 'CHAR(76)',
 		odata: {
-			name: 'Edm.String'
-		}
+			name: 'Edm.String',
+		},
 	},
 
 	validate: (value, required, callback) => {
 		if (!_.isString(value)) {
-			callback('is not a string')
+			callback('is not a string');
 		}
 		else {
-			const hash = sha256(value)
-			callback(null, hash)
+			const hash = sha256(value);
+			callback(null, hash);
 		}
 	},
 
 	compare: (value, result) => {
-		const hash = sha256(value)
-		return Promise.resolve(hash == result)
-	}
-}
+		const hash = sha256(value);
+		return Promise.resolve(hash == result);
+	},
+};

@@ -1,4 +1,4 @@
-import * as TypeUtils from '../TypeUtils'
+import * as TypeUtils from '../TypeUtils';
 
 export const Integer: SBVRType<number, any> = {
 	types: {
@@ -6,7 +6,7 @@ export const Integer: SBVRType<number, any> = {
 		mysql: 'INTEGER',
 		websql: 'INTEGER',
 		odata: {
-			name: 'Edm.Int64'
+			name: 'Edm.Int64',
 		},
 	},
 
@@ -15,5 +15,5 @@ export const Integer: SBVRType<number, any> = {
 		Real: TypeUtils.nativeFactTypeTemplates.comparison,
 	},
 
-	validate: TypeUtils.validate.integer
-}
+	validate: TypeUtils.validate.integer,
+};

@@ -1,4 +1,4 @@
-import * as TypeUtils from '../TypeUtils'
+import * as TypeUtils from '../TypeUtils';
 
 export const Interval: SBVRType<number, number> = {
 	types: {
@@ -6,9 +6,9 @@ export const Interval: SBVRType<number, number> = {
 		mysql: 'INTEGER',
 		websql: 'INTEGER',
 		odata: {
-			name: 'Edm.Int64'
+			name: 'Edm.Int64',
 		},
 	},
 
-	validate: TypeUtils.validate.integer
-}
+	validate: TypeUtils.validate.integer,
+};

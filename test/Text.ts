@@ -1,8 +1,8 @@
-import { runTest } from './helpers'
+import { runTest } from './helpers';
 
 runTest<string, string>('Text', (test) => {
-	const string = 'hello world'
+	const teststring = 'hello world';
 	describe('validate', () => {
-		test.validate(string, true, string)
-	})
-})
+		test.validate(teststring, true, teststring);
+	});
+});

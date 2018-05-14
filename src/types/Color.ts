@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 export const Color: SBVRType<number, RGBA> = {
 	types: {
@@ -14,8 +14,8 @@ export const Color: SBVRType<number, RGBA> = {
 					<Property Name="b" Nullable="false" Type="Edm.Int8"/>
 					<Property Name="a" Nullable="false" Type="Edm.Int8"/>
 				</ComplexType>
-			`
-			}
+			`,
+			},
 	},
 
 	nativeProperties: {
@@ -24,7 +24,7 @@ export const Color: SBVRType<number, RGBA> = {
 			'Green Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 8], 255],
 			'Blue Component': (from:string) => ['BitwiseShiftRight', from, 255],
 			'Alpha Component': (from:string) => ['BitwiseAnd', ['BitwiseShiftRight', from, 24], 255],
-		}
+		},
 	},
 
 	fetchProcessing: (data, callback) => {
@@ -33,55 +33,55 @@ export const Color: SBVRType<number, RGBA> = {
 			g: (data >> 8) & 0xFF,
 			b: data & 0xFF,
 			a: (data >> 24) & 0xFF,
-		})
+		});
 	},
 
 	validate: (value, required, callback) => {
-		let processedValue = 0
+		let processedValue = 0;
 		if (!_.isObject(value)) {
-			processedValue = _.parseInt(value)
+			processedValue = _.parseInt(value);
 
 			if (_.isNaN(processedValue)) {
-				callback(`is neither an integer or color object: ${value}`)
-				return
+				callback(`is neither an integer or color object: ${value}`);
+				return;
 			}
-	 	} else {
+		}	else {
 			for (const component in value) {
 				if (!value.hasOwnProperty(component)) {
-					continue
+					continue;
 				}
-				const componentValue = value[component]
+				const componentValue = value[component];
 				if (_.isNaN(componentValue) || componentValue > 255) {
-					callback(`has invalid component value of ${componentValue} for component ${component}`)
-					return
+					callback(`has invalid component value of ${componentValue} for component ${component}`);
+					return;
 				} 
 				switch (component.toLowerCase()) {
 					case 'r':
 					case 'red':
-						processedValue |= componentValue << 16
-					break
+						processedValue |= componentValue << 16;
+					break;
 
 					case 'g':
 					case 'green':
-						processedValue |= componentValue << 8
-					break
+						processedValue |= componentValue << 8;
+					break;
 
 					case 'b':
 					case 'blue':
-						processedValue |= componentValue
-					break
+						processedValue |= componentValue;
+					break;
 
 					case 'a':
 					case 'alpha':
-						processedValue |= componentValue << 24
-					break
+						processedValue |= componentValue << 24;
+					break;
 					
 					default:
-						callback(`has an unknown component: ${component}`)
-						return
+						callback(`has an unknown component: ${component}`);
+						return;
 				}
 			}
 		}
-		callback(null, processedValue)
-	}
-}
+		callback(null, processedValue);
+	},
+};

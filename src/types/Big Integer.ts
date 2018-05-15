@@ -17,4 +17,3 @@ export const BigInteger: SBVRType<number, number> = {
 
 	validate: TypeUtils.validate.integer,
 };
-

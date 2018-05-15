@@ -1,14 +1,25 @@
-/// <reference path="../src/SBVRType.d.ts" />
 const chai = require('chai');
 chai.use(require('chai-as-promised'));
 chai.use(require('chai-datetime'));
-const types = require('../dist/index');
+import Types from '../src/index';
 import * as util from 'util';
 import * as _ from 'lodash';
 import { expect } from 'chai';
 
-export function runTest<I,O>(typeName: string, fn: (test: SBVRTypeTest<I,O>) => any) {
-	const type = types[typeName];
+declare global {
+	interface SBVRTypeTest<I,O> {
+		type: SBVRType<I,O>;
+	
+		validate(value: any, required: boolean, result: MbDelayed<I>): void;
+	
+		fetch(data: I, result: MbDelayed<O>): void;
+	
+		types: any;
+	}
+}
+
+export function runTest<I,O>(typeName: keyof typeof Types, fn: (test: SBVRTypeTest<I,O>) => any) {
+	const type = (<any>Types)[typeName];
 	const test = (methodName: string, isAsync: boolean = true) => {
 		let method : (...args: any[]) => any;
 		const _method = _.get(type, methodName);

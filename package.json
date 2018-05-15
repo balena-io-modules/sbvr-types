@@ -3,9 +3,8 @@
   "version": "1.4.0",
   "description": "SBVR type definitions.",
   "main": "./dist/index.js",
-  "types": "./src/SBVRType.d.ts",
   "scripts": {
-    "lint": "resin-lint src test --typescript",
+    "lint": "resin-lint src test",
     "pretest": "npm run lint && npm run prepublishOnly",
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",

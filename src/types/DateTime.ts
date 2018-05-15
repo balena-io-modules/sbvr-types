@@ -16,6 +16,8 @@ export const DateTime: SBVRType<InternalDate, NullableDate> = {
 		if(_.isDate(data) || data == null) {
 			processedValue = data;
 		} else {
+			// TODO: Remove explicit cast when Date signature is fixed in TS
+			// https://github.com/Microsoft/TypeScript/issues/20900
 			processedValue = new Date(data as string);
 		}
 		callback(null, processedValue);

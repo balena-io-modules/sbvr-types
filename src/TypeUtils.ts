@@ -5,7 +5,7 @@ const equality = (from: string, to: string) => ['Equals', from, to];
 export const nativeFactTypeTemplates = {
 	equality: {
 		'is equal to': equality,
-		equals: equality,
+		'equals': equality,
 	},
 	comparison: {
 		'is greater than': (from: string, to: string) => ['GreaterThan', from, to],
@@ -13,7 +13,7 @@ export const nativeFactTypeTemplates = {
 		'is less than': (from: string, to: string) => ['LessThan', from, to],
 		'is less than or equal to': (from: string, to: string) => ['LessThanOrEqual', from, to],
 		'is equal to': equality,
-		equals: equality,
+		'equals': equality,
 	},
 };
 
@@ -51,6 +51,3 @@ export const validate = {
 		}
 	},
 };
-
-
-

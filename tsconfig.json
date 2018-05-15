@@ -8,14 +8,16 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "strictNullChecks": true,
+    "declaration": true,
     "pretty": true,
     "sourceMap": true,
-    "typeRoots": ["src/SBVRType.d.ts"],
+    "typeRoots": [ "dist/index.d.ts" ],
     "types": ["node", "mocha", "chai", "chai-datetime"]
   },
   "include": [
     "./src/*.ts",
     "./src/*.d.ts",
-    "./src/types/*.ts"
+    "./src/types/*.ts",
+    "./test/*.ts"
   ]
 }

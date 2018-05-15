@@ -1,5 +1,6 @@
 import * as _bcrypt from 'bcrypt';
 import * as _ from 'lodash';
+import * as Promise from 'bluebird';
 
 let bcrypt: typeof _bcrypt;
 
@@ -23,12 +24,11 @@ export const Hashed: SBVRType<string, string> = {
 		if (!_.isString(value)) {
 			callback('is not a string');
 		} else {
-			bcrypt.genSalt()
+			Promise.resolve(bcrypt.genSalt())
 			.then((salt) => bcrypt.hash(value, salt))
-			.then((encrypted) => callback(null, encrypted))
-			.catch((err) => callback(err));
+			.asCallback(callback);
 		}
 	},
 
-	compare: _.bind(bcrypt.compare, bcrypt),
+	compare: Promise.method(_.bind(bcrypt.compare, bcrypt)),
 };

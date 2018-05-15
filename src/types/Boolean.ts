@@ -29,4 +29,3 @@ export const SBVRBoolean: SBVRType<number, boolean> = {
 		}
 	},
 };
-

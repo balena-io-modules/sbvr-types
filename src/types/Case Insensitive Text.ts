@@ -10,6 +10,6 @@ export const CaseInsensitiveText: SBVRType<string, string> = {
 		},
 	},
 
-	validate: TypeUtils.validate.text(),
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.text()),
 };
 

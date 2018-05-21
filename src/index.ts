@@ -2,9 +2,9 @@ declare global {
 	interface SBVRType<I,O> {
 		types: ConcreteTypes;
 	
-		validate(value: any, required: boolean, cb: Callback<I>): void;
+		validate(value: any, required: boolean, cb: Callback<Nullable<I>>): void;
 	
-		fetchProcessing?(data: I, cb: Callback<O>): void;
+		fetchProcessing?(data: Nullable<I>, cb: Callback<Nullable<O>>): void;
 	
 		nativeProperties?: NativeProperties;
 	
@@ -14,9 +14,8 @@ declare global {
 	}
 
 	type Callback<T> = (err?: any, data?: T) => void;
-	type Delayed<T> = (result: T, done: Function) => void;
+	type Nullable<T> = T | null;
 
-	type MbDelayed<T> = Delayed<T> | T | Error;
 
 	interface ConcreteTypes {
 		postgres: DBTypeBuilder;
@@ -34,8 +33,7 @@ declare global {
 		complexType?: string;
 	}
 
-	type InternalDate = Date | string | number | null;
-	type NullableDate = Date | null;
+	type InternalDate = Date | string | number ;
 
 	interface RGBA {
 		r: number;

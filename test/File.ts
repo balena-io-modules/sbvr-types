@@ -9,5 +9,6 @@ runTest<Buffer, Buffer>('File', (test) => {
 		test.validate('Error', true, new Error('could not be converted to binary: hex string must have an even length'));
 		test.validate('Even Error', true, new Error('could not be converted to binary: hex string must contain only hex characters'));
 		test.validate(1, true, new Error('could not be converted to binary: number'));
+		test.validate(null, false, null);
 	});
 });

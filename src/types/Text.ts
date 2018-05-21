@@ -20,5 +20,5 @@ export const Text: SBVRType<string, string> = {
 		Text: TypeUtils.nativeFactTypeTemplates.equality,
 	},
 
-	validate: TypeUtils.validate.text(),
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.text()),
 };

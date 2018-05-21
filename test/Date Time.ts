@@ -1,6 +1,6 @@
 import { runTest } from './helpers';
 
-runTest<any, NullableDate>('Date Time', (test) => {
+runTest<any, Date>('Date Time', (test) => {
 	const now = new Date();
 	describe('fetchProcessing', () => {
 		test.fetch(now, now);
@@ -13,5 +13,6 @@ runTest<any, NullableDate>('Date Time', (test) => {
 		test.validate(now, true, now);
 		test.validate(now.getTime(), true, now);
 		test.validate(now.toString(), true, now);
+		test.validate(null, false, null);
 	});
 });

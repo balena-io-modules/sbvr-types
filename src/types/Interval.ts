@@ -10,5 +10,5 @@ export const Interval: SBVRType<number, number> = {
 		},
 	},
 
-	validate: TypeUtils.validate.integer,
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.integer),
 };

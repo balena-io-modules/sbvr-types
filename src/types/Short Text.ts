@@ -10,5 +10,5 @@ export const ShortText: SBVRType<string, string> = {
 		},
 	},
 
-	validate: TypeUtils.validate.text(255),
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.text(255)),
 };

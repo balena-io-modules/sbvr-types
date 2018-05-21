@@ -20,5 +20,6 @@ runTest<string, Object>('JSON', (test) => {
 		test.validate(arr, true, JSON.stringify(arr));
 		test.validate(num, true, JSON.stringify(num));
 		test.validate(teststring, true, JSON.stringify(teststring));
+		test.validate(null, false, null);
 	});
 });

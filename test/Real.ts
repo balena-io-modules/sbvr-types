@@ -6,5 +6,6 @@ runTest<number, number>('Real', (test) => {
 		test.validate('1', true, 1);
 		test.validate(1.5, true, 1.5);
 		test.validate('1.5', true, 1.5);
+		test.validate(null, false, null);
 	});
 });

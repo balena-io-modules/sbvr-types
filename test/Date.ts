@@ -1,6 +1,6 @@
 import { runTest } from './helpers';
 
-runTest<InternalDate, NullableDate>('Date', (test) => {
+runTest<InternalDate, Date>('Date', (test) => {
 	const now = new Date();
 	describe('fetchProcessing', () => {
 		test.fetch(now, now);

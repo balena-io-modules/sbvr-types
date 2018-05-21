@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as TypeUtils from './../TypeUtils';
 
 export const Color: SBVRType<number, RGBA> = {
 	types: {
@@ -28,6 +29,9 @@ export const Color: SBVRType<number, RGBA> = {
 	},
 
 	fetchProcessing: (data, callback) => {
+		if (data == null) {
+			return data;
+		}
 		callback(null, {
 			r: (data >> 16) & 0xFF,
 			g: (data >> 8) & 0xFF,
@@ -36,7 +40,7 @@ export const Color: SBVRType<number, RGBA> = {
 		});
 	},
 
-	validate: (value, required, callback) => {
+	validate: TypeUtils.validate.whenNotNull((value, required, callback) => {
 		let processedValue = 0;
 		if (!_.isObject(value)) {
 			processedValue = _.parseInt(value);
@@ -83,5 +87,5 @@ export const Color: SBVRType<number, RGBA> = {
 			}
 		}
 		callback(null, processedValue);
-	},
+	}),
 };

@@ -15,5 +15,5 @@ export const Integer: SBVRType<number, any> = {
 		Real: TypeUtils.nativeFactTypeTemplates.comparison,
 	},
 
-	validate: TypeUtils.validate.integer,
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.integer),
 };

@@ -38,5 +38,6 @@ runTest<number, RGBA> ('Color', (test) => {
 			a: 0,
 		}, true, Error('has invalid component value of 277 for component g'));
 		test.validate('red', true, Error('is neither an integer or color object: red'));
+		test.validate(null, false, null);
 	});
 });

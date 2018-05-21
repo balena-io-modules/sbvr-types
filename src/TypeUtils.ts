@@ -18,6 +18,19 @@ export const nativeFactTypeTemplates = {
 };
 
 export const validate = {
+	whenNotNull: <I>(validation: (value: any, required: boolean, callback: Callback<Nullable<I>>) => void) => {
+		return (value: any, required: boolean, callback: Callback<Nullable<I>>) => {
+			if (value === null) {
+				if (required) {
+					throw new Error('cannot be null');
+				} else {
+					callback(null, null);
+					return;
+				}
+			}
+			return validation(value, true, callback);
+		};
+	},
 	integer: (value: any, required: boolean, callback: Callback<number>) => {
 		let processedValue = _.parseInt(value);
 		if (_.isNaN(processedValue)) {

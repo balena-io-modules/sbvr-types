@@ -4,7 +4,7 @@
   "description": "SBVR type definitions.",
   "main": "./dist/index.js",
   "scripts": {
-    "lint": "resin-lint src test",
+    "lint": "resin-lint src test --typescript",
     "pretest": "npm run lint && npm run prepublishOnly",
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",

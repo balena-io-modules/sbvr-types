@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as TypeUtils from './../TypeUtils';
 
 export const File: SBVRType<Buffer, any> = {
 	types: {
@@ -10,7 +11,7 @@ export const File: SBVRType<Buffer, any> = {
 		},
 	},
 
-	validate: (value, required, callback) => {
+	validate: TypeUtils.validate.whenNotNull((value, required, callback) => {
 		if(Buffer.isBuffer(value)) {
 			callback(null, value);
 		}
@@ -33,5 +34,5 @@ export const File: SBVRType<Buffer, any> = {
 		} else {
 			callback(`could not be converted to binary: ${typeof value}`);
 		}
-	},
+	}),
 };

@@ -15,5 +15,5 @@ export const ForeignKey: SBVRType<number, number> = {
 		Real: TypeUtils.nativeFactTypeTemplates.comparison,
 	},
 
-	validate: TypeUtils.validate.integer,
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.integer),
 };

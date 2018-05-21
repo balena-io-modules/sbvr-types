@@ -1,7 +1,7 @@
 import * as TypeUtils from '../TypeUtils';
 import * as _ from 'lodash';
 
-export const DateTime: SBVRType<InternalDate, NullableDate> = {
+export const DateTime: SBVRType<InternalDate, Date> = {
 	types: {
 		postgres: 'TIMESTAMP',
 		mysql: 'TIMESTAMP',
@@ -12,7 +12,7 @@ export const DateTime: SBVRType<InternalDate, NullableDate> = {
 	},
 
 	fetchProcessing: (data, callback) => {
-		let processedValue: InternalDate;
+		let processedValue: Nullable<InternalDate>;
 		if(_.isDate(data) || data == null) {
 			processedValue = data;
 		} else {
@@ -23,5 +23,5 @@ export const DateTime: SBVRType<InternalDate, NullableDate> = {
 		callback(null, processedValue);
 	},
 
-	validate: TypeUtils.validate.date,
+	validate: TypeUtils.validate.whenNotNull(TypeUtils.validate.date),
 };

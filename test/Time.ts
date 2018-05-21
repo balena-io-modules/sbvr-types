@@ -1,6 +1,6 @@
 import { runTest } from './helpers';
 
-runTest<InternalDate, NullableDate>('Time', (test) => {
+runTest<InternalDate, Date>('Time', (test) => {
 	const now = new Date();
 	now.setFullYear(1970, 0, 1);
 	describe('fetchProcessing', () => {
@@ -12,5 +12,6 @@ runTest<InternalDate, NullableDate>('Time', (test) => {
 		test.validate(now, true, now.toLocaleTimeString());
 		test.validate(now.getTime(), true, now.toLocaleTimeString());
 		test.validate(now.toString(), true, now.toLocaleTimeString());
+		test.validate(null, false, null);
 	});
 });

@@ -10,12 +10,14 @@ declare global {
 	interface SBVRTypeTest<I,O> {
 		type: SBVRType<I,O>;
 	
-		validate(value: any, required: boolean, result: MbDelayed<I>): void;
+		validate(value: any, required: boolean, result: MbDelayed<Nullable<I>>): void;
 	
-		fetch(data: I, result: MbDelayed<O>): void;
+		fetch(data: Nullable<I>, result: MbDelayed<Nullable<O>>): void;
 	
 		types: any;
 	}
+	type Delayed<T> = (result: T, done: Function) => void;
+	type MbDelayed<T> = Delayed<T> | T | Error;
 }
 
 export function runTest<I,O>(typeName: keyof typeof Types, fn: (test: SBVRTypeTest<I,O>) => any) {

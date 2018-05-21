@@ -16,12 +16,12 @@ export const Real: SBVRType<number, any> = {
 		Real: TypeUtils.nativeFactTypeTemplates.comparison,
 	},
 
-	validate: (value, required, callback) => {
+	validate: TypeUtils.validate.whenNotNull((value, required, callback) => {
 		const processedValue = parseFloat(value);
 		if (_.isNaN(processedValue)) {
 			callback('is not a number: ' + value);
 		} else {
 			callback(null, processedValue);
 		}
-	},
+	}),
 };

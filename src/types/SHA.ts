@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as Promise from 'bluebird';
+import * as TypeUtils from './../TypeUtils';
 
 let sha256: (value: string) => string;
 
@@ -30,7 +31,7 @@ export const SHA: SBVRType<string, string> = {
 		},
 	},
 
-	validate: (value, required, callback) => {
+	validate: TypeUtils.validate.whenNotNull((value, required, callback) => {
 		if (!_.isString(value)) {
 			callback('is not a string');
 		}
@@ -38,7 +39,7 @@ export const SHA: SBVRType<string, string> = {
 			const hash = sha256(value);
 			callback(null, hash);
 		}
-	},
+	}),
 
 	compare: (value, result) => {
 		const hash = sha256(value);

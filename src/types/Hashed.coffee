@@ -3,7 +3,7 @@ do ->
 		bcrypt = require('bcrypt')
 	catch
 		bcrypt = require('bcryptjs')
-	bcrypt = Promise.promisifyAll(bcrypt)
+
 	return {
 		types:
 			postgres: 'CHAR(60)'
@@ -16,10 +16,9 @@ do ->
 			if !_.isString(value)
 				callback('is not a string')
 			else
-				bcrypt.genSaltAsync()
-				.then (salt) ->
-					bcrypt.hashAsync(value, salt)
+				Promise.resolve(bcrypt.genSalt())
+				.then((salt) -> bcrypt.hash(value, salt))
 				.asCallback(callback)
 
-		compare: _.bind(bcrypt.compareAsync, bcrypt)
+		compare: Promise.method(_.bind(bcrypt.compare, bcrypt))
 	}

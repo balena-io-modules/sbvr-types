@@ -18,8 +18,8 @@
     "lodash": "^4.17.5"
   },
   "optionalDependencies": {
-    "bcrypt": "~0.8.0",
-    "bcryptjs": "^2.3.0",
+    "bcrypt": "^3.0.1",
+    "bcryptjs": "^2.4.3",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {

@@ -14,8 +14,8 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "lodash": "^4.17.5"
+    "bluebird": "^3.5.2",
+    "lodash": "^4.17.11"
   },
   "optionalDependencies": {
     "bcrypt": "^3.0.1",
@@ -23,12 +23,12 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-datetime": "^1.5.0",
     "coffeescript": "^2.3.2",
-    "mocha": "^5.0.4",
+    "mocha": "^5.2.0",
     "require-npm4-to-publish": "^1.0.0",
-    "resin-lint": "^1.3.0"
+    "resin-lint": "^2.0.1"
   }
 }

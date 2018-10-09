@@ -1,4 +1,7 @@
-{
+_ = require('lodash')
+Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'REAL'
 		mysql: 'REAL'

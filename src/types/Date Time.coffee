@@ -1,4 +1,6 @@
-{
+Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'TIMESTAMP'
 		mysql: 'TIMESTAMP'

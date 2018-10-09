@@ -1,7 +1,7 @@
 chai = require 'chai'
 chai.use(require('chai-datetime'))
 chai.use(require('chai-as-promised'))
-types = require '../bin/types'
+types = require '../'
 util = require 'util'
 _ = require 'lodash'
 Promise = require 'bluebird'

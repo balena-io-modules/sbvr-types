@@ -1,4 +1,5 @@
-{
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'VARCHAR(255)'
 		mysql: 'VARCHAR(255)'

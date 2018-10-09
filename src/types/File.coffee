@@ -1,4 +1,6 @@
-{
+_ = require('lodash')
+Promise = require('bluebird')
+module.exports = {
 	types:
 		postgres: 'BYTEA'
 		mysql: 'BLOB'

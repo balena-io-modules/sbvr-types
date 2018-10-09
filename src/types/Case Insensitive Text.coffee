@@ -1,4 +1,5 @@
-{
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'CITEXT'
 		mysql: 'TEXT COLLATE utf8_unicode_ci'

@@ -1,4 +1,5 @@
-{
+Promise = require('bluebird')
+module.exports = {
 	types:
 		postgres: 'TEXT'
 		mysql: 'TEXT'

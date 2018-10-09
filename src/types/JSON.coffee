@@ -14,6 +14,5 @@ module.exports = {
 		try
 			return JSON.stringify(value)
 		catch e
-			console.error(e)
 			throw new Error('cannot be turned into JSON: ' + value)
 }

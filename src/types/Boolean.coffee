@@ -1,5 +1,6 @@
 _ = require('lodash')
 Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
 typeFunc = (necessity, index, defaultValue = ' DEFAULT 0') ->
 	return 'INTEGER' + defaultValue + necessity + index
 module.exports = {
@@ -13,7 +14,7 @@ module.exports = {
 	fetchProcessing: Promise.method (data) ->
 		return data == 1
 
-	validate: Promise.method (originalValue, required) ->
+	validate: TypeUtils.validate.checkRequired (originalValue) ->
 		# We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"
 		value = Number(originalValue)
 		if _.isNaN(value) or value not in [0, 1]

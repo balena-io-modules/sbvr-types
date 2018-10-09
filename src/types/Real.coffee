@@ -1,5 +1,4 @@
 _ = require('lodash')
-Promise = require('bluebird')
 TypeUtils = require('../TypeUtils')
 module.exports = {
 	types:
@@ -13,7 +12,7 @@ module.exports = {
 		Integer: TypeUtils.nativeFactTypeTemplates.comparison
 		Real: TypeUtils.nativeFactTypeTemplates.comparison
 
-	validate: Promise.method (value, required) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		processedValue = parseFloat(value)
 		if _.isNaN(processedValue)
 			throw new Error('is not a number: ' + value)

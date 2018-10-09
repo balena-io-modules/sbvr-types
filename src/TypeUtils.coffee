@@ -1,6 +1,14 @@
 _ = require('lodash')
 Promise = require('bluebird')
 equality = (from, to) -> ['Equals', from, to]
+checkRequired = (validateFn) ->
+	return Promise.method (value, required) ->
+		if value == null
+			if required
+				throw new Error('cannot be null')
+			else
+				return null
+		return validateFn(value, true)
 module.exports = {
 	nativeFactTypeTemplates:
 		equality:
@@ -15,21 +23,22 @@ module.exports = {
 			'equals': equality
 
 	validate:
-		integer: Promise.method (value, required) ->
+		checkRequired: checkRequired
+		integer: checkRequired (value) ->
 			processedValue = parseInt(value, 10)
 			if _.isNaN(processedValue)
 				throw new Error('is not a number: ' + value)
 			else
 				return processedValue
 		text: (length) ->
-			return Promise.method (value, required) ->
+			return checkRequired (value) ->
 				if !_.isString(value)
 					throw new Error('is not a string: ' + value)
 				else if length? and value.length > length
 					throw new Error('longer than ' + length + ' characters (' + value.length + ')')
 				else
 					return value
-		date: Promise.method (value, required) ->
+		date: checkRequired (value) ->
 			processedValue = Number(value)
 			if _.isNaN(processedValue)
 				processedValue = value

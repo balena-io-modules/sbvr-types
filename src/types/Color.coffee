@@ -1,5 +1,6 @@
 _ = require('lodash')
 Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
 module.exports = {
 	types:
 		postgres: 'INTEGER'
@@ -30,7 +31,7 @@ module.exports = {
 			a: (data >> 24) & 0xFF
 		}
 
-	validate: Promise.method (value, required) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		if !_.isObject(value)
 			processedValue = parseInt(value, 10)
 			if _.isNaN(processedValue)

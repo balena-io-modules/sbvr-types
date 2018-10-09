@@ -1,5 +1,6 @@
 _ = require('lodash')
 Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
 try
 	bcrypt = require('bcrypt')
 catch
@@ -13,7 +14,7 @@ module.exports = {
 		odata:
 			name: 'Edm.String'
 
-	validate: Promise.method (value, required) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		if !_.isString(value)
 			throw new Error('is not a string')
 		else

@@ -1,5 +1,5 @@
 _ = require('lodash')
-Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
 module.exports = {
 	types:
 		postgres: 'BYTEA'
@@ -7,7 +7,7 @@ module.exports = {
 		websql: 'BLOB'
 		odata:
 			name: 'Edm.String' # TODO: What should this really be?
-	validate: Promise.method (value, required) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		if Buffer.isBuffer(value)
 			return value
 		else if _.isString(value)

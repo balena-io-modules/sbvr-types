@@ -1,4 +1,5 @@
 Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
 module.exports = {
 	types:
 		postgres: 'TEXT'
@@ -10,9 +11,9 @@ module.exports = {
 	fetchProcessing: Promise.method (data) ->
 		return JSON.parse(data)
 
-	validate: Promise.method (value, required) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		try
 			return JSON.stringify(value)
-		catch e
+		catch
 			throw new Error('cannot be turned into JSON: ' + value)
 }

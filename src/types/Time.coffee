@@ -14,7 +14,7 @@ module.exports = {
 			return new Date('Thu, 01 Jan 1970 ' + data)
 		return data
 
-	validate: Promise.method (value, required) ->
+	validate: (value, required) ->
 		return TypeUtils.validate.date(value, required)
 			.then (value) ->
 				return value.toLocaleTimeString()

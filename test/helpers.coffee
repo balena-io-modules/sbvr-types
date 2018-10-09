@@ -4,31 +4,23 @@ chai.use(require('chai-as-promised'))
 types = require '../bin/types'
 util = require 'util'
 _ = require 'lodash'
+Promise = require 'bluebird'
 
 { expect } = chai
 
 exports.describe = (typeName, fn) ->
 	type = types[typeName]
 	test = (methodName, isAsync = true) ->
-		method = do ->
-			_method = _.get(type, methodName)
-			if isAsync
-				return _method
-			else
-				return (args..., callback) ->
-					try
-						result = _method(args...)
-					catch err
-					callback(err, result)
+		method = _.get(type, methodName)
+		if !_.isFunction(method)
+			method = _.constant(method)
+		if !isAsync
+			method = Promise.method(method)
 
 		(inputs..., expected) ->
 			if _.isError(expected)
-				it "should reject #{util.inspect(inputs)} with #{expected.message}", (done) ->
-					method inputs..., (err, result) ->
-						expect(err).to.equal(expected.message)
-						expect(result).to.be.undefined
-						done()
-					return
+				it "should reject #{util.inspect(inputs)} with #{expected.message}", ->
+					expect(method(inputs...)).to.eventually.be.rejectedWith(expected.message)
 			else
 				isFunc = _.isFunction(expected)
 				matches =
@@ -36,18 +28,14 @@ exports.describe = (typeName, fn) ->
 						'pass custom tests'
 					else
 						"return #{expected}"
-				it "should accept #{util.inspect(inputs)} and #{matches}" , (done) ->
-					method inputs..., (err, result) ->
-						expect(err).to.not.exist
-						if isFunc
-							expected(result, done)
-						else
-							if _.isDate(result) and _.isDate(expected)
-								expect(result).to.equalDate(expected)
-							else
-								expect(result).to.deep.equal(expected)
-							done()
-					return
+				it "should accept #{util.inspect(inputs)} and #{matches}" , ->
+					promise = method(inputs...)
+					if isFunc
+						promise.then(expected)
+					else if _.isDate(expected)
+						expect(promise).to.eventually.equalDate(expected)
+					else
+						expect(promise).to.eventually.deep.equal(expected)
 
 	describe typeName, ->
 		fn(

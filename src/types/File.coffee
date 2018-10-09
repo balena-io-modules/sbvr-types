@@ -5,22 +5,18 @@
 		websql: 'BLOB'
 		odata:
 			name: 'Edm.String' # TODO: What should this really be?
-	validate: (value, required, callback) ->
+	validate: Promise.method (value, required) ->
 		if Buffer.isBuffer(value)
-			callback(null, value)
+			return value
 		else if _.isString(value)
 			if value.length % 2 != 0
-				callback('could not be converted to binary: hex string must have an even length')
-				return
+				throw 'could not be converted to binary: hex string must have an even length'
 			if !/^[a-fA-F0-9]*$/.test(value)
-				callback('could not be converted to binary: hex string must contain only hex characters')
-				return
+				throw 'could not be converted to binary: hex string must contain only hex characters'
 			try
-				value = new Buffer(value, 'hex')
+				return new Buffer(value, 'hex')
 			catch e
-				callback("could not be converted to binary: #{e.message}")
-				return
-			callback(null, value)
+				throw "could not be converted to binary: #{e.message}"
 		else
-			callback("could not be converted to binary: #{typeof value}")
+			throw "could not be converted to binary: #{typeof value}"
 }

@@ -43,54 +43,51 @@ odata:
 		</ComplexType>'''
 ```
 
-* validate - This is a function (value, required, callback(err, data)) that must be provided, and which should validate that incoming data is valid for this type.
+* validate - This is a function `(value, required) => Promise` that must be provided, and which should validate that incoming data is valid for this type.
 	* `value` is the value that has been received as part of the request.
-	* `required` specifies whether this value is required (true: NOT NULL, false: NULL).  
-	* `callback` should be called with the first parameter as an error explaining why the data is invalid, or if it valid, null, with the second parameter being the valid, processed data.
+	* `required` specifies whether this value is required (true: NOT NULL, false: NULL).
+	* `Promise` should be returned with the resolved value being the valid, processed data, and any rejection being an error message explaining why the data is invalid.
 
 An example of validating a `Color` type, we accept either a number that specifies the `Color`, or an object {'r' or 'red', 'g' or 'green', 'b' or 'blue', 'a' or 'alpha'}, and return an integer that represents the `Color`.
 
 ```coffee-script
-validate: (value, required, callback) ->
+validate: Promise.method (value, required) ->
 	if !_.isObject(value)
 		processedValue = parseInt(value, 10)
 		if _.isNaN(processedValue)
-			callback('is neither an integer or color object: ' + value)
-			return
+			throw 'is neither an integer or color object: ' + value
 	else
 		processedValue = 0
 		for own component, componentValue of value
 			if _.isNaN(componentValue) or componentValue > 255
-				callback('has invalid component value of ' + componentValue + ' for component ' + component)
-				return
+				throw 'has invalid component value of ' + componentValue + ' for component ' + component
 			switch component.toLowerCase()
 				when 'r', 'red'
-					processedValue |= componentValue >> 16
+					processedValue |= componentValue << 16
 				when 'g', 'green'
-					processedValue |= componentValue >> 8
+					processedValue |= componentValue << 8
 				when 'b', 'blue'
 					processedValue |= componentValue
 				when 'a', 'alpha'
-					processedValue |= componentValue >> 24
+					processedValue |= componentValue << 24
 				else
-					callback('has an unknown component: ' + component)
-					return
-	callback(null, processedValue)
+					throw 'has an unknown component: ' + component
+	return processedValue
 ```
 
-* fetchProcessing - This is a function (data, callback(err, data)) that may be specified to process the data after fetching from the database and before sending to the client. If specified this function should call the callback passing either an error message as the first param, or null as the first param and the modified data as the second.
+* fetchProcessing - This is a function `(data) => Promise` that may be specified to process the data after fetching from the database and before sending to the client. If specified this function should return a promise with the modified data
 
 ```coffee-script
-fetchProcessing: (data, callback) ->
-	callback(null,
+fetchProcessing: Promise.method (data) ->
+	return {
 		r: (data >> 16) & 0xFF
 		g: (data >> 8) & 0xFF
 		b: data & 0xFF
 		a: (data >> 24) & 0xFF
-	)
+	}
 ```
 
-* nativeProperties - This is an object that may be specified to define "native" properties of the type.  
+* nativeProperties - This is an object that may be specified to define "native" properties of the type.
 If specified it should match the format:
 
 ```coffee-script

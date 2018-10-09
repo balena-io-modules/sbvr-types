@@ -12,13 +12,12 @@ do ->
 			odata:
 				name: 'Edm.String'
 
-		validate: (value, required, callback) ->
+		validate: Promise.method (value, required) ->
 			if !_.isString(value)
-				callback('is not a string')
+				throw 'is not a string'
 			else
-				Promise.resolve(bcrypt.genSalt())
-				.then((salt) -> bcrypt.hash(value, salt))
-				.asCallback(callback)
+				return Promise.resolve(bcrypt.genSalt())
+					.then((salt) -> bcrypt.hash(value, salt))
 
 		compare: Promise.method(_.bind(bcrypt.compare, bcrypt))
 	}

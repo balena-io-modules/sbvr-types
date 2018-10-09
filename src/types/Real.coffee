@@ -10,10 +10,10 @@
 		Integer: TypeUtils.nativeFactTypeTemplates.comparison
 		Real: TypeUtils.nativeFactTypeTemplates.comparison
 
-	validate: (value, required, callback) ->
+	validate: Promise.method (value, required) ->
 		processedValue = parseFloat(value)
 		if _.isNaN(processedValue)
-			callback('is not a number: ' + value)
+			throw 'is not a number: ' + value
 		else
-			callback(null, processedValue)
+			return processedValue
 }

@@ -6,16 +6,13 @@
 		odata:
 			name: 'Edm.String' # TODO: What should this really be?
 
-	fetchProcessing: (data, callback) ->
-		try
-			callback(null, JSON.parse(data))
-		catch e
-			callback(e)
+	fetchProcessing: Promise.method (data) ->
+		return JSON.parse(data)
 
-	validate: (value, required, callback) ->
+	validate: Promise.method (value, required) ->
 		try
-			callback(null, JSON.stringify(value))
+			return JSON.stringify(value)
 		catch e
 			console.error(e)
-			callback('cannot be turned into JSON: ' + value)
+			throw 'cannot be turned into JSON: ' + value
 }

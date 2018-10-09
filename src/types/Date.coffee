@@ -6,10 +6,10 @@
 		odata:
 			name: 'Edm.DateTime'
 
-	fetchProcessing: (data, callback) ->
+	fetchProcessing: Promise.method (data) ->
 		if data?
-			data = new Date(data)
-		callback(null, data)
+			return new Date(data)
+		return data
 
 	validate: TypeUtils.validate.date
 }

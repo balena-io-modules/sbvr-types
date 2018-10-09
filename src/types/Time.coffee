@@ -6,16 +6,14 @@
 		odata:
 			name: 'Edm.DateTime'
 
-	fetchProcessing: (data, callback) ->
+	fetchProcessing: Promise.method (data) ->
 		if data?
 			# We append the date of the epoch so that we can parse this as a valid date.
-			data = new Date('Thu, 01 Jan 1970 ' + data)
-		callback(null, data)
+			return new Date('Thu, 01 Jan 1970 ' + data)
+		return data
 
-	validate: (value, required, callback) ->
-		TypeUtils.validate.date value, required, (err, value) ->
-			if err
-				callback(err)
-				return
-			callback(null, value.toLocaleTimeString())
+	validate: Promise.method (value, required) ->
+		return TypeUtils.validate.date(value, required)
+			.then (value) ->
+				return value.toLocaleTimeString()
 }

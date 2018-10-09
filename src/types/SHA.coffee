@@ -23,12 +23,11 @@ do ->
 
 		validateSync: sha256
 
-		validate: (value, required, callback) ->
+		validate: Promise.method (value, required) ->
 			if !_.isString(value)
-				callback('is not a string')
+				throw 'is not a string'
 			else
-				hash = sha256(value)
-				callback(null, hash)
+				return sha256(value)
 
 		compare: (value, result) ->
 			hash = sha256(value)

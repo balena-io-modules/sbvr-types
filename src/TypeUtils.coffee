@@ -14,27 +14,27 @@ do ->
 				'equals': equality
 
 		validate:
-			integer: (value, required, callback) ->
+			integer: Promise.method (value, required) ->
 				processedValue = parseInt(value, 10)
 				if _.isNaN(processedValue)
-					callback('is not a number: ' + value)
+					throw 'is not a number: ' + value
 				else
-					callback(null, processedValue)
+					return processedValue
 			text: (length) ->
-				(value, required, callback) ->
+				return Promise.method (value, required) ->
 					if !_.isString(value)
-						callback('is not a string: ' + value)
+						throw 'is not a string: ' + value
 					else if length? and value.length > length
-						callback('longer than ' + length + ' characters (' + value.length + ')')
+						throw 'longer than ' + length + ' characters (' + value.length + ')'
 					else
-						callback(null, value)
-			date: (value, required, callback) ->
+						return value
+			date: Promise.method (value, required) ->
 				processedValue = Number(value)
 				if _.isNaN(processedValue)
 					processedValue = value
 				processedValue = new Date(processedValue)
 				if _.isNaN(processedValue.getTime())
-					callback('is not a valid date: ' + value)
+					throw 'is not a valid date: ' + value
 				else
-					callback(null, processedValue)
+					return processedValue
 	}

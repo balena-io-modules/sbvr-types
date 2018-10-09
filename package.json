@@ -5,10 +5,10 @@
   "main": "out",
   "scripts": {
     "lint": "resin-lint src test",
-    "pretest": "npm run lint && npm run prepublishOnly",
+    "pretest": "npm run lint && npm run prepare",
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",
-    "prepublishOnly": "coffee --output out --compile src"
+    "prepare": "coffee --output out --compile src"
   },
   "repository": "https://github.com/resin-io-modules/sbvr-types.git",
   "author": "",

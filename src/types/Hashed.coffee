@@ -14,7 +14,7 @@ do ->
 
 		validate: Promise.method (value, required) ->
 			if !_.isString(value)
-				throw 'is not a string'
+				throw new Error('is not a string')
 			else
 				return Promise.resolve(bcrypt.genSalt())
 					.then((salt) -> bcrypt.hash(value, salt))

@@ -14,5 +14,5 @@
 			return JSON.stringify(value)
 		catch e
 			console.error(e)
-			throw 'cannot be turned into JSON: ' + value
+			throw new Error('cannot be turned into JSON: ' + value)
 }

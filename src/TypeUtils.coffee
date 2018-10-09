@@ -17,15 +17,15 @@ do ->
 			integer: Promise.method (value, required) ->
 				processedValue = parseInt(value, 10)
 				if _.isNaN(processedValue)
-					throw 'is not a number: ' + value
+					throw new Error('is not a number: ' + value)
 				else
 					return processedValue
 			text: (length) ->
 				return Promise.method (value, required) ->
 					if !_.isString(value)
-						throw 'is not a string: ' + value
+						throw new Error('is not a string: ' + value)
 					else if length? and value.length > length
-						throw 'longer than ' + length + ' characters (' + value.length + ')'
+						throw new Error('longer than ' + length + ' characters (' + value.length + ')')
 					else
 						return value
 			date: Promise.method (value, required) ->
@@ -34,7 +34,7 @@ do ->
 					processedValue = value
 				processedValue = new Date(processedValue)
 				if _.isNaN(processedValue.getTime())
-					throw 'is not a valid date: ' + value
+					throw new Error('is not a valid date: ' + value)
 				else
 					return processedValue
 	}

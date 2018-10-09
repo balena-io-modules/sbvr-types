@@ -55,12 +55,12 @@ validate: Promise.method (value, required) ->
 	if !_.isObject(value)
 		processedValue = parseInt(value, 10)
 		if _.isNaN(processedValue)
-			throw 'is neither an integer or color object: ' + value
+			throw new Error('is neither an integer or color object: ' + value)
 	else
 		processedValue = 0
 		for own component, componentValue of value
 			if _.isNaN(componentValue) or componentValue > 255
-				throw 'has invalid component value of ' + componentValue + ' for component ' + component
+				throw new Error('has invalid component value of ' + componentValue + ' for component ' + component)
 			switch component.toLowerCase()
 				when 'r', 'red'
 					processedValue |= componentValue << 16
@@ -71,7 +71,7 @@ validate: Promise.method (value, required) ->
 				when 'a', 'alpha'
 					processedValue |= componentValue << 24
 				else
-					throw 'has an unknown component: ' + component
+					throw new Error('has an unknown component: ' + component)
 	return processedValue
 ```
 

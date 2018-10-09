@@ -13,7 +13,7 @@
 	validate: Promise.method (value, required) ->
 		processedValue = parseFloat(value)
 		if _.isNaN(processedValue)
-			throw 'is not a number: ' + value
+			throw new Error('is not a number: ' + value)
 		else
 			return processedValue
 }

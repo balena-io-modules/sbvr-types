@@ -10,13 +10,13 @@
 			return value
 		else if _.isString(value)
 			if value.length % 2 != 0
-				throw 'could not be converted to binary: hex string must have an even length'
+				throw new Error('could not be converted to binary: hex string must have an even length')
 			if !/^[a-fA-F0-9]*$/.test(value)
-				throw 'could not be converted to binary: hex string must contain only hex characters'
+				throw new Error('could not be converted to binary: hex string must contain only hex characters')
 			try
 				return new Buffer(value, 'hex')
 			catch e
-				throw "could not be converted to binary: #{e.message}"
+				throw new Error("could not be converted to binary: #{e.message}")
 		else
-			throw "could not be converted to binary: #{typeof value}"
+			throw new Error("could not be converted to binary: #{typeof value}")
 }

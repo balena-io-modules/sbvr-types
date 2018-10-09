@@ -25,7 +25,7 @@ do ->
 
 		validate: Promise.method (value, required) ->
 			if !_.isString(value)
-				throw 'is not a string'
+				throw new Error('is not a string')
 			else
 				return sha256(value)
 

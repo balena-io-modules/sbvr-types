@@ -2,33 +2,33 @@
   "name": "@resin/sbvr-types",
   "version": "1.4.2",
   "description": "SBVR type definitions.",
-  "main": "bin/types.js",
+  "main": "out",
   "scripts": {
-    "lint": "resin-lint src test build.coffee",
-    "pretest": "npm run lint && npm run prepublishOnly",
+    "lint": "resin-lint src test",
+    "pretest": "npm run lint && npm run prepare",
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",
-    "prepublishOnly": "coffee build.coffee"
+    "prepare": "coffee --output out --compile src"
   },
   "repository": "https://github.com/resin-io-modules/sbvr-types.git",
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "lodash": "^4.17.5"
+    "bluebird": "^3.5.2",
+    "lodash": "^4.17.11"
   },
   "optionalDependencies": {
-    "bcrypt": "~0.8.0",
-    "bcryptjs": "^2.3.0",
+    "bcrypt": "^3.0.1",
+    "bcryptjs": "^2.4.3",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-datetime": "^1.5.0",
-    "coffeescript": "^1.12.7",
-    "mocha": "^5.0.4",
+    "coffeescript": "^2.3.2",
+    "mocha": "^5.2.0",
     "require-npm4-to-publish": "^1.0.0",
-    "resin-lint": "^1.3.0"
+    "resin-lint": "^2.0.1"
   }
 }

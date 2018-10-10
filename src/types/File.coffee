@@ -1,26 +1,24 @@
-{
+_ = require('lodash')
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'BYTEA'
 		mysql: 'BLOB'
 		websql: 'BLOB'
 		odata:
 			name: 'Edm.String' # TODO: What should this really be?
-	validate: (value, required, callback) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		if Buffer.isBuffer(value)
-			callback(null, value)
+			return value
 		else if _.isString(value)
 			if value.length % 2 != 0
-				callback('could not be converted to binary: hex string must have an even length')
-				return
+				throw new Error('could not be converted to binary: hex string must have an even length')
 			if !/^[a-fA-F0-9]*$/.test(value)
-				callback('could not be converted to binary: hex string must contain only hex characters')
-				return
+				throw new Error('could not be converted to binary: hex string must contain only hex characters')
 			try
-				value = new Buffer(value, 'hex')
+				return new Buffer(value, 'hex')
 			catch e
-				callback("could not be converted to binary: #{e.message}")
-				return
-			callback(null, value)
+				throw new Error("could not be converted to binary: #{e.message}")
 		else
-			callback("could not be converted to binary: #{typeof value}")
+			throw new Error("could not be converted to binary: #{typeof value}")
 }

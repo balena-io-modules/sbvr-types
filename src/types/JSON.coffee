@@ -1,4 +1,6 @@
-{
+Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'TEXT'
 		mysql: 'TEXT'
@@ -6,16 +8,12 @@
 		odata:
 			name: 'Edm.String' # TODO: What should this really be?
 
-	fetchProcessing: (data, callback) ->
-		try
-			callback(null, JSON.parse(data))
-		catch e
-			callback(e)
+	fetchProcessing: Promise.method (data) ->
+		return JSON.parse(data)
 
-	validate: (value, required, callback) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		try
-			callback(null, JSON.stringify(value))
-		catch e
-			console.error(e)
-			callback('cannot be turned into JSON: ' + value)
+			return JSON.stringify(value)
+		catch
+			throw new Error('cannot be turned into JSON: ' + value)
 }

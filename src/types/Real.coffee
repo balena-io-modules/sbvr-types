@@ -1,4 +1,6 @@
-{
+_ = require('lodash')
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'REAL'
 		mysql: 'REAL'
@@ -10,10 +12,10 @@
 		Integer: TypeUtils.nativeFactTypeTemplates.comparison
 		Real: TypeUtils.nativeFactTypeTemplates.comparison
 
-	validate: (value, required, callback) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		processedValue = parseFloat(value)
 		if _.isNaN(processedValue)
-			callback('is not a number: ' + value)
+			throw new Error('is not a number: ' + value)
 		else
-			callback(null, processedValue)
+			return processedValue
 }

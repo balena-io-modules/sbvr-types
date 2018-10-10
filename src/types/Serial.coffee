@@ -1,4 +1,5 @@
-{
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'SERIAL'
 		mysql: (necessity, index, defaultValue = '') ->

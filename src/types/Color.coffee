@@ -1,4 +1,7 @@
-{
+_ = require('lodash')
+Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
+module.exports = {
 	types:
 		postgres: 'INTEGER'
 		mysql: 'INTEGER'
@@ -20,26 +23,24 @@
 			'Blue Component': (from) -> ['BitwiseShiftRight', from, 255]
 			'Alpha Component': (from) -> ['BitwiseAnd', ['BitwiseShiftRight', from, 24], 255]
 
-	fetchProcessing: (data, callback) ->
-		callback(null,
+	fetchProcessing: Promise.method (data) ->
+		return {
 			r: (data >> 16) & 0xFF
 			g: (data >> 8) & 0xFF
 			b: data & 0xFF
 			a: (data >> 24) & 0xFF
-		)
+		}
 
-	validate: (value, required, callback) ->
+	validate: TypeUtils.validate.checkRequired (value) ->
 		if !_.isObject(value)
 			processedValue = parseInt(value, 10)
 			if _.isNaN(processedValue)
-				callback('is neither an integer or color object: ' + value)
-				return
+				throw new Error('is neither an integer or color object: ' + value)
 		else
 			processedValue = 0
 			for own component, componentValue of value
 				if _.isNaN(componentValue) or componentValue > 255
-					callback('has invalid component value of ' + componentValue + ' for component ' + component)
-					return
+					throw new Error('has invalid component value of ' + componentValue + ' for component ' + component)
 				switch component.toLowerCase()
 					when 'r', 'red'
 						processedValue |= componentValue << 16
@@ -50,7 +51,6 @@
 					when 'a', 'alpha'
 						processedValue |= componentValue << 24
 					else
-						callback('has an unknown component: ' + component)
-						return
-		callback(null, processedValue)
+						throw new Error('has an unknown component: ' + component)
+		return processedValue
 }

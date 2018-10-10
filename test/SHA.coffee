@@ -4,6 +4,5 @@ helpers = require './helpers'
 helpers.describe 'SHA', (test) ->
 	password = 'my password'
 	describe 'validate', ->
-		test.validate password, true, (result, done) ->
+		test.validate password, true, (result) ->
 			expect(test.type.compare(password, result)).to.eventually.be.true
-			.and.notify(done)

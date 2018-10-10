@@ -1,25 +1,25 @@
-do ->
-	try
-		bcrypt = require('bcrypt')
-	catch
-		bcrypt = require('bcryptjs')
-	bcrypt = Promise.promisifyAll(bcrypt)
-	return {
-		types:
-			postgres: 'CHAR(60)'
-			mysql: 'CHAR(60)'
-			websql: 'CHAR(60)'
-			odata:
-				name: 'Edm.String'
+_ = require('lodash')
+Promise = require('bluebird')
+TypeUtils = require('../TypeUtils')
+try
+	bcrypt = require('bcrypt')
+catch
+	bcrypt = require('bcryptjs')
 
-		validate: (value, required, callback) ->
-			if !_.isString(value)
-				callback('is not a string')
-			else
-				bcrypt.genSaltAsync()
-				.then (salt) ->
-					bcrypt.hashAsync(value, salt)
-				.asCallback(callback)
+module.exports = {
+	types:
+		postgres: 'CHAR(60)'
+		mysql: 'CHAR(60)'
+		websql: 'CHAR(60)'
+		odata:
+			name: 'Edm.String'
 
-		compare: _.bind(bcrypt.compareAsync, bcrypt)
-	}
+	validate: TypeUtils.validate.checkRequired (value) ->
+		if !_.isString(value)
+			throw new Error('is not a string')
+		else
+			return Promise.resolve(bcrypt.genSalt())
+				.then((salt) -> bcrypt.hash(value, salt))
+
+	compare: Promise.method(_.bind(bcrypt.compare, bcrypt))
+}

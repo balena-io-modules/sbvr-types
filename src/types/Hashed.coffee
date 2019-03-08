@@ -1,6 +1,6 @@
 _ = require('lodash')
 Promise = require('bluebird')
-TypeUtils = require('../TypeUtils')
+TypeUtils = require('../type-utils')
 try
 	bcrypt = require('bcrypt')
 catch

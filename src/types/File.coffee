@@ -1,5 +1,5 @@
 _ = require('lodash')
-TypeUtils = require('../TypeUtils')
+TypeUtils = require('../type-utils')
 module.exports = {
 	types:
 		postgres: 'BYTEA'

@@ -2,7 +2,7 @@
 # https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
 _ = require('lodash')
 Promise = require('bluebird')
-TypeUtils = require('../TypeUtils')
+TypeUtils = require('../type-utils')
 try
 	crypto = require('crypto')
 	sha256 = (value) ->

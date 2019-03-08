@@ -1,4 +1,4 @@
-TypeUtils = require('../TypeUtils')
+TypeUtils = require('../type-utils')
 module.exports = {
 	types:
 		postgres: 'BIGINT'

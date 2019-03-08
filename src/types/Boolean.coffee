@@ -1,6 +1,6 @@
 _ = require('lodash')
 Promise = require('bluebird')
-TypeUtils = require('../TypeUtils')
+TypeUtils = require('../type-utils')
 typeFunc = (necessity, index, defaultValue = ' DEFAULT 0') ->
 	return 'INTEGER' + defaultValue + necessity + index
 module.exports = {

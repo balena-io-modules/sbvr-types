@@ -1,5 +1,5 @@
 Promise = require('bluebird')
-TypeUtils = require('../TypeUtils')
+TypeUtils = require('../type-utils')
 module.exports = {
 	types:
 		postgres: 'TEXT'

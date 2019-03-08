@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitAny": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+		"outDir": "out/",
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"rootDir": "src",
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"target": "es2015",
+		"declaration": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true
+	},
+	"include": [
+		"src/**/*.ts"
+	]
+}

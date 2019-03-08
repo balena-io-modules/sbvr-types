@@ -4,11 +4,11 @@
   "description": "SBVR type definitions.",
   "main": "out",
   "scripts": {
-    "lint": "resin-lint src test && resin-lint --typescript src",
+    "lint": "resin-lint test && resin-lint --typescript src",
     "pretest": "npm run lint && npm run prepare",
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",
-    "prepare": "coffee --output out --compile src && tsc",
+    "prepare": "tsc",
     "prettify": "prettier --config ./node_modules/resin-lint/config/.prettierrc --write \"src/**/*.ts\""
   },
   "repository": "https://github.com/resin-io-modules/sbvr-types.git",

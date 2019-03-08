@@ -1,9 +1,9 @@
 exports['Big Integer'] = require('./types/big-integer')
 exports['Boolean'] = require('./types/boolean')
 exports['Case Insensitive Text'] = require('./types/case-insensitive-text')
+exports['Color'] = require('./types/color')
 
 types = [
-	'Color',
 	'ConceptType',
 	'Date Time',
 	'Date',

@@ -14,9 +14,9 @@ exports['JSON'] = require('./types/json')
 exports['Real'] = require('./types/real')
 exports['Serial'] = require('./types/serial')
 exports['SHA'] = require('./types/sha')
+exports['Short Text'] = require('./types/short-text')
 
 types = [
-	'Short Text',
 	'Text',
 	'Time',
 ]

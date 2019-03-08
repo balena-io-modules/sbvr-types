@@ -16,10 +16,4 @@ exports['Serial'] = require('./types/serial')
 exports['SHA'] = require('./types/sha')
 exports['Short Text'] = require('./types/short-text')
 exports['Text'] = require('./types/text')
-
-types = [
-	'Time',
-]
-
-for type in types
-	exports[type] = require("./types/#{type}")
+exports['Time'] = require('./types/time')

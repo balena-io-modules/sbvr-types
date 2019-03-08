@@ -4,9 +4,9 @@ exports['Case Insensitive Text'] = require('./types/case-insensitive-text')
 exports['Color'] = require('./types/color')
 exports['ConceptType'] = require('./types/concept-type')
 exports['Date Time'] = require('./types/date-time')
+exports['Date'] = require('./types/date')
 
 types = [
-	'Date',
 	'File',
 	'ForeignKey',
 	'Hashed',

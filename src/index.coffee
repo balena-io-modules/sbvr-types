@@ -3,9 +3,9 @@ exports['Boolean'] = require('./types/boolean')
 exports['Case Insensitive Text'] = require('./types/case-insensitive-text')
 exports['Color'] = require('./types/color')
 exports['ConceptType'] = require('./types/concept-type')
+exports['Date Time'] = require('./types/date-time')
 
 types = [
-	'Date Time',
 	'Date',
 	'File',
 	'ForeignKey',

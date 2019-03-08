@@ -1,5 +1,6 @@
+exports['Big Integer'] = require('./types/big-integer')
+
 types = [
-	'Big Integer',
 	'Boolean',
 	'Case Insensitive Text',
 	'Color',

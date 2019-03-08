@@ -18,6 +18,7 @@
     "@types/bcrypt": "^3.0.0",
     "@types/bluebird": "^3.5.26",
     "@types/lodash": "^4.14.122",
+    "@types/sha.js": "^2.4.0",
     "bluebird": "^3.5.3",
     "lodash": "^4.17.11"
   },

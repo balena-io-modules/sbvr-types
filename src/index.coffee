@@ -13,9 +13,9 @@ exports['Interval'] = require('./types/interval')
 exports['JSON'] = require('./types/json')
 exports['Real'] = require('./types/real')
 exports['Serial'] = require('./types/serial')
+exports['SHA'] = require('./types/sha')
 
 types = [
-	'SHA',
 	'Short Text',
 	'Text',
 	'Time',

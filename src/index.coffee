@@ -5,9 +5,9 @@ exports['Color'] = require('./types/color')
 exports['ConceptType'] = require('./types/concept-type')
 exports['Date Time'] = require('./types/date-time')
 exports['Date'] = require('./types/date')
+exports['File'] = require('./types/file')
 
 types = [
-	'File',
 	'ForeignKey',
 	'Hashed',
 	'Integer',

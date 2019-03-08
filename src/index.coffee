@@ -1,7 +1,7 @@
 exports['Big Integer'] = require('./types/big-integer')
+exports['Boolean'] = require('./types/boolean')
 
 types = [
-	'Boolean',
 	'Case Insensitive Text',
 	'Color',
 	'ConceptType',

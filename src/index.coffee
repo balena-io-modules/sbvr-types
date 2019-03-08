@@ -9,9 +9,9 @@ exports['File'] = require('./types/file')
 exports['ForeignKey'] = require('./types/foreign-key')
 exports['Hashed'] = require('./types/hashed')
 exports['Integer'] = require('./types/integer')
+exports['Interval'] = require('./types/interval')
 
 types = [
-	'Interval',
 	'JSON',
 	'Real',
 	'Serial',

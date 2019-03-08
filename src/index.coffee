@@ -11,9 +11,9 @@ exports['Hashed'] = require('./types/hashed')
 exports['Integer'] = require('./types/integer')
 exports['Interval'] = require('./types/interval')
 exports['JSON'] = require('./types/json')
+exports['Real'] = require('./types/real')
 
 types = [
-	'Real',
 	'Serial',
 	'SHA',
 	'Short Text',

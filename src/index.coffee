@@ -12,9 +12,9 @@ exports['Integer'] = require('./types/integer')
 exports['Interval'] = require('./types/interval')
 exports['JSON'] = require('./types/json')
 exports['Real'] = require('./types/real')
+exports['Serial'] = require('./types/serial')
 
 types = [
-	'Serial',
 	'SHA',
 	'Short Text',
 	'Text',

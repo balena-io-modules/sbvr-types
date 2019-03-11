@@ -16,7 +16,7 @@
   "license": "BSD",
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
-    "@types/bluebird": "^3.5.26",
+    "@types/bluebird": "^3.5.25",
     "@types/lodash": "^4.14.122",
     "@types/sha.js": "^2.4.0",
     "bluebird": "^3.5.3",

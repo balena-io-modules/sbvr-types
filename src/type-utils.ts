@@ -3,21 +3,18 @@ import * as Promise from 'bluebird';
 
 const equality = (from: string, to: string) => ['Equals', from, to];
 const checkRequired = <T>(validateFn: (value: any) => T) =>
-	Promise.method(
-		(
-			value: any,
-			required: boolean,
-		): typeof required extends true ? T : T | null => {
-			if (value == null) {
-				if (required) {
-					throw new Error('cannot be null');
-				} else {
-					return null;
-				}
+	Promise.method((value: any, required: boolean): typeof required extends true
+		? T
+		: T | null => {
+		if (value == null) {
+			if (required) {
+				throw new Error('cannot be null');
+			} else {
+				return null;
 			}
-			return validateFn(value);
-		},
-	);
+		}
+		return validateFn(value);
+	});
 
 export const nativeFactTypeTemplates = {
 	equality: {

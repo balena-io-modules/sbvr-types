@@ -1,4 +1,28 @@
 - commits:
+    - subject: Add node 12 to the test matrix
+      hash: ecd938076fa0b473e0149940e71ac909a5f2cdfd
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: Update dependencies
+      hash: 3aacccdbb1962f5cb7eeec8ca5fa62c5f42145e3
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: Add CODEOWNERS
+      hash: d04a524767359dca21b7dfefc07e7e05a5607934
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 2.0.4
+  date: 2020-01-22T17:34:25.485Z
+- commits:
     - subject: Add .versionbot/CHANGELOG.yml for downstream changelogs
       hash: cc2e3e23030521788c127b5750abf3c65645a710
       body: ''

@@ -9,14 +9,14 @@
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",
     "prepare": "tsc",
-    "prettify": "prettier --config ./node_modules/resin-lint/config/.prettierrc --write \"src/**/*.ts\""
+    "prettify": "resin-lint --typescript --fix src"
   },
   "repository": "https://github.com/resin-io-modules/sbvr-types.git",
   "author": "",
   "license": "BSD",
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
-    "@types/bluebird": "^3.5.29",
+    "@types/bluebird": "^3.5.30",
     "@types/lodash": "^4.14.149",
     "@types/sha.js": "^2.4.0",
     "bluebird": "^3.7.2",
@@ -31,14 +31,13 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-datetime": "^1.5.0",
-    "coffeescript": "^2.5.0",
-    "husky": "^4.2.0",
-    "lint-staged": "^10.0.2",
+    "coffeescript": "^2.5.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "mocha": "^6.2.2",
-    "prettier": "^1.19.1",
     "require-npm4-to-publish": "^1.0.0",
-    "resin-lint": "^2.0.1",
-    "typescript": "^3.7.5"
+    "resin-lint": "^3.3.1",
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {
@@ -47,8 +46,10 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "prettier --config ./node_modules/resin-lint/config/.prettierrc --write",
-      "resin-lint --typescript"
+      "resin-lint --typescript --fix"
+    ],
+    "src/**/*.coffee": [
+      "resin-lint"
     ]
   }
 }

@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
 import * as Promise from 'bluebird';
+import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -40,12 +40,14 @@ export const nativeProperties = {
 };
 
 export const fetchProcessing = Promise.method((data: number) => {
+	// tslint:disable:no-bitwise
 	return {
 		r: (data >> 16) & 0xff,
 		g: (data >> 8) & 0xff,
 		b: data & 0xff,
 		a: (data >> 24) & 0xff,
 	};
+	// tslint:enable:no-bitwise
 });
 
 export const validate = TypeUtils.validate.checkRequired(value => {
@@ -66,6 +68,7 @@ export const validate = TypeUtils.validate.checkRequired(value => {
 						component,
 				);
 			}
+			// tslint:disable:no-bitwise
 			switch (component.toLowerCase()) {
 				case 'r':
 				case 'red':
@@ -86,6 +89,7 @@ export const validate = TypeUtils.validate.checkRequired(value => {
 				default:
 					throw new Error('has an unknown component: ' + component);
 			}
+			// tslint:enable:no-bitwise
 		});
 	}
 	return processedValue;

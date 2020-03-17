@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
 import * as Promise from 'bluebird';
+import * as _ from 'lodash';
 
 const equality = (from: string, to: string) => ['Equals', from, to];
 const checkRequired = <T>(validateFn: (value: any) => T) =>

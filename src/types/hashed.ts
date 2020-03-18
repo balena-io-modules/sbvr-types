@@ -1,7 +1,7 @@
 import * as _bcrypt from 'bcrypt';
 
-import * as _ from 'lodash';
 import * as Promise from 'bluebird';
+import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 
 let bcrypt: typeof _bcrypt;

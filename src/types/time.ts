@@ -19,9 +19,9 @@ export const fetchProcessing = Promise.method((data: any) => {
 });
 
 export const validate = (value: any, required: boolean) =>
-	TypeUtils.validate.date(value, required).then(value => {
-		if (value == null) {
-			return value;
+	TypeUtils.validate.date(value, required).then(date => {
+		if (date == null) {
+			return date;
 		}
-		return value.toLocaleTimeString();
+		return date.toLocaleTimeString();
 	});

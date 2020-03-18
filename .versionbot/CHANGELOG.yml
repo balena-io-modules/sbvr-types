@@ -1,4 +1,35 @@
 - commits:
+    - subject: 'CI: Remove circleci deploy in favor of balenaCI'
+      hash: 9e1137a305c6ded5c11209d292dab1c5cbabd0ee
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: 'CI: Add node 12 to the test matrix'
+      hash: ccad733c04197834893804a6f8ccb8c76a1bf562
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: 'CI: Remove node 6 from the test matrix'
+      hash: 5dd121cd02ffd37962ecefbfe0c1f9ab76168285
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: Update dependencies and use resin-lint for automatic lint fixes
+      hash: caab18277ab22f8d60c6feca21d731b69239f963
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 2.0.5
+  date: 2020-03-17T16:10:52.892Z
+- commits:
     - subject: Add node 12 to the test matrix
       hash: ecd938076fa0b473e0149940e71ac909a5f2cdfd
       body: ''

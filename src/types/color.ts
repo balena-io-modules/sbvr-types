@@ -1,5 +1,4 @@
 import * as Promise from 'bluebird';
-import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -52,15 +51,16 @@ export const fetchProcessing = Promise.method((data: number) => {
 
 export const validate = TypeUtils.validate.checkRequired(value => {
 	let processedValue: number;
-	if (!_.isObject(value)) {
+	if (typeof value !== 'object') {
 		processedValue = parseInt(value, 10);
-		if (_.isNaN(processedValue)) {
+		if (Number.isNaN(processedValue)) {
 			throw new Error('is neither an integer or color object: ' + value);
 		}
 	} else {
 		processedValue = 0;
-		_.forOwn(value, (componentValue, component) => {
-			if (_.isNaN(componentValue) || componentValue > 255) {
+		Object.keys(value).forEach(component => {
+			const componentValue = value[component];
+			if (Number.isNaN(componentValue) || componentValue > 255) {
 				throw new Error(
 					'has invalid component value of ' +
 						componentValue +

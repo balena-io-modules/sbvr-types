@@ -1,5 +1,4 @@
 import * as _Promise from 'bluebird';
-import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -18,7 +17,7 @@ export const nativeFactTypes = {
 
 export const validate = TypeUtils.validate.checkRequired(value => {
 	const processedValue = parseFloat(value);
-	if (_.isNaN(processedValue)) {
+	if (Number.isNaN(processedValue)) {
 		throw new Error('is not a number: ' + value);
 	} else {
 		return processedValue;

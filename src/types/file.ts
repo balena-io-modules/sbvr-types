@@ -1,5 +1,4 @@
 import * as _Promise from 'bluebird';
-import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 export const types = {
 	postgres: 'BYTEA',
@@ -13,7 +12,7 @@ export const types = {
 export const validate = TypeUtils.validate.checkRequired(value => {
 	if (Buffer.isBuffer(value)) {
 		return value;
-	} else if (_.isString(value)) {
+	} else if (typeof value === 'string') {
 		if (value.length % 2 !== 0) {
 			throw new Error(
 				'could not be converted to binary: hex string must have an even length',

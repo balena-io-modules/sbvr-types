@@ -4,7 +4,6 @@ import * as _crypto from 'crypto';
 import * as _shajs from 'sha.js';
 
 import * as Promise from 'bluebird';
-import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 
 let sha256: (value: string) => string;
@@ -38,7 +37,7 @@ export const types = {
 export const validateSync = sha256;
 
 export const validate = TypeUtils.validate.checkRequired(value => {
-	if (!_.isString(value)) {
+	if (typeof value !== 'string') {
 		throw new Error('is not a string');
 	} else {
 		return sha256(value);

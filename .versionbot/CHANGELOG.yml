@@ -1,4 +1,14 @@
 - commits:
+    - subject: Remove production lodash dependency
+      hash: b819dc89d6cc55957b6c870c0fa44411d1d37bd0
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 2.0.6
+  date: 2020-04-27T14:35:57.655Z
+- commits:
     - subject: 'CI: Remove circleci deploy in favor of balenaCI'
       hash: 9e1137a305c6ded5c11209d292dab1c5cbabd0ee
       body: ''

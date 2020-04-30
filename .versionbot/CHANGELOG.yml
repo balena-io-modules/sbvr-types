@@ -1,4 +1,14 @@
 - commits:
+    - subject: Remove unused imports
+      hash: f4f8d1a55903e352db46efaace69d3b91da9016b
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 2.0.7
+  date: 2020-04-30T09:14:06.918Z
+- commits:
     - subject: Remove production lodash dependency
       hash: b819dc89d6cc55957b6c870c0fa44411d1d37bd0
       body: ''

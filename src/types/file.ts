@@ -1,4 +1,3 @@
-import * as _Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 export const types = {
 	postgres: 'BYTEA',

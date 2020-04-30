@@ -1,5 +1,4 @@
 import * as Promise from 'bluebird';
-import * as _ from 'lodash';
 
 const equality = (from: string, to: string) => ['Equals', from, to];
 const checkRequired = <T>(validateFn: (value: any) => T) =>
@@ -43,7 +42,7 @@ export const validate = {
 	checkRequired,
 	integer: checkRequired((value: any) => {
 		const processedValue = parseInt(value, 10);
-		if (_.isNaN(processedValue)) {
+		if (Number.isNaN(processedValue)) {
 			throw new Error('is not a number: ' + value);
 		} else {
 			return processedValue;
@@ -51,7 +50,7 @@ export const validate = {
 	}),
 	text: (length?: number) =>
 		checkRequired((value: any) => {
-			if (!_.isString(value)) {
+			if (typeof value !== 'string') {
 				throw new Error('is not a string: ' + value);
 			} else if (length != null && value.length > length) {
 				throw new Error(
@@ -63,11 +62,11 @@ export const validate = {
 		}),
 	date: checkRequired((value: any) => {
 		let processedValue = Number(value);
-		if (_.isNaN(processedValue)) {
+		if (Number.isNaN(processedValue)) {
 			processedValue = value;
 		}
 		const processedDate = new Date(processedValue);
-		if (_.isNaN(processedDate.getTime())) {
+		if (Number.isNaN(processedDate.getTime())) {
 			throw new Error('is not a valid date: ' + value);
 		} else {
 			return processedDate;

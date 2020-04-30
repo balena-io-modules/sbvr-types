@@ -1,7 +1,6 @@
 import * as _bcrypt from 'bcrypt';
 
 import * as Promise from 'bluebird';
-import * as _ from 'lodash';
 import * as TypeUtils from '../type-utils';
 
 let bcrypt: typeof _bcrypt;
@@ -23,7 +22,7 @@ export const types = {
 };
 
 export const validate = TypeUtils.validate.checkRequired(value => {
-	if (!_.isString(value)) {
+	if (typeof value !== 'string') {
 		throw new Error('is not a string');
 	} else {
 		return Promise.resolve(bcrypt.genSalt()).then(salt =>
@@ -32,4 +31,4 @@ export const validate = TypeUtils.validate.checkRequired(value => {
 	}
 });
 
-export const compare = Promise.method(_.bind(bcrypt.compare, bcrypt));
+export const compare = Promise.method(bcrypt.compare.bind(bcrypt));

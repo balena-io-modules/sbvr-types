@@ -5,9 +5,9 @@ specification, as well as the possible relations between them. For each data
 type, there is a correspondence with a database data type, according to the 
 various database engines that are supported.
 
-The SBVR definition for types can be found at [Type.sbvr](https://github.com/resin-io-modules/sbvr-types/blob/master/Type.sbvr)
+The SBVR definition for types can be found at [Type.sbvr](https://github.com/balena-io-modules/sbvr-types/blob/master/Type.sbvr)
 
-"The Rest" can be found at: [resin-io-modules/sbvr-types/src/types](https://github.com/resin-io-modules/sbvr-types/tree/master/src/types)
+"The Rest" can be found at: [balena-io-modules/sbvr-types/src/types](https://github.com/balena-io-modules/sbvr-types/tree/master/src/types)
 
 ### How-to
 

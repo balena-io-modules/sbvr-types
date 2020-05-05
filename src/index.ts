@@ -1,5 +1,3 @@
-import * as Promise from 'bluebird';
-
 import * as BigInteger from './types/big-integer';
 import * as Boolean from './types/boolean';
 import * as CaseInsensitiveText from './types/case-insensitive-text';

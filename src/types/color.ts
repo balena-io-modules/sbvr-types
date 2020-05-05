@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -38,7 +37,7 @@ export const nativeProperties = {
 	},
 };
 
-export const fetchProcessing = Promise.method((data: number) => {
+export const fetchProcessing = async (data: number) => {
 	// tslint:disable:no-bitwise
 	return {
 		r: (data >> 16) & 0xff,
@@ -47,9 +46,9 @@ export const fetchProcessing = Promise.method((data: number) => {
 		a: (data >> 24) & 0xff,
 	};
 	// tslint:enable:no-bitwise
-});
+};
 
-export const validate = TypeUtils.validate.checkRequired(value => {
+export const validate = TypeUtils.validate.checkRequired((value) => {
 	let processedValue: number;
 	if (typeof value !== 'object') {
 		processedValue = parseInt(value, 10);
@@ -58,7 +57,7 @@ export const validate = TypeUtils.validate.checkRequired(value => {
 		}
 	} else {
 		processedValue = 0;
-		Object.keys(value).forEach(component => {
+		Object.keys(value).forEach((component) => {
 			const componentValue = value[component];
 			if (Number.isNaN(componentValue) || componentValue > 255) {
 				throw new Error(

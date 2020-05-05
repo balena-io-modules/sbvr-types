@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -10,11 +9,11 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = Promise.method((data: any) => {
+export const fetchProcessing = async (data: any) => {
 	if (data != null) {
 		return new Date(data);
 	}
 	return data;
-});
+};
 
 export const validate = TypeUtils.validate.date;

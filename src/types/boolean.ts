@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 
 const typeFunc = (
@@ -16,9 +15,9 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = Promise.method((data: any) => data === 1);
+export const fetchProcessing = async (data: any) => data === 1;
 
-export const validate = TypeUtils.validate.checkRequired(originalValue => {
+export const validate = TypeUtils.validate.checkRequired((originalValue) => {
 	// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"
 	const value = Number(originalValue);
 	if (Number.isNaN(value) || ![0, 1].includes(value)) {

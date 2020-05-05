@@ -1,5 +1,5 @@
 {
-  "name": "@resin/sbvr-types",
+  "name": "@balena/sbvr-types",
   "version": "2.0.9",
   "description": "SBVR type definitions.",
   "main": "out",

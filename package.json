@@ -45,10 +45,10 @@
     }
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "*.ts": [
       "balena-lint --typescript --fix"
     ],
-    "src/**/*.coffee": [
+    "*.coffee": [
       "balena-lint"
     ]
   }

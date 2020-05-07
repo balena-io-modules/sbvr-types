@@ -1,14 +1,14 @@
 // We are using the P-H-C storing format:
 // https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
-import * as _crypto from 'crypto';
-import * as _shajs from 'sha.js';
+import type * as Crypto from 'crypto';
+import type * as Shajs from 'sha.js';
 
 import * as TypeUtils from '../type-utils';
 
 let sha256: (value: string) => string;
 try {
 	// tslint:disable-next-line:no-var-requires
-	const crypto: typeof _crypto = require('crypto');
+	const crypto: typeof Crypto = require('crypto');
 	sha256 = (value) => {
 		const hash = crypto.createHash('sha256');
 		hash.update(value);
@@ -16,7 +16,7 @@ try {
 	};
 } catch {
 	// tslint:disable-next-line:no-var-requires
-	const shajs: typeof _shajs = require('sha.js');
+	const shajs: typeof Shajs = require('sha.js');
 	sha256 = (value) => {
 		const hash = shajs('sha256');
 		hash.update(value);

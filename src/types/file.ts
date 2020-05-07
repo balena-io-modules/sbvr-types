@@ -8,7 +8,7 @@ export const types = {
 	},
 };
 
-export const validate = TypeUtils.validate.checkRequired(value => {
+export const validate = TypeUtils.validate.checkRequired((value) => {
 	if (Buffer.isBuffer(value)) {
 		return value;
 	} else if (typeof value === 'string') {

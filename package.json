@@ -24,7 +24,7 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@balena/lint": "^4.1.1",
+    "@balena/lint": "^5.0.4",
     "@types/lodash": "^4.14.150",
     "bluebird": "^3.7.2",
     "chai": "^4.2.0",

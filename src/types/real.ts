@@ -14,7 +14,7 @@ export const nativeFactTypes = {
 	Real: TypeUtils.nativeFactTypeTemplates.comparison,
 };
 
-export const validate = TypeUtils.validate.checkRequired(value => {
+export const validate = TypeUtils.validate.checkRequired((value) => {
 	const processedValue = parseFloat(value);
 	if (Number.isNaN(processedValue)) {
 		throw new Error('is not a number: ' + value);

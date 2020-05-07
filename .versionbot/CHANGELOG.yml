@@ -1,4 +1,14 @@
 - commits:
+    - subject: Improve typings
+      hash: 82dfb240b97128267d26d44b12ed4ac2ddcfc8b7
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 2.0.8
+  date: 2020-05-05T16:13:07.744Z
+- commits:
     - subject: Remove unused imports
       hash: f4f8d1a55903e352db46efaace69d3b91da9016b
       body: ''

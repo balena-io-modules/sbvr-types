@@ -1,6 +1,6 @@
 {
   "name": "@resin/sbvr-types",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "SBVR type definitions.",
   "main": "out",
   "scripts": {

@@ -9,7 +9,7 @@
 		"removeComments": true,
 		"rootDir": "src",
 		"sourceMap": true,
-		"strictNullChecks": true,
+		"strict": true,
 		"target": "es2018",
 		"declaration": true,
 		"skipLibCheck": true,

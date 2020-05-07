@@ -4,14 +4,14 @@
   "description": "SBVR type definitions.",
   "main": "out",
   "scripts": {
-    "lint": "resin-lint test && resin-lint --typescript src",
+    "lint": "balena-lint test && balena-lint --typescript src",
     "pretest": "npm run lint && npm run prepare",
     "test": "mocha",
     "prepublish": "require-npm4-to-publish",
     "prepare": "tsc",
-    "prettify": "resin-lint --typescript --fix src"
+    "prettify": "balena-lint --typescript --fix src"
   },
-  "repository": "https://github.com/resin-io-modules/sbvr-types.git",
+  "repository": "https://github.com/balena-io-modules/sbvr-types.git",
   "author": "",
   "license": "BSD",
   "dependencies": {
@@ -26,6 +26,7 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
+    "@balena/lint": "^4.1.1",
     "@types/lodash": "^4.14.150",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
@@ -36,7 +37,6 @@
     "lodash": "^4.17.15",
     "mocha": "^6.2.2",
     "require-npm4-to-publish": "^1.0.0",
-    "resin-lint": "^3.3.1",
     "typescript": "^3.8.3"
   },
   "husky": {
@@ -45,11 +45,11 @@
     }
   },
   "lint-staged": {
-    "src/**/*.ts": [
-      "resin-lint --typescript --fix"
+    "*.ts": [
+      "balena-lint --typescript --fix"
     ],
-    "src/**/*.coffee": [
-      "resin-lint"
+    "*.coffee": [
+      "balena-lint"
     ]
   }
 }

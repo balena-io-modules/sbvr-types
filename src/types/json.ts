@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = async (data: any) => JSON.parse(data);
+export const fetchProcessing = (data: any) => JSON.parse(data);
 
 export const validate = TypeUtils.validate.checkRequired((value) => {
 	try {

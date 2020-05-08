@@ -29,7 +29,7 @@ interface Type {
 		mysql: DatabaseType;
 		websql: DatabaseType;
 	};
-	fetchProcessing?: (field: any) => Promise<any>;
+	fetchProcessing?: (field: any) => any;
 	validate: (value: any, required?: boolean) => Promise<any>;
 }
 

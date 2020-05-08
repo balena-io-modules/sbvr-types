@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = async (data: any) => {
+export const fetchProcessing = (data: any) => {
 	if (data != null) {
 		return new Date(data);
 	}

@@ -15,7 +15,7 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = async (data: any) => data === 1;
+export const fetchProcessing = (data: any) => data === 1;
 
 export const validate = TypeUtils.validate.checkRequired((originalValue) => {
 	// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"

@@ -44,6 +44,6 @@ exports.describe = (typeName, fn) ->
 				postgres: test('types.postgres', false)
 				mysql: test('types.mysql', false)
 				websql: test('types.websql', false)
-			fetch: test('fetchProcessing')
+			fetch: test('fetchProcessing', false)
 			validate: test('validate')
 		)

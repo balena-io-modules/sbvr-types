@@ -37,7 +37,7 @@ export const nativeProperties = {
 	},
 };
 
-export const fetchProcessing = async (data: number) => {
+export const fetchProcessing = (data: number) => {
 	// tslint:disable:no-bitwise
 	return {
 		r: (data >> 16) & 0xff,

@@ -26,7 +26,6 @@ export const validate = TypeUtils.validate.checkRequired((originalValue) => {
 				originalValue,
 			)} (${typeof originalValue})`,
 		);
-	} else {
-		return value;
 	}
+	return value;
 });

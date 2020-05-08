@@ -44,21 +44,20 @@ export const validate = {
 		const processedValue = parseInt(value, 10);
 		if (Number.isNaN(processedValue)) {
 			throw new Error('is not a number: ' + value);
-		} else {
-			return processedValue;
 		}
+		return processedValue;
 	}),
 	text: (length?: number) =>
 		checkRequired((value: any) => {
 			if (typeof value !== 'string') {
 				throw new Error('is not a string: ' + value);
-			} else if (length != null && value.length > length) {
+			}
+			if (length != null && value.length > length) {
 				throw new Error(
 					'longer than ' + length + ' characters (' + value.length + ')',
 				);
-			} else {
-				return value;
 			}
+			return value;
 		}),
 	date: checkRequired((value: any) => {
 		let processedValue = Number(value);
@@ -68,8 +67,7 @@ export const validate = {
 		const processedDate = new Date(processedValue);
 		if (Number.isNaN(processedDate.getTime())) {
 			throw new Error('is not a valid date: ' + value);
-		} else {
-			return processedDate;
 		}
+		return processedDate;
 	}),
 };

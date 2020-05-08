@@ -38,9 +38,8 @@ export const validateSync = sha256;
 export const validate = TypeUtils.validate.checkRequired((value) => {
 	if (typeof value !== 'string') {
 		throw new Error('is not a string');
-	} else {
-		return sha256(value);
 	}
+	return sha256(value);
 });
 
 export const compare = async (value: string, result: string) => {

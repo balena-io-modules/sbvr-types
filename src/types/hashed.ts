@@ -23,10 +23,9 @@ export const types = {
 export const validate = TypeUtils.validate.checkRequired(async (value) => {
 	if (typeof value !== 'string') {
 		throw new Error('is not a string');
-	} else {
-		const salt = await bcrypt.genSalt();
-		return bcrypt.hash(value, salt);
 	}
+	const salt = await bcrypt.genSalt();
+	return bcrypt.hash(value, salt);
 });
 
 export const compare = bcrypt.compare.bind(bcrypt);

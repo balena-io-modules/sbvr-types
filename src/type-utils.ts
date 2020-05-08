@@ -1,15 +1,18 @@
 const equality = (from: string, to: string) => ['Equals', from, to];
-const checkRequired = <T>(validateFn: (value: any) => T) => async (
-	value: any,
-	required: boolean,
-): Promise<typeof required extends true ? T : T | null> => {
-	if (value == null) {
-		if (required) {
-			throw new Error('cannot be null');
+const checkRequired = <T>(validateFn: (value: any) => T) => {
+	function runCheck(value: any, required: true): Promise<T>;
+	function runCheck(value: undefined | null, required: false): Promise<null>;
+	function runCheck<U>(value: U, required: boolean): Promise<T | null>;
+	async function runCheck<U>(value: U, required: boolean): Promise<T | null> {
+		if (value == null) {
+			if (required) {
+				throw new Error('cannot be null');
+			}
+			return null;
 		}
-		return null;
+		return validateFn(value);
 	}
-	return validateFn(value);
+	return runCheck;
 };
 
 export const nativeFactTypeTemplates = {

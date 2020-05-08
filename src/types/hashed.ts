@@ -1,9 +1,8 @@
-import * as _bcrypt from 'bcrypt';
+import type * as Bcrypt from 'bcrypt';
 
-import * as Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 
-let bcrypt: typeof _bcrypt;
+let bcrypt: typeof Bcrypt;
 try {
 	// tslint:disable-next-line:no-var-requires
 	bcrypt = require('bcrypt');
@@ -21,14 +20,12 @@ export const types = {
 	},
 };
 
-export const validate = TypeUtils.validate.checkRequired(value => {
+export const validate = TypeUtils.validate.checkRequired(async (value) => {
 	if (typeof value !== 'string') {
 		throw new Error('is not a string');
-	} else {
-		return Promise.resolve(bcrypt.genSalt()).then(salt =>
-			bcrypt.hash(value, salt),
-		);
 	}
+	const salt = await bcrypt.genSalt();
+	return bcrypt.hash(value, salt);
 });
 
-export const compare = Promise.method(bcrypt.compare.bind(bcrypt));
+export const compare = bcrypt.compare.bind(bcrypt);

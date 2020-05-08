@@ -75,10 +75,10 @@ validate: Promise.method (value, required) ->
 	return processedValue
 ```
 
-* fetchProcessing - This is a function `(data) => Promise` that may be specified to process the data after fetching from the database and before sending to the client. If specified this function should return a promise with the modified data
+* fetchProcessing - This is a function `(data) => any` that may be specified to process the data after fetching from the database and before sending to the client. If specified this function should return the modified data
 
 ```coffee-script
-fetchProcessing: Promise.method (data) ->
+fetchProcessing: (data) ->
 	return {
 		r: (data >> 16) & 0xFF
 		g: (data >> 8) & 0xFF

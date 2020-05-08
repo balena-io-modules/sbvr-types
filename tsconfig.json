@@ -9,8 +9,8 @@
 		"removeComments": true,
 		"rootDir": "src",
 		"sourceMap": true,
-		"strictNullChecks": true,
-		"target": "es2016",
+		"strict": true,
+		"target": "es2018",
 		"declaration": true,
 		"skipLibCheck": true,
 		"resolveJsonModule": true

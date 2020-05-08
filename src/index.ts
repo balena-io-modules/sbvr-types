@@ -1,5 +1,3 @@
-import * as Promise from 'bluebird';
-
 import * as BigInteger from './types/big-integer';
 import * as Boolean from './types/boolean';
 import * as CaseInsensitiveText from './types/case-insensitive-text';
@@ -31,7 +29,7 @@ interface Type {
 		mysql: DatabaseType;
 		websql: DatabaseType;
 	};
-	fetchProcessing?: (field: any) => Promise<any>;
+	fetchProcessing?: (field: any) => any;
 	validate: (value: any, required?: boolean) => Promise<any>;
 }
 

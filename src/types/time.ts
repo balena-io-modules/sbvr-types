@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -10,18 +9,18 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = Promise.method((data: any) => {
+export const fetchProcessing = (data: any) => {
 	if (data != null) {
 		// We append the date of the epoch so that we can parse this as a valid date.
 		return new Date('Thu, 01 Jan 1970 ' + data);
 	}
 	return data;
-});
+};
 
-export const validate = (value: any, required: boolean) =>
-	TypeUtils.validate.date(value, required).then(date => {
-		if (date == null) {
-			return date;
-		}
-		return date.toLocaleTimeString();
-	});
+export const validate = async (value: any, required: boolean) => {
+	const date = await TypeUtils.validate.date(value, required);
+	if (date == null) {
+		return date;
+	}
+	return date.toLocaleTimeString();
+};

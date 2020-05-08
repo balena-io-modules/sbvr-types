@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -10,9 +9,9 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = Promise.method(JSON.parse);
+export const fetchProcessing = (data: any) => JSON.parse(data);
 
-export const validate = TypeUtils.validate.checkRequired(value => {
+export const validate = TypeUtils.validate.checkRequired((value) => {
 	try {
 		return JSON.stringify(value);
 	} catch {

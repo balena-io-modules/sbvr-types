@@ -1,4 +1,14 @@
 - commits:
+    - subject: Update dependencies
+      hash: 33be8837bde82d29f182506f4b93e33157bea185
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 3.1.0
+  date: 2020-06-17T21:13:53.393Z
+- commits:
     - subject: Convert `fetchProcessing` to synchronous functions
       hash: a7cb7833d852dfec2b5bd02c3aad785266cd1c5c
       body: ''

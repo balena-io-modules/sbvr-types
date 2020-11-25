@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add a `castType` property to type functions
+      hash: 409077eb9d6c0315779ddd877220280c251b4eb5
+      body: |
+        This allows specifying the correct type to cast to when necessary
+        rather than relying on the fact the currently all type functions happen
+        to be integers
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.1.2
+  date: 2020-11-25T14:49:48.878Z
+- commits:
     - subject: Update dependencies
       hash: 394b8c4d10ef16da163e05734ffb65a84717e204
       body: ''

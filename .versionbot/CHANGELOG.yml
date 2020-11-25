@@ -1,5 +1,15 @@
 - commits:
     - subject: Update dependencies
+      hash: 394b8c4d10ef16da163e05734ffb65a84717e204
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.1.1
+  date: 2020-11-25T14:34:09.586Z
+- commits:
+    - subject: Update dependencies
       hash: 33be8837bde82d29f182506f4b93e33157bea185
       body: ''
       footer:

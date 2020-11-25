@@ -1,3 +1,22 @@
+export interface DatabaseTypeFn {
+	(necessity: string, index: string): string;
+	castType: string;
+}
+export type DatabaseType = string | DatabaseTypeFn;
+export interface SbvrType {
+	types: {
+		odata: {
+			name: string;
+			complexType?: string;
+		};
+		postgres: DatabaseType;
+		mysql: DatabaseType;
+		websql: DatabaseType;
+	};
+	fetchProcessing?: (field: any) => any;
+	validate: (value: any, required?: boolean) => Promise<any>;
+}
+
 const equality = (from: string, to: string) => ['Equals', from, to];
 const checkRequired = <T>(validateFn: (value: any) => T) => {
 	function runCheck(value: any, required: true): Promise<T>;

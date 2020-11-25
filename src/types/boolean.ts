@@ -1,10 +1,11 @@
 import * as TypeUtils from '../type-utils';
 
-const typeFunc = (
+const typeFunc: TypeUtils.DatabaseTypeFn = (
 	necessity: string,
 	index: string,
 	defaultValue = ' DEFAULT 0',
 ) => 'INTEGER' + defaultValue + necessity + index;
+typeFunc.castType = 'INTEGER';
 
 export const types = {
 	postgres: typeFunc,

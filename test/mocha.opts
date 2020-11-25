@@ -1,4 +1,0 @@
---reporter spec
---recursive
---require coffeescript/register
-test/**/*.coffee

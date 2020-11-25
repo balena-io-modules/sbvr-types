@@ -1,3 +1,5 @@
+import type { SbvrType } from './type-utils';
+
 import * as BigInteger from './types/big-integer';
 import * as Boolean from './types/boolean';
 import * as CaseInsensitiveText from './types/case-insensitive-text';
@@ -17,21 +19,6 @@ import * as SHA from './types/sha';
 import * as ShortText from './types/short-text';
 import * as Text from './types/text';
 import * as Time from './types/time';
-
-type DatabaseType = string | ((necessity: string, index: string) => string);
-interface Type {
-	types: {
-		odata: {
-			name: string;
-			complexType?: string;
-		};
-		postgres: DatabaseType;
-		mysql: DatabaseType;
-		websql: DatabaseType;
-	};
-	fetchProcessing?: (field: any) => any;
-	validate: (value: any, required?: boolean) => Promise<any>;
-}
 
 export = {
 	'Big Integer': BigInteger,
@@ -54,8 +41,8 @@ export = {
 	Text,
 	Time,
 } as {
-	Hashed: Type & {
+	Hashed: SbvrType & {
 		compare: (str: string, hash: string) => Promise<boolean>;
 	};
-	[fieldType: string]: Type;
+	[fieldType: string]: SbvrType;
 };

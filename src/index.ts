@@ -44,5 +44,9 @@ export = {
 	Hashed: SbvrType & {
 		compare: (str: string, hash: string) => Promise<boolean>;
 	};
+	SHA: SbvrType & {
+		validateSync: (value: string) => string;
+		compare: (str: string, hash: string) => Promise<boolean>;
+	};
 	[fieldType: string]: SbvrType;
 };

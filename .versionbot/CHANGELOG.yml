@@ -1,4 +1,14 @@
 - commits:
+    - subject: Improve types for `SHA`
+      hash: e7e86f33f8e8c420dd634fd1310bc8104c9651c7
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.1.3
+  date: 2020-12-11T15:54:24.200Z
+- commits:
     - subject: Add a `castType` property to type functions
       hash: 409077eb9d6c0315779ddd877220280c251b4eb5
       body: |

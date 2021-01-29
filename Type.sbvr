@@ -74,6 +74,13 @@ Fact type:  Text1 is equal to Text2
 	Synonymous Form: Text1 equals Text2
 	Synonymous Form: Text2 equals Text1
 
+Fact type:  Text1 starts with Text2
+
+Fact type:  Text1 ends with Text2
+
+Fact type:  Text1 contains Text2
+	Synonymous Form: Text2 is contained in Text1
+
 Term:       Short Text
 	Concept Type: Text
 	--Necessity: each Short Text has a Length that is less than or equal to 255.

@@ -16,7 +16,13 @@ export const nativeProperties = {
 };
 
 export const nativeFactTypes = {
-	Text: TypeUtils.nativeFactTypeTemplates.equality,
+	Text: {
+		...TypeUtils.nativeFactTypeTemplates.equality,
+		'starts with': (from: string, to: string) => ['Startswith', from, to],
+		'ends with': (from: string, to: string) => ['Endswith', from, to],
+		contains: (from: string, to: string) => ['Contains', from, to],
+		'is contained in': (from: string, to: string) => ['Contains', to, from],
+	},
 };
 
 export const validate = TypeUtils.validate.text();

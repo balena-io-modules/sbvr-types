@@ -19,6 +19,7 @@ export const nativeFactTypes = {
 	Text: {
 		...TypeUtils.nativeFactTypeTemplates.equality,
 		'starts with': (from: string, to: string) => ['Startswith', from, to],
+		'ends with': (from: string, to: string) => ['Endswith', from, to],
 	},
 };
 

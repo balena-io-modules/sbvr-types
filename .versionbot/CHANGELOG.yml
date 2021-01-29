@@ -1,4 +1,28 @@
 - commits:
+    - subject: Add support for the `contains` verb to the text type
+      hash: 8e074867c7b94f99664b14caaebeddb5e9f1fe9c
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Thodoris Greasidis
+    - subject: Add support for the`ends with` verb to the text type
+      hash: 4e233bffa0800a9601e80aebf86d70cd518c2901
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Thodoris Greasidis
+    - subject: Add support for the `starts with` verb to the text type
+      hash: 1b5652a57bbad48f9b9b18c88f8b4ad9e6b01441
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Thodoris Greasidis
+  version: 3.2.0
+  date: 2021-01-29T19:15:49.140Z
+- commits:
     - subject: Improve types for `SHA`
       hash: e7e86f33f8e8c420dd634fd1310bc8104c9651c7
       body: ''

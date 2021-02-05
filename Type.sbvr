@@ -52,6 +52,20 @@ Fact type:  Real1 is equal to Real2
 	Synonymous Form: Real1 equals Real2
 	Synonymous Form: Real2 equals Real1
 
+Fact type:  Date1 is before Date2
+	Synonymous Form: Date2 is after Date1
+Fact type:  Date1 is equal to Date2
+	Synonymous Form: Date2 is equal to Date1
+	Synonymous Form: Date1 equals Date2
+	Synonymous Form: Date2 equals Date1
+
+Fact type:  Date Time1 is before Date Time2
+	Synonymous Form: Date Time2 is after Date Time1
+Fact type:  Date Time1 is equal to Date Time2
+	Synonymous Form: Date Time2 is equal to Date Time1
+	Synonymous Form: Date Time1 equals Date Time2
+	Synonymous Form: Date Time2 equals Date Time1
+
 
 Fact type:  Real is less than Integer
 	Synonymous Form: Integer is greater than Real

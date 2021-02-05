@@ -16,4 +16,12 @@ export const fetchProcessing = (data: any) => {
 	return data;
 };
 
+export const nativeFactTypes = {
+	Date: {
+		...TypeUtils.nativeFactTypeTemplates.equality,
+		'is before': (from: string, to: string) => ['LessThan', from, to],
+		'is after': (from: string, to: string) => ['GreaterThan', from, to],
+	},
+};
+
 export const validate = TypeUtils.validate.date;

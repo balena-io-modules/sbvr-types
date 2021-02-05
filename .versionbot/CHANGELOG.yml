@@ -1,4 +1,16 @@
 - commits:
+    - subject: Add `is before` & `is after` verbs to the Date & DateTime types
+      hash: 9d4414558d16821e485e08fc4a0504ef1d6c617f
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+  version: 3.3.0
+  date: 2021-02-05T20:43:59.350Z
+- commits:
     - subject: Add support for the `contains` verb to the text type
       hash: 8e074867c7b94f99664b14caaebeddb5e9f1fe9c
       body: ''

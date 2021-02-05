@@ -30,6 +30,9 @@ Term:       SHA
 Term:       Length
 	Concept Type: Integer
 
+Name:       Current Time
+	Concept Type: Date Time
+
 Fact type:  Text has Length
 	Note: Length in characters
 	Necessity: Each Text has exactly one Length

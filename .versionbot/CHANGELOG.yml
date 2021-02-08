@@ -1,4 +1,14 @@
 - commits:
+    - subject: Add a `Current Time` name that can be used to refer to the current time
+      hash: 83d20325939d0e5f9922f57a36e0932ba71ebad4
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 3.4.0
+  date: 2021-02-08T13:54:15.848Z
+- commits:
     - subject: Add `is before` & `is after` verbs to the Date & DateTime types
       hash: 9d4414558d16821e485e08fc4a0504ef1d6c617f
       body: ''

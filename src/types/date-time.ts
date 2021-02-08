@@ -24,4 +24,8 @@ export const nativeFactTypes = {
 	},
 };
 
+export const nativeNames = {
+	'Current Time': ['Now'],
+};
+
 export const validate = TypeUtils.validate.date;

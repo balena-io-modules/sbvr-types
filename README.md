@@ -142,16 +142,14 @@ A selection of the the native fact types for Integer (in the actual file much mo
 ```coffee-script
 nativeFactTypes:
 	'Integer':
-		'is greater than': (from, to) -> ['GreaterThan', from, to]
-		'is greater than or equal to': (from, to) -> ['GreaterThanOrEqual', from, to]
 		'is less than': (from, to) -> ['LessThan', from, to]
 		'is less than or equal to': (from, to) -> ['LessThanOrEqual', from, to]
 	'Real':
-		'is greater than': (from, to) -> ['GreaterThan', from, to]
-		'is greater than or equal to': (from, to) -> ['GreaterThanOrEqual', from, to]
 		'is less than': (from, to) -> ['LessThan', from, to]
 		'is less than or equal to': (from, to) -> ['LessThanOrEqual', from, to]
 ```
+
+Note: You only need to specify the verb for the canonical for of the fact type, any synonymous forms will automatically be remapped to the canonical form
 
 
 ### Tests

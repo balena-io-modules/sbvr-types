@@ -17,7 +17,6 @@ export interface SbvrType {
 	validate: (value: any, required?: boolean) => Promise<any>;
 }
 
-const equality = (from: string, to: string) => ['Equals', from, to];
 const checkRequired = <T>(validateFn: (value: any) => T) => {
 	function runCheck(value: any, required: true): Promise<T>;
 	function runCheck(value: undefined | null, required: false): Promise<null>;
@@ -34,26 +33,19 @@ const checkRequired = <T>(validateFn: (value: any) => T) => {
 	return runCheck;
 };
 
+const equality = {
+	'is equal to': (from: string, to: string) => ['Equals', from, to],
+};
 export const nativeFactTypeTemplates = {
-	equality: {
-		'is equal to': equality,
-		equals: equality,
-	},
+	equality,
 	comparison: {
-		'is greater than': (from: string, to: string) => ['GreaterThan', from, to],
-		'is greater than or equal to': (from: string, to: string) => [
-			'GreaterThanOrEqual',
-			from,
-			to,
-		],
 		'is less than': (from: string, to: string) => ['LessThan', from, to],
 		'is less than or equal to': (from: string, to: string) => [
 			'LessThanOrEqual',
 			from,
 			to,
 		],
-		'is equal to': equality,
-		equals: equality,
+		...equality,
 	},
 };
 

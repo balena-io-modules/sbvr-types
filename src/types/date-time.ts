@@ -20,7 +20,6 @@ export const nativeFactTypes = {
 	'Date Time': {
 		...TypeUtils.nativeFactTypeTemplates.equality,
 		'is before': (from: string, to: string) => ['LessThan', from, to],
-		'is after': (from: string, to: string) => ['GreaterThan', from, to],
 	},
 };
 

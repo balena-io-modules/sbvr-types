@@ -1,4 +1,14 @@
 - commits:
+    - subject: Remove unnecessary native fact type entries for synonymous forms
+      hash: 64e889f7bda6f3dcf4c539248e737fef26b5686c
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.1
+  date: 2021-02-10T18:13:49.610Z
+- commits:
     - subject: Add a `Current Time` name that can be used to refer to the current time
       hash: 83d20325939d0e5f9922f57a36e0932ba71ebad4
       body: ''

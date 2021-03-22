@@ -1,4 +1,14 @@
 - commits:
+    - subject: Update dev dependencies
+      hash: b7c817c8246fb95aab917e8ba1196b695103d962
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.2
+  date: 2021-03-22T17:11:56.138Z
+- commits:
     - subject: Remove unnecessary native fact type entries for synonymous forms
       hash: 64e889f7bda6f3dcf4c539248e737fef26b5686c
       body: ''

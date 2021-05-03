@@ -5,8 +5,13 @@ helpers.describe('Boolean', function (test) {
 		for (const db of Object.keys(test.types)) {
 			const typeTest = test.types[db];
 			describe(db, function () {
-				typeTest(' NOT NULL', '', 'INTEGER DEFAULT 0 NOT NULL');
-				typeTest(' NOT NULL', '', ' DEFAULT 1', 'INTEGER DEFAULT 1 NOT NULL');
+				typeTest(' NOT NULL', '', 'BOOLEAN DEFAULT FALSE NOT NULL');
+				typeTest(
+					' NOT NULL',
+					'',
+					' DEFAULT TRUE',
+					'BOOLEAN DEFAULT TRUE NOT NULL',
+				);
 			});
 		}
 	});
@@ -19,10 +24,10 @@ helpers.describe('Boolean', function (test) {
 	});
 
 	describe('validate', function () {
-		test.validate(0, true, 0);
-		test.validate(1, true, 1);
-		test.validate(false, true, 0);
-		test.validate(true, true, 1);
+		test.validate(0, true, false);
+		test.validate(1, true, true);
+		test.validate(false, true, false);
+		test.validate(true, true, true);
 		test.validate('true', true, new Error('is not a boolean: "true" (string)'));
 	});
 });

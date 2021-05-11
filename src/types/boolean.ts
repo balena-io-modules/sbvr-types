@@ -16,7 +16,8 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = (data: any) => data === 1;
+// Support both `1` from the "boolean" columns that are actually INTEGER types and `true` for truly boolean results
+export const fetchProcessing = (data: any) => data === true || data === 1;
 
 export const validate = TypeUtils.validate.checkRequired((originalValue) => {
 	// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"

@@ -24,7 +24,7 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@balena/lint": "^5.4.1",
+    "@balena/lint": "^5.4.2",
     "@types/lodash": "^4.14.168",
     "bluebird": "^3.7.2",
     "chai": "^4.3.4",
@@ -36,7 +36,7 @@
     "lodash": "^4.17.21",
     "mocha": "^8.4.0",
     "require-npm4-to-publish": "^1.0.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.4"
   },
   "husky": {
     "hooks": {

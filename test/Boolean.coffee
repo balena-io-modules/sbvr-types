@@ -4,8 +4,8 @@ helpers.describe 'Boolean', (test) ->
 	describe 'types', ->
 		for db, typeTest of test.types
 			describe db, ->
-				typeTest ' NOT NULL', '', 'INTEGER DEFAULT 0 NOT NULL'
-				typeTest ' NOT NULL', '', ' DEFAULT 1', 'INTEGER DEFAULT 1 NOT NULL'
+				typeTest ' NOT NULL', '', 'BOOLEAN DEFAULT FALSE NOT NULL'
+				typeTest ' NOT NULL', '', ' DEFAULT TRUE', 'BOOLEAN DEFAULT TRUE NOT NULL'
 
 	describe 'fetchProcessing', ->
 		test.fetch(0, false)
@@ -14,8 +14,8 @@ helpers.describe 'Boolean', (test) ->
 		test.fetch(true, true)
 
 	describe 'validate', ->
-		test.validate(0, true, 0)
-		test.validate(1, true, 1)
-		test.validate(false, true, 0)
-		test.validate(true, true, 1)
+		test.validate(0, true, false)
+		test.validate(1, true, true)
+		test.validate(false, true, false)
+		test.validate(true, true, true)
 		test.validate('true', true, new Error('is not a boolean: "true" (string)'))

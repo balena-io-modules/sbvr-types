@@ -1,4 +1,18 @@
 - commits:
+    - subject: Delete CODEOWNERS
+      hash: 77efa37f7f50a8e306fdfd85b566492a290352b8
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        See: >-
+          https://www.flowdock.com/app/rulemotion/pub/threads/trLcZFnSX9fLZn4LiaIv4xuBbah
+        see: >-
+          https://www.flowdock.com/app/rulemotion/pub/threads/trLcZFnSX9fLZn4LiaIv4xuBbah
+      author: Thodoris Greasidis
+  version: 3.4.4
+  date: 2021-06-30T21:23:01.111Z
+- commits:
     - subject: Support boolean results from the db as well as integer
       hash: 337c9af41ca4b17e06e79e574b0c5849928a167b
       body: ''

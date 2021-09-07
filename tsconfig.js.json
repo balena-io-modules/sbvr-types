@@ -1,0 +1,15 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"noImplicitThis": false,
+		"strictFunctionTypes": false,
+		"strictBindCallApply": false,
+		"checkJs": true,
+		"rootDir": "."
+	},
+	"include": [
+		"src/*",
+		"test/**/*"
+	],
+}

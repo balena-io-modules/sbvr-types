@@ -27,7 +27,7 @@ export const validate = TypeUtils.validate.checkRequired((value) => {
 	}
 	try {
 		return new Buffer(value, 'hex');
-	} catch (e) {
+	} catch (e: any) {
 		throw new Error(`could not be converted to binary: ${e.message}`);
 	}
 });

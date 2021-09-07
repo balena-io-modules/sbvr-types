@@ -1,6 +1,6 @@
 {
   "name": "@balena/sbvr-types",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "SBVR type definitions.",
   "main": "out",
   "scripts": {
@@ -61,5 +61,8 @@
     "recursive": true,
     "require": "ts-node/register/transpile-only",
     "_": "test/**/*.js"
+  },
+  "versionist": {
+    "publishedAt": "2021-09-07T16:42:51.948Z"
   }
 }

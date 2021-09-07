@@ -1,4 +1,14 @@
 - commits:
+    - subject: Convert tests to type checked javascript
+      hash: 5708e188a810d6d0ab7c2116243e39589a0955ef
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.5
+  date: 2021-09-07T16:42:51.886Z
+- commits:
     - subject: Delete CODEOWNERS
       hash: 77efa37f7f50a8e306fdfd85b566492a290352b8
       body: ''

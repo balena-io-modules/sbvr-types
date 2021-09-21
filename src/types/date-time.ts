@@ -10,10 +10,10 @@ export const types = {
 };
 
 export const fetchProcessing = (data: any) => {
-	if (data != null) {
-		return new Date(data);
+	if (data == null || data instanceof Date) {
+		return data;
 	}
-	return data;
+	return new Date(data);
 };
 
 export const nativeFactTypes = {

@@ -1,4 +1,14 @@
 - commits:
+    - subject: Avoid creating a new Date object when we already have one
+      hash: 07eb756eca00a506b618dc197b67dcc7a9ea3733
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.6
+  date: 2021-09-21T14:01:00.590Z
+- commits:
     - subject: Convert tests to type checked javascript
       hash: 5708e188a810d6d0ab7c2116243e39589a0955ef
       body: ''

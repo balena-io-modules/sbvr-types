@@ -9,6 +9,7 @@ import * as Date from './types/date';
 import * as DateTime from './types/date-time';
 import * as File from './types/file';
 import * as ForeignKey from './types/foreign-key';
+import * as InformativeReference from './types/informative-reference';
 import * as Hashed from './types/hashed';
 import * as Integer from './types/integer';
 import * as Interval from './types/interval';
@@ -30,6 +31,7 @@ export = {
 	Date,
 	File,
 	ForeignKey,
+	InformativeReference,
 	Hashed,
 	Integer,
 	Interval,

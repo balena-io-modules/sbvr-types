@@ -4,13 +4,13 @@
   "description": "SBVR type definitions.",
   "main": "out",
   "scripts": {
-    "lint": "balena-lint -e js -e ts --typescript src test && npx tsc --noEmit --project tsconfig.js.json",
+    "lint": "balena-lint -e js -e ts src test && npx tsc --noEmit --project tsconfig.js.json",
     "pretest": "npm run prepare",
     "test": "mocha",
     "posttest": "npm run lint",
     "prepublish": "require-npm4-to-publish",
     "prepare": "tsc",
-    "prettify": "balena-lint -e js -e ts --typescript --fix src test"
+    "prettify": "balena-lint -e js -e ts --fix src test"
   },
   "repository": "https://github.com/balena-io-modules/sbvr-types.git",
   "author": "",
@@ -25,23 +25,23 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@balena/lint": "^5.4.1",
-    "@types/chai": "^4.2.21",
-    "@types/chai-as-promised": "^7.1.4",
+    "@balena/lint": "^6.2.0",
+    "@types/chai": "^4.3.0",
+    "@types/chai-as-promised": "^7.1.5",
     "@types/chai-datetime": "^0.0.37",
-    "@types/lodash": "^4.14.172",
-    "@types/mocha": "^9.0.0",
+    "@types/lodash": "^4.14.181",
+    "@types/mocha": "^9.1.0",
     "bluebird": "^3.7.2",
-    "chai": "^4.3.4",
+    "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "chai-datetime": "^1.8.0",
     "husky": "^4.3.8",
-    "lint-staged": "^11.1.2",
+    "lint-staged": "^12.3.7",
     "lodash": "^4.17.21",
-    "mocha": "^9.1.1",
+    "mocha": "^9.2.2",
     "require-npm4-to-publish": "^1.0.0",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   },
   "husky": {
     "hooks": {
@@ -50,10 +50,10 @@
   },
   "lint-staged": {
     "*.ts": [
-      "balena-lint --typescript --fix"
+      "balena-lint --fix"
     ],
     "*.js": [
-      "balena-lint --typescript --fix"
+      "balena-lint --fix"
     ]
   },
   "mocha": {

@@ -1,7 +1,25 @@
 - commits:
+    - subject: Update dependencies
+      hash: e416444d436c0e01474b624408635a811259f9a1
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: Remove circleci
+      hash: 15cbb6de080f6f5a7898d1626d9948b371d971b2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.7
+  title: "'Remove circleci/update deps'"
+  date: 2022-04-08T13:33:49.743Z
+- commits:
     - subject: Avoid creating a new Date object when we already have one
       hash: 07eb756eca00a506b618dc197b67dcc7a9ea3733
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -11,7 +29,7 @@
 - commits:
     - subject: Convert tests to type checked javascript
       hash: 5708e188a810d6d0ab7c2116243e39589a0955ef
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -21,21 +39,19 @@
 - commits:
     - subject: Delete CODEOWNERS
       hash: 77efa37f7f50a8e306fdfd85b566492a290352b8
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
-        See: >-
-          https://www.flowdock.com/app/rulemotion/pub/threads/trLcZFnSX9fLZn4LiaIv4xuBbah
-        see: >-
-          https://www.flowdock.com/app/rulemotion/pub/threads/trLcZFnSX9fLZn4LiaIv4xuBbah
+        See: https://www.flowdock.com/app/rulemotion/pub/threads/trLcZFnSX9fLZn4LiaIv4xuBbah
+        see: https://www.flowdock.com/app/rulemotion/pub/threads/trLcZFnSX9fLZn4LiaIv4xuBbah
       author: Thodoris Greasidis
   version: 3.4.4
   date: 2021-06-30T21:23:01.111Z
 - commits:
     - subject: Support boolean results from the db as well as integer
       hash: 337c9af41ca4b17e06e79e574b0c5849928a167b
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -45,7 +61,7 @@
 - commits:
     - subject: Update dev dependencies
       hash: b7c817c8246fb95aab917e8ba1196b695103d962
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -55,7 +71,7 @@
 - commits:
     - subject: Remove unnecessary native fact type entries for synonymous forms
       hash: 64e889f7bda6f3dcf4c539248e737fef26b5686c
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -65,7 +81,7 @@
 - commits:
     - subject: Add a `Current Time` name that can be used to refer to the current time
       hash: 83d20325939d0e5f9922f57a36e0932ba71ebad4
-      body: ''
+      body: ""
       footer:
         Change-type: minor
         change-type: minor
@@ -75,7 +91,7 @@
 - commits:
     - subject: Add `is before` & `is after` verbs to the Date & DateTime types
       hash: 9d4414558d16821e485e08fc4a0504ef1d6c617f
-      body: ''
+      body: ""
       footer:
         Change-type: minor
         change-type: minor
@@ -87,21 +103,21 @@
 - commits:
     - subject: Add support for the `contains` verb to the text type
       hash: 8e074867c7b94f99664b14caaebeddb5e9f1fe9c
-      body: ''
+      body: ""
       footer:
         Change-type: minor
         change-type: minor
       author: Thodoris Greasidis
     - subject: Add support for the`ends with` verb to the text type
       hash: 4e233bffa0800a9601e80aebf86d70cd518c2901
-      body: ''
+      body: ""
       footer:
         Change-type: minor
         change-type: minor
       author: Thodoris Greasidis
     - subject: Add support for the `starts with` verb to the text type
       hash: 1b5652a57bbad48f9b9b18c88f8b4ad9e6b01441
-      body: ''
+      body: ""
       footer:
         Change-type: minor
         change-type: minor
@@ -111,7 +127,7 @@
 - commits:
     - subject: Improve types for `SHA`
       hash: e7e86f33f8e8c420dd634fd1310bc8104c9651c7
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -134,7 +150,7 @@
 - commits:
     - subject: Update dependencies
       hash: 394b8c4d10ef16da163e05734ffb65a84717e204
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -144,7 +160,7 @@
 - commits:
     - subject: Update dependencies
       hash: 33be8837bde82d29f182506f4b93e33157bea185
-      body: ''
+      body: ""
       footer:
         Change-type: minor
         change-type: minor
@@ -154,63 +170,63 @@
 - commits:
     - subject: Convert `fetchProcessing` to synchronous functions
       hash: a7cb7833d852dfec2b5bd02c3aad785266cd1c5c
-      body: ''
+      body: ""
       footer:
         Change-type: major
         change-type: major
       author: Pagan Gazzard
     - subject: Update to bcrypt 4.x
       hash: aadd9f09db11f39a706118bf0d605b9476f6bfb5
-      body: ''
+      body: ""
       footer:
         Change-type: major
         change-type: major
       author: Pagan Gazzard
     - subject: Enable strict tsconfig
       hash: 5690af1c28d8f42677f1f12960a8a6f346aea2fe
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
     - subject: Make use of `import type` where relevant
       hash: d19c7b52ecf7d1269812852faae5797a77f06290
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
     - subject: Update to balena-lint 5.x
       hash: 5d402bcbaa1ab496013f83de61d15ae87df22af6
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
     - subject: Rename to @balena/sbvr-types
       hash: 3748302289afab7ae713995b56c694b477c29228
-      body: ''
+      body: ""
       footer:
         Change-type: major
         change-type: major
       author: Pagan Gazzard
     - subject: Drop node 8 support
       hash: 00ef44e2cea050c977150faaf9b5db8fb74d0116
-      body: ''
+      body: ""
       footer:
         Change-type: major
         change-type: major
       author: Pagan Gazzard
     - subject: Update tsconfig target to es2018
       hash: 6119c1595882069982d6021d3444513ddfa04aa4
-      body: ''
+      body: ""
       footer:
         Change-type: major
         change-type: major
       author: Pagan Gazzard
     - subject: Convert all returned promises to native promises instead of bluebird
       hash: 1ae01b42d101d9764658a8553560477f0e7d7a86
-      body: ''
+      body: ""
       footer:
         Change-type: major
         change-type: major
@@ -220,7 +236,7 @@
 - commits:
     - subject: Switch to balena-lint
       hash: ab0228a798c1babb11891a469f8385b50c5426ef
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -230,7 +246,7 @@
 - commits:
     - subject: Improve typings
       hash: 82dfb240b97128267d26d44b12ed4ac2ddcfc8b7
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -240,7 +256,7 @@
 - commits:
     - subject: Remove unused imports
       hash: f4f8d1a55903e352db46efaace69d3b91da9016b
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -250,7 +266,7 @@
 - commits:
     - subject: Remove production lodash dependency
       hash: b819dc89d6cc55957b6c870c0fa44411d1d37bd0
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -258,30 +274,30 @@
   version: 2.0.6
   date: 2020-04-27T14:35:57.655Z
 - commits:
-    - subject: 'CI: Remove circleci deploy in favor of balenaCI'
+    - subject: "CI: Remove circleci deploy in favor of balenaCI"
       hash: 9e1137a305c6ded5c11209d292dab1c5cbabd0ee
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
-    - subject: 'CI: Add node 12 to the test matrix'
+    - subject: "CI: Add node 12 to the test matrix"
       hash: ccad733c04197834893804a6f8ccb8c76a1bf562
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
-    - subject: 'CI: Remove node 6 from the test matrix'
+    - subject: "CI: Remove node 6 from the test matrix"
       hash: 5dd121cd02ffd37962ecefbfe0c1f9ab76168285
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
     - subject: Update dependencies and use resin-lint for automatic lint fixes
       hash: caab18277ab22f8d60c6feca21d731b69239f963
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -291,21 +307,21 @@
 - commits:
     - subject: Add node 12 to the test matrix
       hash: ecd938076fa0b473e0149940e71ac909a5f2cdfd
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
     - subject: Update dependencies
       hash: 3aacccdbb1962f5cb7eeec8ca5fa62c5f42145e3
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
       author: Pagan Gazzard
     - subject: Add CODEOWNERS
       hash: d04a524767359dca21b7dfefc07e7e05a5607934
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -315,7 +331,7 @@
 - commits:
     - subject: Add .versionbot/CHANGELOG.yml for downstream changelogs
       hash: cc2e3e23030521788c127b5750abf3c65645a710
-      body: ''
+      body: ""
       footer:
         Change-type: patch
         change-type: patch
@@ -324,332 +340,328 @@
   date: 2019-05-08T14:29:46.824Z
 - commits:
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 03215fbe1dca8cd53c4b289823d753678d6e6973
       subject: Downgrade @types/bluebird to 3.5.25 to avoid downstream issues
-  date: '2019-03-11T13:49:52Z'
+  date: 2019-03-11T13:49:52Z
   version: 2.0.2
 - commits:
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: bf38ffab063ab573caab2f84c502c16a8bc45b81
       subject: Convert TypeUtils to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: ced86439fa9180fd63dc6e0a7a0a584f74dbd2d1
       subject: Convert Big Integer to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 4a73e8ad778075c66c8da0125386329ebcdc7ca4
       subject: Convert Boolean to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 6667249656dd1cf3ff1b05c76143c281514154af
       subject: Convert Case Insensitive Text to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 07104881f896a5d720836219c315bb3d5f76c727
       subject: Convert Color to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 1c9a768e66a9f87703f574f919f4dd617110cfd7
       subject: Convert ConceptType to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 79c45dcf7b523559d3f004ad9701e43b7ed9d05b
       subject: Convert Date Time to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 8c7dc94abaa18a9a556a83a960c7f5011141e10a
       subject: Convert Date to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 91a0ba806df469a4209f1ca72bac5308d820cfd3
       subject: Convert File to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 3bd1a482bbf3463d5a7d8fb42e0e09ad6f7dec03
       subject: Convert ForeignKey to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: bb965277553d234bd5df37942f45fb190564bda5
       subject: Convert Hashed to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: bc912087a87e08e75872c84483449616ce3e4fba
       subject: Convert Integer to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: a2dd922adb604023faf4f0d1527d41410bb83e03
       subject: Convert Interval to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: ab1d83f275a69ff1414138fdf4abde4a656770f6
       subject: Convert JSON to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 118e8368fc6853b6120a3e8627119f6c00885eeb
       subject: Convert Real to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 8127ed286dc6bc36ad72a5d03266fa87b6dad7b8
       subject: Convert Serial to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 423118a005d4891fcebafa9a0cec61188825c557
       subject: Convert SHA to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 9ad8d2a8f49daf4b8594f2761b4b716a4d9c1a83
       subject: Convert Short Text to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 1d6b75dfa03b084d174f27b617e0ec82ce4f6676
       subject: Convert Text to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: a251b4e137e92c8a2b828aa73cba938209420fe9
       subject: Convert Time to typescript
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: d727962b26ec631540eb036af7f796d5ee625048
       subject: Convert index to typescript
-  date: '2019-03-08T19:45:44Z'
+  date: 2019-03-08T19:45:44Z
   version: 2.0.1
 - commits:
     - author: Pagan Gazzard
-      body: '* Default args now require undefined to be passed instead of null'
+      body: "* Default args now require undefined to be passed instead of null"
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: 6b717d28111e9b77a801d945fba9fa2d043613a4
       subject: Update coffeescript to 2.x
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: a0f5fbc45d03fd5d1130ce20e5780acb7e28589a
       subject: Update to bcrypt 3.x
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: bd7ee6cba4b084b12b7ead62397e951df0b8d1cf
       subject: Update dependencies
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: ec20461fefd5e6eca2eb334578bba0de6a5d9bfb
       subject: Convert all callback interfaces to promise interfaces
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: ff90fb78dd06c1cafd4fac46807d44fbb1aab1e3
       subject: Switch to throwing/rejecting with actual errors instead of strings
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: c2334e2f9161ade623ecf15eaa32ff5815d5c3ea
       subject: Convert to commonjs modules
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: 489eff785f7c2a1c51bbee7511ebfb672cbd7336
       subject: Remove console.error
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: minor
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: f2fd16d9c330a446566588650ee49500e5dcb23e
       subject: Switch to `prepare` to allow installing via git
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: 674308abf5de01c95a052480ea31274e93bcf768
       subject: Add enforcement of the required flag for validation
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: 31611d757148a5d25fad91afef5b32bd11ac821a
       subject: Use --require for mocha instead of the deprecated --compilers
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: 399afb15e4ab81a1a8ad3b2093d7ff8d0f0f1254
       subject: Drop support for node 4
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: major
         signed-off-by: Pagan Gazzard <page@resin.io>
       hash: a135479f8df1d3c7cc49a74abb7d768db5f87505
       subject: Drop bower.json
-  date: '2018-10-10T14:13:02Z'
+  date: 2018-10-10T14:13:02Z
   version: 2.0.0
 - commits:
     - author: Andreas Fitzek
-      body: >-
-        This stores the SHA data type in the P-H-C format:
-        https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
+      body: "This stores the SHA data type in the P-H-C format:
+        https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md"
       footers:
         change-type: patch
         signed-off-by: Andreas Fitzek <andreas@resin.io>
       hash: adf03eb648704ca1703968b5c8245e97f9f44c37
       subject: Change the storage format of SHA value to fit the P-H-C format.
-  date: '2018-05-08T06:26:48Z'
+  date: 2018-05-08T06:26:48Z
   version: 1.4.2
 - commits:
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 12c7a2c2de0261f8eaf1c61d4bbe294f917772ce
       subject: Add node 10 to the circleci tests
-  date: '2018-04-30T16:19:41Z'
+  date: 2018-04-30T16:19:41Z
   version: 1.4.1
 - commits:
     - author: Andreas Fitzek
-      body: >-
-        This is another hashed value type, but this uses sha256, so that we can
+      body: This is another hashed value type, but this uses sha256, so that we can
         search for it.
       footers:
         change-type: minor
         signed-off-by: Andreas Fitzek <andreas@resin.io>
       hash: bc096d87501737693429457dd8cb6d86aab32c3e
       subject: Add a "SHA" type
-  date: '2018-04-26T23:22:26Z'
+  date: 2018-04-26T23:22:26Z
   version: 1.4.0
 - commits:
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: minor
       hash: 536088d358d02e99e475d8d79976679916bfe8dc
       subject: Add a "Big Integer" type
-  date: '2018-03-14T18:01:58Z'
+  date: 2018-03-14T18:01:58Z
   version: 1.3.0
 - commits:
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 7517082e8dffecc6ebf8f79e7134649de0535cf7
       subject: Update dependencies
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 1784a9692d6a03da64de55fcdca0a0a865dedca1
       subject: Switch to coffeescript over coffee-script
-  date: '2018-03-14T17:46:59Z'
+  date: 2018-03-14T17:46:59Z
   version: 1.2.5
 - commits:
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: ba4d5c408fd460ff46171bd9e01c31fdac39128a
       subject: Enable auto-publishing
-  date: '2018-03-14T17:39:19Z'
+  date: 2018-03-14T17:39:19Z
   version: 1.2.4
 - commits:
     - author: Giovanni Garufi
-      body: ''
+      body: ""
       footers:
         change-type: patch
       hash: 7665edc4a84c3f5e851807750f50678fed3b4f86
       subject: Added versionist
     - author: Giovanni Garufi
-      body: ''
+      body: ""
       hash: b18a78fd4bd72a9e383488fc545d6e70a38ea91a
-      subject: >-
-        Included unversioned commits in new version so we can start using
+      subject: Included unversioned commits in new version so we can start using
         versionist
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       hash: aaf4a1cf5fca856102869847c55f2f26c19c2808
-      subject: >-
-        Strictly validate the hex string, which fixes the "File" tests for
+      subject: Strictly validate the hex string, which fixes the "File" tests for
         nodejs 8
     - author: Pagan Gazzard
-      body: ''
+      body: ""
       hash: 7e9924af3c0a87f60365788ce8227614e1444b7d
       subject: Add a "Case Insensitive Text" type
     - author: izavits
-      body: ''
+      body: ""
       hash: 31a2bb802f90813c937c73c5afa7f5346ca8306d
       subject: Update README
-  date: '2017-09-25T13:53:16Z'
+  date: 2017-09-25T13:53:16Z
   version: 1.2.3
 - commits:
     - author: Lucian Buzzo
-      body: 'Connects to #3'
+      body: "Connects to #3"
       hash: 5643d98ce9fcf1d3a0cf2a5cae70486c43d5d705
-      subject: '[issue #3] Create minimal README'
+      subject: "[issue #3] Create minimal README"
     - author: Lucian Buzzo
-      body: ''
+      body: ""
       hash: 45fa3411ce9c6813359a538bacfc85aa452e8e07
       subject: Improved description
-  date: '2017-02-20T07:57:02Z'
+  date: 2017-02-20T07:57:02Z
   version: 1.2.1

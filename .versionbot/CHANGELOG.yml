@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add 'Date Time Range' type
+      hash: eeb01c0a7d62748a2272cc72df1b336b0599b34f
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 3.5.0
+  title: "'Add 'Date Time Range' type'"
+  date: 2022-04-11T12:15:48.998Z
+- commits:
     - subject: Update dependencies
       hash: e416444d436c0e01474b624408635a811259f9a1
       body: ""

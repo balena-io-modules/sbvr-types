@@ -1,5 +1,13 @@
 import * as TypeUtils from '../type-utils';
 
+type WebResourceData = {
+	filename: string;
+	href: string;
+	contentType: string;
+	contentDisposition: string;
+	size: number;
+};
+
 export const types = {
 	postgres: 'JSONB',
 	mysql: 'JSON',
@@ -15,14 +23,6 @@ export const types = {
 	<Property Name="size" Nullable="true" Type="Edm.Int64"/>\
 </ComplexType>`,
 	},
-};
-
-type WebResourceData = {
-	filename: string;
-	href: string;
-	contentType: string;
-	contentDisposition: string;
-	size: number;
 };
 
 export const fetchProcessing = (data: string) => {

@@ -17,16 +17,6 @@ export const types = {
 	},
 };
 
-export const nativeProperties = {
-	has: {
-		filename: (from: string) => ['CharacterLength', from],
-		href: (from: string) => ['CharacterLength', from],
-		contentType: (from: string) => ['CharacterLength', from],
-		contentDisposition: (from: string) => ['CharacterLength', from],
-		size: (from: number) => ['CharacterLength', from],
-	},
-};
-
 type WebResourceData = {
 	filename: string;
 	href: string;
@@ -36,7 +26,6 @@ type WebResourceData = {
 };
 
 export const fetchProcessing = (data: string) => {
-	console.log(data);
 	const sourceObj: WebResourceData = JSON.parse(data);
 	return {
 		filename: sourceObj.filename,

@@ -33,7 +33,9 @@ const $describe = (typeName, fn) => {
 					));
 			} else {
 				const isFunc = _.isFunction(expected);
-				const matches = isFunc ? 'pass custom tests' : `return ${expected}`;
+				const matches = isFunc
+					? 'pass custom tests'
+					: `return ${util.inspect(expected)}`;
 				it(`should accept ${util.inspect(
 					inputs,
 				)} and ${matches}`, async function () {

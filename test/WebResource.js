@@ -14,6 +14,20 @@ helpers.describe('WebResource', (test) => {
 	});
 
 	describe('validate', () => {
-		test.validate(s3Object, true, s3Object);
+		test.validate(s3Object, true, JSON.stringify(s3Object));
+	});
+
+	describe('validate href required', () => {
+		const invalidS3Object = {
+			filename: 'logo.png',
+		};
+		test.validate(invalidS3Object, true, new Error('href is required'));
+	});
+
+	describe('validate filename required', () => {
+		const invalidS3Object = {
+			href: 'http://s3.awsobject.com/bucket/object1',
+		};
+		test.validate(invalidS3Object, true, new Error('filename is required'));
 	});
 });

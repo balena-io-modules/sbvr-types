@@ -1,4 +1,5 @@
 import * as TypeUtils from '../type-utils';
+import * as _ from 'lodash';
 
 type WebResourceData = {
 	filename: string;
@@ -36,6 +37,16 @@ export const fetchProcessing = (data: string) => {
 	};
 };
 
-export const validate = TypeUtils.validate.checkRequired((value: any) => {
-	return value;
+export const validate = TypeUtils.validate.checkRequired((value) => {
+	if (!_.isObject(value)) {
+		throw new Error('received value is not an object');
+	}
+	if (!_.has(value, 'filename')) {
+		throw new Error('filename is required');
+	}
+	if (!_.has(value, 'href')) {
+		throw new Error('href is required');
+	}
+	const processedValue = JSON.stringify(value);
+	return processedValue;
 });

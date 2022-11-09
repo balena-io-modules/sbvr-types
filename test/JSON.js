@@ -18,7 +18,15 @@ helpers.describe('JSON', function (test) {
 	describe('validate', function () {
 		test.validate(obj, true, JSON.stringify(obj));
 		test.validate(arr, true, JSON.stringify(arr));
-		test.validate(num, true, JSON.stringify(num));
-		test.validate(str, true, JSON.stringify(str));
+		test.validate(
+			num,
+			false,
+			new Error(`is not an object/array: ${typeof num}`),
+		);
+		test.validate(
+			str,
+			false,
+			new Error(`is not an object/array: ${typeof str}`),
+		);
 	});
 });

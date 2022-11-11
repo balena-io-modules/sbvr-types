@@ -8,6 +8,7 @@
     "pretest": "npm run prepare",
     "test": "mocha",
     "test-web-resource": "mocha -g WebResource",
+    "test-storage": "mocha -g S3StorageAdapter",
     "posttest": "npm run lint",
     "prepublish": "require-npm4-to-publish",
     "prepare": "tsc",
@@ -17,9 +18,12 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.208.0",
+    "@aws-sdk/url-parser": "^3.208.0",
     "@types/bcrypt": "^5.0.0",
     "@types/sha.js": "^2.4.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "uuidv4": "^6.2.13"
   },
   "optionalDependencies": {
     "bcrypt": "^5.0.1",

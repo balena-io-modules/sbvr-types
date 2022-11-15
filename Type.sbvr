@@ -20,6 +20,9 @@ Term:       Case Insensitive Text
 Term:       JSON
 	Concept Type: Text
 	Note: A 'Text' type that will only allow valid JSON.
+Term:       WebResource
+	Concept Type: Text
+	Note: A 'Text' type that will only allow valid JSON.
 Term:       Hashed
 	Concept Type: Text
 	Note: A 'Text' type that will automatically be converted to a hash.

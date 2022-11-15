@@ -10,12 +10,18 @@ export type WebResourceRefData = {
 	size?: number;
 };
 
+export type Data = {
+	type: string;
+	data: Blob | Buffer | string;
+};
+
 export type WebResourceSource = {
-	filename: string;
-	data: Buffer;
-	contentType?: string;
-	contentDisposition?: string;
-	size?: number;
+	fieldname: string;
+	originalname: string;
+	encoding: string;
+	mimetype: string;
+	buffer: Data;
+	size: number;
 };
 
 export const types = {
@@ -42,17 +48,35 @@ const adapter = new S3StorageAdapter();
 
 export const fetchProcessing = (data: string) => {
 	const refData: WebResourceRefData = JSON.parse(data);
-	return {
-		filename: refData.filename,
-		href: refData.href,
-		contentType: refData.contentType,
-		contentDisposition: refData.contentDisposition,
-		size: refData.size,
-	};
+	return data
+		? {
+				filename: refData.filename,
+				href: refData.href,
+				contentType: refData.contentType,
+				contentDisposition: refData.contentDisposition,
+				size: refData.size,
+		  }
+		: null;
 };
 
 export const validate = TypeUtils.validate.checkRequired(
 	async (value: WebResourceSource) => {
+		/*
+		 * Multer file representation:
+			[
+				{
+					"fieldname": "logo",
+					"originalname": "logo.png",
+					"encoding": "7bit",
+					"mimetype": "image/png",
+					"buffer": {
+					"type": "Buffer",
+					"data": [] // being the Blob
+					},
+					"size": 0
+				}
+			]
+		*/
 		if (!_.isObject(value)) {
 			throw new Error('received value is not an object');
 		}
@@ -64,16 +88,19 @@ export const validate = TypeUtils.validate.checkRequired(
 		}
 
 		// FIXME call the adapter based on parameters
-		const webresource = await adapter.saveFile(value.filename, value.data);
+		const webresource = await adapter.saveFile(
+			value.fieldname,
+			value.buffer.data,
+		);
 
 		const refData: WebResourceRefData = {
-			filename: value.filename,
+			filename: value.originalname,
+			contentType: value.mimetype,
+			contentDisposition: 'attachment',
 			href: webresource.href,
-			contentType: value.contentType,
-			contentDisposition: value.contentDisposition,
 			size: value.size,
 		};
-		const processedValue = JSON.stringify(refData);
-		return processedValue;
+
+		return JSON.stringify(refData);
 	},
 );

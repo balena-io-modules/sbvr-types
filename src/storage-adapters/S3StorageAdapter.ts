@@ -48,7 +48,10 @@ export class S3StorageAdapter extends StorageAdapter {
 			S3_STORAGE_ADAPTER_DEFAULT_BUCKET;
 	}
 
-	async saveFile(filename: string, data: Buffer): Promise<WebResource> {
+	async saveFile(
+		filename: string,
+		data: Buffer | string | Blob,
+	): Promise<WebResource> {
 		const key = generateUniqueKey(filename);
 		const uploadParams = {
 			Bucket: this.bucket,

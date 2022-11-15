@@ -120,3 +120,8 @@ Fact type:  Color has Blue Component
 	Necessity: Each Color has exactly one Blue Component
 Fact type:  Color has Alpha Component
 	Necessity: Each Color has exactly one Alpha Component
+
+
+Term:       WebResource
+	Concept Type: Text
+	Note: A 'Text' type that will only allow valid JSON with an specific schema.

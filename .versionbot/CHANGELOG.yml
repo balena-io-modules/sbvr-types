@@ -1,4 +1,18 @@
 - commits:
+    - subject: Update dependency husky to 8.0.2
+      hash: cbd735b63b3f39d9cdaa3b3a448a9c6294639a1b
+      body: |
+        Update husky to 8.0.2
+
+        Update husky from 4.3.8 to 8.0.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+  version: 3.4.12
+  title: ""
+  date: 2022-11-17T17:07:42.075Z
+- commits:
     - subject: "Dev: Add lint-fix npm script"
       hash: 3842a36b2e9d32a2244b10d0cedfe0e74c4dbee2
       body: ""

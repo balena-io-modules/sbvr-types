@@ -1,4 +1,17 @@
 - commits:
+    - subject: "Dev: Move type deps to dev"
+      hash: bdfddfd6170e58b85db9646c11a21e43c5fd613c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@monarci.com>
+        signed-off-by: Josh Bowling <josh@monarci.com>
+      author: Josh Bowling
+  version: 3.4.10
+  title: ""
+  date: 2022-11-17T09:04:12.596Z
+- commits:
     - subject: Add .npmrc
       hash: 05305cc123a70c25045c1dc53ba021946ce22dcb
       body: |

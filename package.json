@@ -15,10 +15,7 @@
   "repository": "https://github.com/balena-io-modules/sbvr-types.git",
   "author": "",
   "license": "BSD",
-  "dependencies": {
-    "@types/bcrypt": "^5.0.0",
-    "@types/sha.js": "^2.4.0"
-  },
+  "dependencies": {},
   "optionalDependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
@@ -26,11 +23,13 @@
   },
   "devDependencies": {
     "@balena/lint": "^6.2.0",
+    "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.3.0",
     "@types/chai-as-promised": "^7.1.5",
     "@types/chai-datetime": "^0.0.37",
     "@types/lodash": "^4.14.181",
     "@types/mocha": "^9.1.0",
+    "@types/sha.js": "^2.4.0",
     "bluebird": "^3.7.2",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",

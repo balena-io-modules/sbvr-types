@@ -1,4 +1,17 @@
 - commits:
+    - subject: "Dev: Add lint-fix npm script"
+      hash: 3842a36b2e9d32a2244b10d0cedfe0e74c4dbee2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@monarci.com>
+        signed-off-by: Josh Bowling <josh@monarci.com>
+      author: Josh Bowling
+  version: 3.4.11
+  title: ""
+  date: 2022-11-17T09:10:43.588Z
+- commits:
     - subject: "Dev: Move type deps to dev"
       hash: bdfddfd6170e58b85db9646c11a21e43c5fd613c
       body: ""

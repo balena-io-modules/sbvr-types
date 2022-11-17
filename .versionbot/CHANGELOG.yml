@@ -1,4 +1,18 @@
 - commits:
+    - subject: Add .npmrc
+      hash: 05305cc123a70c25045c1dc53ba021946ce22dcb
+      body: |
+        Add .npmrc to disable package-lock.json generation on npm install
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@monarci.com>
+        signed-off-by: Josh Bowling <josh@monarci.com>
+      author: Josh Bowling
+  version: 3.4.9
+  title: ""
+  date: 2022-11-17T08:56:29.660Z
+- commits:
     - subject: Switch from balenaCI to flowzone
       hash: f7e06b65458ca726e06ac08a8feead9dc4f76962
       body: ""

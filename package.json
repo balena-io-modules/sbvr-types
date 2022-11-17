@@ -5,6 +5,7 @@
   "main": "out",
   "scripts": {
     "lint": "balena-lint -e js -e ts src test && npx tsc --noEmit --project tsconfig.js.json",
+    "lint-fix": "balena-lint --fix -e js -e ts src test",
     "pretest": "npm run prepare",
     "test": "mocha",
     "posttest": "npm run lint",

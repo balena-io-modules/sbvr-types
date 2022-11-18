@@ -10,7 +10,7 @@
     "test": "mocha",
     "posttest": "npm run lint",
     "prepublish": "require-npm4-to-publish",
-    "prepare": "tsc",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"; tsc",
     "prettify": "balena-lint -e js -e ts --fix src test"
   },
   "repository": "https://github.com/balena-io-modules/sbvr-types.git",
@@ -42,11 +42,6 @@
     "require-npm4-to-publish": "^1.0.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.ts": [

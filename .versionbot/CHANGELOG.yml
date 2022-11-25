@@ -1,4 +1,29 @@
 - commits:
+    - subject: "Tests: remove chai-as-promised"
+      hash: bb50fbe22649f9ce9a328fdb52bba3bce2c9efb4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: "Tests: remove bluebird"
+      hash: 76fde2a906f7baa4e2ce6ddb62e5194cd67aa68a
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: "Tests: remove lodash"
+      hash: 916ff7b68b215a08b6a65e42c4034c0205ec6256
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.18
+  title: ""
+  date: 2022-11-25T17:43:36.704Z
+- commits:
     - subject: Update dependencies
       hash: e5d3ececb219aaf6380c9f56016a56c3c7c2023f
       body: ""

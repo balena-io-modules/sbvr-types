@@ -1,4 +1,15 @@
 - commits:
+    - subject: Switch from `new Buffer` to `Buffer.from` to avoid deprecation warnings
+      hash: e671336ee310572b02253ba75d45b15d2c7acc76
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.16
+  title: ""
+  date: 2022-11-25T16:23:18.014Z
+- commits:
     - subject: "Dev: Migrate husky setup for v8"
       hash: d715082666edaa031ff971bf54f9fff5928bcbbe
       body: ""

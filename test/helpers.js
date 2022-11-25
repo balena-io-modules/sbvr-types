@@ -3,7 +3,6 @@ import * as chaiDateTime from 'chai-datetime';
 import * as chaiAsPromised from 'chai-as-promised';
 import * as types from '../';
 import * as util from 'util';
-import * as _ from 'lodash';
 import * as Bluebird from 'bluebird';
 
 chai.use(chaiDateTime);
@@ -14,9 +13,17 @@ const { expect } = chai;
 const $describe = (typeName, fn) => {
 	const type = types[typeName];
 	const test = function (methodName, isAsync = true) {
-		let method = _.get(type, methodName);
-		if (!_.isFunction(method)) {
-			method = _.constant(method);
+		/** @type {any} */
+		let method = type;
+		if (!Array.isArray(methodName)) {
+			methodName = [methodName];
+		}
+		for (const n of methodName) {
+			method = method[n];
+		}
+		if (typeof method !== 'function') {
+			const v = method;
+			method = () => v;
 		}
 		if (!isAsync) {
 			method = Bluebird.method(method);
@@ -24,7 +31,7 @@ const $describe = (typeName, fn) => {
 
 		return function (...inputs) {
 			const expected = inputs.pop();
-			if (_.isError(expected)) {
+			if (expected instanceof Error) {
 				it(`should reject ${util.inspect(inputs)} with ${
 					expected.message
 				}`, () =>
@@ -32,7 +39,7 @@ const $describe = (typeName, fn) => {
 						expected.message,
 					));
 			} else {
-				const isFunc = _.isFunction(expected);
+				const isFunc = typeof expected === 'function';
 				const matches = isFunc ? 'pass custom tests' : `return ${expected}`;
 				it(`should accept ${util.inspect(
 					inputs,
@@ -40,7 +47,7 @@ const $describe = (typeName, fn) => {
 					const result = await method(...inputs);
 					if (isFunc) {
 						return expected(result);
-					} else if (_.isDate(expected)) {
+					} else if (expected instanceof Date) {
 						return expect(result).to.equalDate(expected);
 					} else {
 						return expect(result).to.deep.equal(expected);
@@ -54,9 +61,9 @@ const $describe = (typeName, fn) => {
 		fn({
 			type,
 			types: {
-				postgres: test('types.postgres', false),
-				mysql: test('types.mysql', false),
-				websql: test('types.websql', false),
+				postgres: test(['types', 'postgres'], false),
+				mysql: test(['types', 'mysql'], false),
+				websql: test(['types', 'websql'], false),
 			},
 			fetch: test('fetchProcessing', false),
 			validate: test('validate'),

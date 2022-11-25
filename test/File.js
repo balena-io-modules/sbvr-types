@@ -3,7 +3,7 @@ import * as helpers from './helpers';
 helpers.describe('File', (test) =>
 	describe('validate', function () {
 		const hex = '5261777221';
-		const buf = new Buffer(hex, 'hex');
+		const buf = Buffer.from(hex, 'hex');
 		test.validate(buf, true, buf);
 		test.validate(hex, true, buf);
 		test.validate(

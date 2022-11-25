@@ -1,38 +1,47 @@
 import * as chai from 'chai';
 import * as chaiDateTime from 'chai-datetime';
-import * as chaiAsPromised from 'chai-as-promised';
 import * as types from '../';
 import * as util from 'util';
-import * as _ from 'lodash';
-import * as Bluebird from 'bluebird';
 
 chai.use(chaiDateTime);
-chai.use(chaiAsPromised);
 
 const { expect } = chai;
 
 const $describe = (typeName, fn) => {
 	const type = types[typeName];
-	const test = function (methodName, isAsync = true) {
-		let method = _.get(type, methodName);
-		if (!_.isFunction(method)) {
-			method = _.constant(method);
+	const test = function (methodName) {
+		/** @type {any} */
+		let method = type;
+		if (!Array.isArray(methodName)) {
+			methodName = [methodName];
 		}
-		if (!isAsync) {
-			method = Bluebird.method(method);
+		for (const n of methodName) {
+			method = method[n];
+		}
+		if (typeof method !== 'function') {
+			const v = method;
+			method = () => v;
 		}
 
 		return function (...inputs) {
 			const expected = inputs.pop();
-			if (_.isError(expected)) {
+			if (expected instanceof Error) {
 				it(`should reject ${util.inspect(inputs)} with ${
 					expected.message
-				}`, () =>
-					expect(method(...inputs)).to.eventually.be.rejectedWith(
-						expected.message,
-					));
+				}`, async () => {
+					let err;
+					try {
+						await method(...inputs);
+					} catch (e) {
+						err = e;
+					}
+					expect(err)
+						.to.be.an('error')
+						.that.has.a.property('message')
+						.that.equals(expected.message);
+				});
 			} else {
-				const isFunc = _.isFunction(expected);
+				const isFunc = typeof expected === 'function';
 				const matches = isFunc ? 'pass custom tests' : `return ${expected}`;
 				it(`should accept ${util.inspect(
 					inputs,
@@ -40,7 +49,7 @@ const $describe = (typeName, fn) => {
 					const result = await method(...inputs);
 					if (isFunc) {
 						return expected(result);
-					} else if (_.isDate(expected)) {
+					} else if (expected instanceof Date) {
 						return expect(result).to.equalDate(expected);
 					} else {
 						return expect(result).to.deep.equal(expected);
@@ -54,11 +63,11 @@ const $describe = (typeName, fn) => {
 		fn({
 			type,
 			types: {
-				postgres: test('types.postgres', false),
-				mysql: test('types.mysql', false),
-				websql: test('types.websql', false),
+				postgres: test(['types', 'postgres']),
+				mysql: test(['types', 'mysql']),
+				websql: test(['types', 'websql']),
 			},
-			fetch: test('fetchProcessing', false),
+			fetch: test('fetchProcessing'),
 			validate: test('validate'),
 		}),
 	);

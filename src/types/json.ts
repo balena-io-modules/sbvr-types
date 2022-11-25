@@ -1,15 +1,20 @@
 import * as TypeUtils from '../type-utils';
 
 export const types = {
-	postgres: 'TEXT',
-	mysql: 'TEXT',
-	websql: 'TEXT',
+	postgres: 'JSONB',
+	mysql: 'JSON',
+	websql: 'JSON',
 	odata: {
 		name: 'Edm.String', // TODO: What should this really be?
 	},
 };
 
-export const fetchProcessing = (data: any) => JSON.parse(data);
+export const fetchProcessing = (data: any) => {
+	if (typeof data === 'string') {
+		return JSON.parse(data);
+	}
+	return data;
+};
 
 export const validate = TypeUtils.validate.checkRequired((value) => {
 	// Disallow primitives

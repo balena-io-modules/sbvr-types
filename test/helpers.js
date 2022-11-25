@@ -1,11 +1,9 @@
 import * as chai from 'chai';
 import * as chaiDateTime from 'chai-datetime';
-import * as chaiAsPromised from 'chai-as-promised';
 import * as types from '../';
 import * as util from 'util';
 
 chai.use(chaiDateTime);
-chai.use(chaiAsPromised);
 
 const { expect } = chai;
 
@@ -30,10 +28,18 @@ const $describe = (typeName, fn) => {
 			if (expected instanceof Error) {
 				it(`should reject ${util.inspect(inputs)} with ${
 					expected.message
-				}`, () =>
-					expect(method(...inputs)).to.eventually.be.rejectedWith(
-						expected.message,
-					));
+				}`, async () => {
+					let err;
+					try {
+						await method(...inputs);
+					} catch (e) {
+						err = e;
+					}
+					expect(err)
+						.to.be.an('error')
+						.that.has.a.property('message')
+						.that.equals(expected.message);
+				});
 			} else {
 				const isFunc = typeof expected === 'function';
 				const matches = isFunc ? 'pass custom tests' : `return ${expected}`;

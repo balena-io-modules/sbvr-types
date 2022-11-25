@@ -3,7 +3,6 @@ import * as chaiDateTime from 'chai-datetime';
 import * as chaiAsPromised from 'chai-as-promised';
 import * as types from '../';
 import * as util from 'util';
-import * as Bluebird from 'bluebird';
 
 chai.use(chaiDateTime);
 chai.use(chaiAsPromised);
@@ -12,7 +11,7 @@ const { expect } = chai;
 
 const $describe = (typeName, fn) => {
 	const type = types[typeName];
-	const test = function (methodName, isAsync = true) {
+	const test = function (methodName) {
 		/** @type {any} */
 		let method = type;
 		if (!Array.isArray(methodName)) {
@@ -24,9 +23,6 @@ const $describe = (typeName, fn) => {
 		if (typeof method !== 'function') {
 			const v = method;
 			method = () => v;
-		}
-		if (!isAsync) {
-			method = Bluebird.method(method);
 		}
 
 		return function (...inputs) {
@@ -61,11 +57,11 @@ const $describe = (typeName, fn) => {
 		fn({
 			type,
 			types: {
-				postgres: test(['types', 'postgres'], false),
-				mysql: test(['types', 'mysql'], false),
-				websql: test(['types', 'websql'], false),
+				postgres: test(['types', 'postgres']),
+				mysql: test(['types', 'mysql']),
+				websql: test(['types', 'websql']),
 			},
-			fetch: test('fetchProcessing', false),
+			fetch: test('fetchProcessing'),
 			validate: test('validate'),
 		}),
 	);

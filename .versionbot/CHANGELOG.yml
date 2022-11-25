@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update dependencies
+      hash: e5d3ececb219aaf6380c9f56016a56c3c7c2023f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 3.4.17
+  title: ""
+  date: 2022-11-25T16:27:57.945Z
+- commits:
     - subject: Switch from `new Buffer` to `Buffer.from` to avoid deprecation warnings
       hash: e671336ee310572b02253ba75d45b15d2c7acc76
       body: ""

@@ -1,4 +1,17 @@
 - commits:
+    - subject: "Flowzone: Allow external contributions"
+      hash: 9f7bb028bbac327e6fe0711491d7c0f2c6464f98
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@monarci.com>
+        signed-off-by: Josh Bowling <josh@monarci.com>
+      author: Josh Bowling
+  version: 3.4.19
+  title: ""
+  date: 2022-12-08T01:08:35.143Z
+- commits:
     - subject: "Tests: remove chai-as-promised"
       hash: bb50fbe22649f9ce9a328fdb52bba3bce2c9efb4
       body: ""

@@ -1,19 +1,17 @@
-## sbvr-types
+# sbvr-types
 
-This module defines the data types that can be used in the SBVR model
-specification, as well as the possible relations between them. For each data 
-type, there is a correspondence with a database data type, according to the 
-various database engines that are supported.
+This module defines the data types that can be used in the SBVR model specification, as well as the possible relations between them. For each data type, there is a correspondence with a database data type, according to the various database engines that are supported.
 
 The SBVR definition for types can be found at [Type.sbvr](https://github.com/balena-io-modules/sbvr-types/blob/master/Type.sbvr)
 
 "The Rest" can be found at: [balena-io-modules/sbvr-types/src/types](https://github.com/balena-io-modules/sbvr-types/tree/master/src/types)
 
-### How-to
+## How-to
 
 For a new type you should add a module to the types folder. The module should return a single object, which has the following format:
 
-#### types
+### types
+
 A types object, which specifies how the type is declared in various systems. This contains:
 
 * postgres/mysql/websql - These can either be a string (which will have the necessity and index appended to it), or a function (necessity, index), which returns the type as a string.
@@ -151,7 +149,38 @@ nativeFactTypes:
 
 Note: You only need to specify the verb for the canonical for of the fact type, any synonymous forms will automatically be remapped to the canonical form
 
-
-### Tests
+## Tests
 
 Tests can be found under the `test/` folder, to run the whole suite use `npm test`
+
+## Storing files and other large objects
+
+An application can choose between two types to save file content or another large object: `File` or `WebResource`. When using a `File`, PineJS saves the content in the database using a binary data type like `BYTEA` or `BLOB`. When using a `WebResource`, PineJS saves the binary content on an external storage service and then writes metadata, including the content public URL, to the database. Client apps use the `WebResource` `href` to get the content.
+
+
+### WebResource
+
+Type [`WebResource`](./src//types/web-resource.ts) can be used to persist files or other large content on an external object storage service like MinIO or Amazon S3. By "object storage" we refer to a service that can store the content and provide a URL to access that content.
+
+In order to save a `WebResource` you send an instance of [`WebResourceInput`](./src/types/web-resource.ts#L18)
+
+```js
+{
+  filename: string;
+  data: Buffer;
+  contentType?: string;
+  contentDisposition?: string;
+  size?: number;
+  storage: string;
+}
+```
+
+A typical use case is to have a web app where users can upload a file. The app will use [multer](https://github.com/expressjs/multer) to get the file from the http request as a `Buffer` and pass it as the `data` attribute of a `WebResourceInput`.
+
+When retrieving a `WebResource` the `data` attribute is replaced by an `href`( URL ) attribute. See [`WebResourceRef`](./src/types/web-resource.ts#L7)
+
+#### Storage Adapters
+
+The `storage` attribute specifies the name of an [`StorageAdapter`](./src/storage-adapters/storage-adapter.ts#L7). A `StorageAdapter` saves the content to a specific storage, performing a function similar to what a database driver provides. For example, [pinejs-s3-storage](https://github.com/balena-io-modules/pinejs-s3-storage) saves the content to S3/MinIO and returns a URL to the persisted object. For testing purposes, this module uses [disk-storage-adapter](./test/storage-adapters/disk-storage-adapter.js).
+
+Applications need to load the `StorageAdapter`s they need in the `storageRegistry`(./src/storage-adapters/index.ts#L4). Please refer to each specific storage adapter for more configuration and setup details.

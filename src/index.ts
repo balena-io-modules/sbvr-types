@@ -19,6 +19,7 @@ import * as SHA from './types/sha';
 import * as ShortText from './types/short-text';
 import * as Text from './types/text';
 import * as Time from './types/time';
+import * as WebResource from './types/web-resource';
 
 export = {
 	'Big Integer': BigInteger,
@@ -40,6 +41,7 @@ export = {
 	'Short Text': ShortText,
 	Text,
 	Time,
+	WebResource,
 } as {
 	Hashed: SbvrType & {
 		compare: (str: string, hash: string) => Promise<boolean>;

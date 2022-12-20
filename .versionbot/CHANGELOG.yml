@@ -1,4 +1,41 @@
 - commits:
+    - subject: Set minimum supported nodejs version to 16.13.0 and tsconfig to es2021
+      hash: 50dfd2d5d5cdbf7a0c2adb132934e4cf7233106e
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+    - subject: Switch `JSON` to use `JSON` db type instead of `TEXT`
+      hash: 0db9a41aee24f8d23728f9965e251ecdc61780ec
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+    - subject: Switch `Boolean` to use `BOOLEAN` db type instead of `INTEGER`
+      hash: 4bfe1a734e35da2dc10ea106d3f611b298232515
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+    - subject: Assert that JSON input typeof is object
+      hash: 2b5bfbb55ec2a00009708afe5dcab7c9235a45d8
+      body: |
+        Ensure that the input passed in for JSON types is either an object or
+        an array (typeof returns 'object' for arrays as well). This change is
+        mainly to prevent primitives from being stored as JSON.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Josh Bowling <josh@monarci.com>
+        signed-off-by: Josh Bowling <josh@monarci.com>
+      author: Josh Bowling
+  version: 4.0.0
+  title: ""
+  date: 2022-12-20T15:58:42.371Z
+- commits:
     - subject: "Flowzone: Allow external contributions"
       hash: 9f7bb028bbac327e6fe0711491d7c0f2c6464f98
       body: ""

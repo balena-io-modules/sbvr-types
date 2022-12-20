@@ -41,6 +41,24 @@ export const types = {
 	},
 };
 
+export const nativeProperties = {
+	has: {
+		Filename: (from: any) => ['ExtractJSONPathAsText', from, '$.filename'],
+		HRef: (from: any) => ['ExtractJSONPathAsText', from, '$.href'],
+		'Content Type': (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			'$.contentType',
+		],
+		'Content Disposition': (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			'$.contentDisposition',
+		],
+		Size: (from: any) => ['ExtractJSONPathAsText', from, '$.size'],
+	},
+};
+
 export const fetchProcessing = (data: any) => {
 	let refData: WebResourceRef;
 	if (data === null) {

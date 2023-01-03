@@ -43,19 +43,31 @@ export const types = {
 
 export const nativeProperties = {
 	has: {
-		Filename: (from: any) => ['ExtractJSONPathAsText', from, '$.filename'],
-		HRef: (from: any) => ['ExtractJSONPathAsText', from, '$.href'],
+		Filename: (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'filename']],
+		],
+		HRef: (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'href']],
+		],
 		'Content Type': (from: any) => [
 			'ExtractJSONPathAsText',
 			from,
-			'$.contentType',
+			['TextArray', ['EmbeddedText', 'contentType']],
 		],
 		'Content Disposition': (from: any) => [
 			'ExtractJSONPathAsText',
 			from,
-			'$.contentDisposition',
+			['TextArray', ['EmbeddedText', 'contentDisposition']],
 		],
-		Size: (from: any) => ['ExtractJSONPathAsText', from, '$.size'],
+		Size: (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'size']],
+		],
 	},
 };
 

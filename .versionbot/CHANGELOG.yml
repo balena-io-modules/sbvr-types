@@ -1,4 +1,23 @@
 - commits:
+    - subject: Add type WebResource
+      hash: 11e6e097b1abd53c416f38c28e119bc7fa332c04
+      body: |
+        Add getStorageAdapterNames
+        Amazon S3 and MinIO
+        Add tests for faulty storage adapters
+        Enhance error handling
+        Provide functions to handle the storageRegistry
+        Update README with a WebResource entry
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Ramiro Gonzalez <ramiro.gonzalez@balena.io>
+        signed-off-by: Ramiro Gonzalez <ramiro.gonzalez@balena.io>
+      author: Ramiro González Maciel
+  version: 3.5.0
+  title: ""
+  date: 2023-01-03T12:47:42.850Z
+- commits:
     - subject: "Flowzone: Allow external contributions"
       hash: 9f7bb028bbac327e6fe0711491d7c0f2c6464f98
       body: ""

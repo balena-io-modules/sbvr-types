@@ -120,3 +120,29 @@ Fact type:  Color has Blue Component
 	Necessity: Each Color has exactly one Blue Component
 Fact type:  Color has Alpha Component
 	Necessity: Each Color has exactly one Alpha Component
+
+Term:       Filename
+	Concept Type: Short Text
+Term:       HRef
+	Concept Type: Short Text
+Term:       Content Type
+	Concept Type: Short Text
+Term:       Content Disposition
+	Concept Type: Short Text
+Term:       Size
+	Concept Type: Integer
+
+Term:       WebResource
+	Concept Type: JSON
+	Note: A 'JSON' type that will only allow valid JSON with an specific schema.
+
+Fact type:  WebResource has Filename
+	Necessity: Each WebResource has exactly one Filename.
+Fact type:  WebResource has HRef
+	Necessity: Each WebResource has exactly one HRef.
+Fact type:  WebResource has Content Type
+	Necessity: Each WebResource has at most one Content Type.
+Fact type:  WebResource has Content Disposition
+	Necessity: Each WebResource has at most one Content Disposition.
+Fact type:  WebResource has Size
+	Necessity: Each WebResource has at most one Size.

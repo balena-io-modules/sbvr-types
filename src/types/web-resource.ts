@@ -1,0 +1,136 @@
+import * as TypeUtils from '../type-utils';
+
+export type WebResource = {
+	filename: string;
+	href: string;
+	contentType?: string;
+	contentDisposition?: string;
+	size?: number;
+};
+
+export const types = {
+	postgres: 'JSONB',
+	mysql: 'JSON',
+	websql: 'TEXT',
+	odata: {
+		name: 'Self.WebResource',
+		complexType: `\
+<ComplexType Name="WebResource">
+	<Property Name="filename" Nullable="false" Type="Edm.String"/>\
+	<Property Name="href" Nullable="false" Type="Edm.String"/>\
+	<Property Name="contentType" Nullable="true" Type="Edm.String"/>\
+	<Property Name="contentDisposition" Nullable="true" Type="Edm.String"/>\
+	<Property Name="size" Nullable="true" Type="Edm.Int64"/>\
+</ComplexType>`,
+	},
+};
+
+export const nativeProperties = {
+	has: {
+		Filename: (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'filename']],
+		],
+		HRef: (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'href']],
+		],
+		'Content Type': (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'contentType']],
+		],
+		'Content Disposition': (from: any) => [
+			'ExtractJSONPathAsText',
+			from,
+			['TextArray', ['EmbeddedText', 'contentDisposition']],
+		],
+		Size: (from: any) => [
+			'Cast',
+			['ExtractJSONPathAsText', from, ['TextArray', ['EmbeddedText', 'size']]],
+			'Integer',
+		],
+	},
+};
+
+/**
+ * Converts the data, which comes from the DB as a string or object depending on the
+ * column type, to a WebResource object
+ *
+ * @param data string|object
+ * @returns a WebResource parsed from the DB
+ */
+export const fetchProcessing = (data: any) => {
+	let refData: WebResource;
+	if (data === null) {
+		return data;
+	}
+	if (typeof data === 'string') {
+		try {
+			refData = JSON.parse(data);
+		} catch (e: any) {
+			throw new Error(
+				`can't be parsed from stored value ${typeof data} with error ${
+					e.message
+				}`,
+			);
+		}
+	} else if (typeof data === 'object') {
+		refData = data;
+	} else {
+		throw new Error(`can't be read from stored value ${typeof data}`);
+	}
+
+	return {
+		filename: refData.filename,
+		href: refData.href,
+		contentType: refData.contentType,
+		contentDisposition: refData.contentDisposition,
+		size: refData.size,
+	};
+};
+
+/**
+ * Validates the value content.
+ *
+ * Returns a Stringified WebResource that will be persisted on the DB
+ *
+ */
+export const validate = TypeUtils.validate.checkRequired(
+	async (value: WebResource) => {
+		if (typeof value !== 'object') {
+			throw new Error(`is not an object: ${typeof value}`);
+		}
+		if (!value.filename) {
+			throw new Error('filename is required');
+		}
+		if (typeof value.filename !== 'string') {
+			throw new Error('filename must be a string');
+		}
+		if (!value.href) {
+			throw new Error('href is required');
+		}
+		if (typeof value.href !== 'string') {
+			throw new Error('href must be a string');
+		}
+		if (value.contentType && typeof value.contentType !== 'string') {
+			throw new Error('contentType must be a string');
+		}
+		if (
+			value.contentDisposition &&
+			typeof value.contentDisposition !== 'string'
+		) {
+			throw new Error('contentDisposition must be a string');
+		}
+		if (value.size && !Number.isInteger(value.size)) {
+			throw new Error('size must be an integer');
+		}
+		try {
+			return JSON.stringify(value);
+		} catch (e: any) {
+			throw new Error(`can't be stringified; error ${e.message}`);
+		}
+	},
+);

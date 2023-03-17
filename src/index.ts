@@ -1,6 +1,7 @@
 import type { SbvrType } from './type-utils';
 
 import * as BigInteger from './types/big-integer';
+import * as BigSerial from './types/big-serial';
 import * as Boolean from './types/boolean';
 import * as CaseInsensitiveText from './types/case-insensitive-text';
 import * as Color from './types/color';
@@ -22,6 +23,7 @@ import * as Time from './types/time';
 
 export = {
 	'Big Integer': BigInteger,
+	'Big Serial': BigSerial,
 	Boolean,
 	'Case Insensitive Text': CaseInsensitiveText,
 	Color,

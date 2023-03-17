@@ -23,4 +23,11 @@ export const types = {
 	},
 };
 
-export const validate = TypeUtils.validate.integer;
+export const fetchProcessing = (data: any) => {
+	if (data == null) {
+		return data;
+	}
+	return BigInt(data);
+};
+
+export const validate = TypeUtils.validate.bigint;

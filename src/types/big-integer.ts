@@ -9,9 +9,16 @@ export const types = {
 	},
 };
 
+export const fetchProcessing = (data: any) => {
+	if (data == null) {
+		return data;
+	}
+	return BigInt(data);
+};
+
 export const nativeFactTypes = {
 	Integer: TypeUtils.nativeFactTypeTemplates.comparison,
 	Real: TypeUtils.nativeFactTypeTemplates.comparison,
 };
 
-export const validate = TypeUtils.validate.integer;
+export const validate = TypeUtils.validate.bigint;

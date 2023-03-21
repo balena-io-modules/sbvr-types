@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add Big Serial type
+      hash: 49460ad51fcbc60f81e61329c573a1af5b207a46
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Josh Bowling
+  version: 3.5.0
+  title: ""
+  date: 2023-03-21T11:16:27.398Z
+- commits:
     - subject: "Flowzone: Allow external contributions"
       hash: 9f7bb028bbac327e6fe0711491d7c0f2c6464f98
       body: ""

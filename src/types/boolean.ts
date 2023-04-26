@@ -3,9 +3,9 @@ import * as TypeUtils from '../type-utils';
 const typeFunc: TypeUtils.DatabaseTypeFn = (
 	necessity: string,
 	index: string,
-	defaultValue = ' DEFAULT 0',
-) => 'INTEGER' + defaultValue + necessity + index;
-typeFunc.castType = 'INTEGER';
+	defaultValue = ' DEFAULT FALSE',
+) => 'BOOLEAN' + defaultValue + necessity + index;
+typeFunc.castType = 'BOOLEAN';
 
 export const types = {
 	postgres: typeFunc,
@@ -16,7 +16,7 @@ export const types = {
 	},
 };
 
-// Support both `1` from the "boolean" columns that are actually INTEGER types and `true` for truly boolean results
+// `BOOLEAN` on sqlite/websql is just an alias for `INTEGER` hence the `=== 1` check
 export const fetchProcessing = (data: any) => data === true || data === 1;
 
 export const validate = TypeUtils.validate.checkRequired((originalValue) => {
@@ -29,5 +29,5 @@ export const validate = TypeUtils.validate.checkRequired((originalValue) => {
 			)} (${typeof originalValue})`,
 		);
 	}
-	return value;
+	return value === 1;
 });

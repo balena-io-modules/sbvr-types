@@ -1,4 +1,64 @@
 - commits:
+    - subject: Add test cases for Objects in JSON validate
+      hash: be8fc31c3754186dd4c43ca8d4c056b0def7ffbd
+      body: >
+        As balena-lint rejects `new Boolean()`, `new Number()` and `new
+        String()` constructor usage, test cases double check that they are not
+        instantiated as object but primitive type.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: fisehara <harald@balena.io>
+        signed-off-by: fisehara <harald@balena.io>
+      author: fisehara
+    - subject: Drop `require-npm4-to-publish` devDependency
+      hash: 46a369117c9d1222089498a8794c32d14edef85b
+      body: >
+        As engine and npm is now required as part of package.json we can drop
+        this dependency
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: fisehara <harald@balena.io>
+        signed-off-by: fisehara <harald@balena.io>
+      author: fisehara
+    - subject: Set minimum supported nodejs version to 16.13.0 and tsconfig to es2021
+      hash: 54920d701a7aa4890c27801fc5cc6b9d74ece21c
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+    - subject: Switch `JSON` to use `JSON` db type instead of `TEXT`
+      hash: 0d3561364ad018f59466c0dae9b3adb4390d9496
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+    - subject: Switch `Boolean` to use `BOOLEAN` db type instead of `INTEGER`
+      hash: 5af2bd476a9032ab5d60c163a3940e0dd8e81cc6
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+    - subject: Assert that JSON input typeof is object
+      hash: 1819ee97811e20da93c6e0f227db6a62ada8c00e
+      body: |
+        Ensure that the input passed in for JSON types is either an object or
+        an array (typeof returns 'object' for arrays as well). This change is
+        mainly to prevent primitives from being stored as JSON.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Josh Bowling <josh@monarci.com>
+        signed-off-by: Josh Bowling <josh@monarci.com>
+      author: Josh Bowling
+  version: 4.0.0
+  title: ""
+  date: 2023-04-26T15:00:16.169Z
+- commits:
     - subject: Add Big Serial type
       hash: 49460ad51fcbc60f81e61329c573a1af5b207a46
       body: ""

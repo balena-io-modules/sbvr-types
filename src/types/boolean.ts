@@ -22,7 +22,7 @@ export const fetchProcessing = (data: any) => data === true || data === 1;
 export const validate = TypeUtils.validate.checkRequired((originalValue) => {
 	// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"
 	const value = Number(originalValue);
-	if (Number.isNaN(value) || ![0, 1].includes(value)) {
+	if (value !== 0 && value !== 1) {
 		throw new Error(
 			`is not a boolean: ${JSON.stringify(
 				originalValue,

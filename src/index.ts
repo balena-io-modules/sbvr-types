@@ -42,7 +42,7 @@ export = {
 	'Short Text': ShortText,
 	Text,
 	Time,
-} as {
+} satisfies {
 	Hashed: SbvrType & {
 		compare: (str: string, hash: string) => Promise<boolean>;
 	};

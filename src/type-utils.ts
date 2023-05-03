@@ -14,14 +14,14 @@ export interface SbvrType {
 		websql: DatabaseType;
 	};
 	fetchProcessing?: (field: any) => any;
-	validate: (value: any, required?: boolean) => Promise<any>;
+	validate: (value: any, required: boolean) => Promise<any>;
 }
 
 const checkRequired = <T>(validateFn: (value: any) => T) => {
 	function runCheck(value: any, required: true): Promise<T>;
 	function runCheck(value: undefined | null, required: false): Promise<null>;
-	function runCheck<U>(value: U, required: boolean): Promise<T | null>;
-	async function runCheck<U>(value: U, required: boolean): Promise<T | null> {
+	function runCheck(value: any, required: boolean): Promise<T | null>;
+	async function runCheck(value: any, required: boolean): Promise<T | null> {
 		if (value == null) {
 			if (required) {
 				throw new Error('cannot be null');

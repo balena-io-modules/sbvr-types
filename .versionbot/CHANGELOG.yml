@@ -1,4 +1,15 @@
 - commits:
+    - subject: Improve typings
+      hash: a5fd4a319cd0336afc5a765af9e1a1eec851f2c3
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 4.0.2
+  title: ""
+  date: 2023-05-03T11:40:24.422Z
+- commits:
     - subject: "boolean: Avoid unnecessary array creation to reduce GCs"
       hash: 5ba948cd5f42844974d43dc19f1c371e56376fc8
       body: ""

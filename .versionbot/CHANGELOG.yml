@@ -1,4 +1,15 @@
 - commits:
+    - subject: Switch from `export =` to `export default`
+      hash: 6cd01340e0fee46833942691fce5a9f6a42ac104
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+  version: 5.0.0
+  title: ""
+  date: 2023-05-16T15:56:09.861Z
+- commits:
     - subject: Improve typings
       hash: a5fd4a319cd0336afc5a765af9e1a1eec851f2c3
       body: ""

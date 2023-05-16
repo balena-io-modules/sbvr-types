@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 import * as chaiDateTime from 'chai-datetime';
-import * as types from '../';
+import types from '../';
 import * as util from 'util';
 
 chai.use(chaiDateTime);

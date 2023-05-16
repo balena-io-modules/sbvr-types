@@ -1,4 +1,5 @@
 import type { SbvrType } from './type-utils';
+export type { SbvrType };
 
 import * as BigInteger from './types/big-integer';
 import * as BigSerial from './types/big-serial';
@@ -21,7 +22,7 @@ import * as ShortText from './types/short-text';
 import * as Text from './types/text';
 import * as Time from './types/time';
 
-export = {
+export default {
 	'Big Integer': BigInteger,
 	'Big Serial': BigSerial,
 	Boolean,

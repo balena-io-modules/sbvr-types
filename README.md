@@ -1,19 +1,17 @@
-## sbvr-types
+# sbvr-types
 
-This module defines the data types that can be used in the SBVR model
-specification, as well as the possible relations between them. For each data 
-type, there is a correspondence with a database data type, according to the 
-various database engines that are supported.
+This module defines the data types that can be used in the SBVR model specification, as well as the possible relations between them. For each data type, there is a correspondence with a database data type, according to the various database engines that are supported.
 
 The SBVR definition for types can be found at [Type.sbvr](https://github.com/balena-io-modules/sbvr-types/blob/master/Type.sbvr)
 
 "The Rest" can be found at: [balena-io-modules/sbvr-types/src/types](https://github.com/balena-io-modules/sbvr-types/tree/master/src/types)
 
-### How-to
+## How-to
 
 For a new type you should add a module to the types folder. The module should return a single object, which has the following format:
 
-#### types
+### types
+
 A types object, which specifies how the type is declared in various systems. This contains:
 
 * postgres/mysql/websql - These can either be a string (which will have the necessity and index appended to it), or a function (necessity, index), which returns the type as a string.
@@ -151,7 +149,6 @@ nativeFactTypes:
 
 Note: You only need to specify the verb for the canonical for of the fact type, any synonymous forms will automatically be remapped to the canonical form
 
-
-### Tests
+## Tests
 
 Tests can be found under the `test/` folder, to run the whole suite use `npm test`

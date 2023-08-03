@@ -1,4 +1,17 @@
 - commits:
+    - subject: Adds WebResource type
+      hash: db7ff44e95a040a0b250d8c7612b126b31a3f325
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+        Co-authored-by: ramirogm
+        co-authored-by: ramirogm
+      author: Otávio Jacobi
+  version: 5.1.0
+  title: ""
+  date: 2023-08-03T09:36:41.490Z
+- commits:
     - subject: Switch from `export =` to `export default`
       hash: 6cd01340e0fee46833942691fce5a9f6a42ac104
       body: ""

@@ -1,4 +1,15 @@
 - commits:
+    - subject: Expose WebResource as WebResourceType
+      hash: 9e42bfffb2145b5096539492b36b0f19b1f2e209
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otávio Jacobi
+  version: 5.2.0
+  title: ""
+  date: 2023-08-08T21:01:49.459Z
+- commits:
     - subject: Adds WebResource type
       hash: db7ff44e95a040a0b250d8c7612b126b31a3f325
       body: ""

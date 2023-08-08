@@ -23,6 +23,8 @@ import * as Text from './types/text';
 import * as Time from './types/time';
 import * as WebResource from './types/web-resource';
 
+export { WebResource as WebResourceType } from './types/web-resource';
+
 export default {
 	'Big Integer': BigInteger,
 	'Big Serial': BigSerial,

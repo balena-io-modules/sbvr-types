@@ -8,8 +8,8 @@ import type {
 export type WebResource = {
 	filename: string;
 	href: string;
-	contentType?: string;
-	contentDisposition?: string;
+	content_type?: string;
+	content_disposition?: string;
 	size?: number;
 };
 
@@ -23,8 +23,8 @@ export const types = {
 <ComplexType Name="WebResource">
 	<Property Name="filename" Nullable="false" Type="Edm.String"/>\
 	<Property Name="href" Nullable="false" Type="Edm.String"/>\
-	<Property Name="contentType" Nullable="true" Type="Edm.String"/>\
-	<Property Name="contentDisposition" Nullable="true" Type="Edm.String"/>\
+	<Property Name="content_type" Nullable="true" Type="Edm.String"/>\
+	<Property Name="content_disposition" Nullable="true" Type="Edm.String"/>\
 	<Property Name="size" Nullable="true" Type="Edm.Int64"/>\
 </ComplexType>`,
 	},
@@ -49,14 +49,14 @@ export const nativeProperties = {
 		): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
-			['TextArray', ['EmbeddedText', 'contentType']],
+			['TextArray', ['EmbeddedText', 'content_type']],
 		],
 		'Content Disposition': (
 			referencedField: ReferencedFieldNode,
 		): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
-			['TextArray', ['EmbeddedText', 'contentDisposition']],
+			['TextArray', ['EmbeddedText', 'content_disposition']],
 		],
 		Size: (referencedField: ReferencedFieldNode): CastNode => [
 			'Cast',
@@ -97,8 +97,8 @@ export const fetchProcessing = (data: any) => {
 	return {
 		filename: refData.filename,
 		href: refData.href,
-		contentType: refData.contentType,
-		contentDisposition: refData.contentDisposition,
+		content_type: refData.content_type,
+		content_disposition: refData.content_disposition,
 		size: refData.size,
 	};
 };
@@ -126,14 +126,14 @@ export const validate = TypeUtils.validate.checkRequired(
 		if (typeof value.href !== 'string') {
 			throw new Error('href must be a string');
 		}
-		if (value.contentType != null && typeof value.contentType !== 'string') {
-			throw new Error('contentType must be a string or undefined');
+		if (value.content_type != null && typeof value.content_type !== 'string') {
+			throw new Error('content_type must be a string or undefined');
 		}
 		if (
-			value.contentDisposition != null &&
-			typeof value.contentDisposition !== 'string'
+			value.content_disposition != null &&
+			typeof value.content_disposition !== 'string'
 		) {
-			throw new Error('contentDisposition must be a string or undefined');
+			throw new Error('content_disposition must be a string or undefined');
 		}
 		if (value.size != null && !Number.isInteger(value.size)) {
 			throw new Error('size must be an integer or undefined');

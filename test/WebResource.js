@@ -12,8 +12,8 @@ helpers.describe('WebResource', (test) => {
 	const webResource = {
 		filename: 'logo.png',
 		href: 'test',
-		contentType: 'image/png',
-		contentDisposition: null,
+		content_type: 'image/png',
+		content_disposition: null,
 		size: buf.byteLength,
 	};
 	describe('fetchProcessing', () => {
@@ -77,12 +77,12 @@ helpers.describe('WebResource', (test) => {
 		const wrongContentType = {
 			filename: 'logo.png',
 			href: 'test',
-			contentType: [1, 2, 3],
+			content_type: [1, 2, 3],
 		};
 		test.validate(
 			wrongContentType,
 			true,
-			new Error('contentType must be a string or undefined'),
+			new Error('content_type must be a string or undefined'),
 		);
 	});
 
@@ -90,12 +90,12 @@ helpers.describe('WebResource', (test) => {
 		const wrongContentDisposition = {
 			filename: 'logo.png',
 			href: 'test',
-			contentDisposition: [1, 2, 3],
+			content_disposition: [1, 2, 3],
 		};
 		test.validate(
 			wrongContentDisposition,
 			true,
-			new Error('contentDisposition must be a string or undefined'),
+			new Error('content_disposition must be a string or undefined'),
 		);
 	});
 

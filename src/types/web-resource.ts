@@ -11,6 +11,7 @@ export type WebResource = {
 	content_type?: string;
 	content_disposition?: string;
 	size?: number;
+	checksum?: string;
 };
 
 export const types = {
@@ -26,6 +27,7 @@ export const types = {
 	<Property Name="content_type" Nullable="true" Type="Edm.String"/>\
 	<Property Name="content_disposition" Nullable="true" Type="Edm.String"/>\
 	<Property Name="size" Nullable="true" Type="Edm.Int64"/>\
+	<Property Name="checksum" Nullable="true" Type="Edm.String"/>\
 </ComplexType>`,
 	},
 };
@@ -57,6 +59,13 @@ export const nativeProperties = {
 			'ExtractJSONPathAsText',
 			referencedField,
 			['TextArray', ['EmbeddedText', 'content_disposition']],
+		],
+		Checksum: (
+			referencedField: ReferencedFieldNode,
+		): ExtractJSONPathAsTextNode => [
+			'ExtractJSONPathAsText',
+			referencedField,
+			['TextArray', ['EmbeddedText', 'checksum']],
 		],
 		Size: (referencedField: ReferencedFieldNode): CastNode => [
 			'Cast',
@@ -100,6 +109,7 @@ export const fetchProcessing = (data: any) => {
 		content_type: refData.content_type,
 		content_disposition: refData.content_disposition,
 		size: refData.size,
+		checksum: refData.checksum,
 	};
 };
 
@@ -137,6 +147,9 @@ export const validate = TypeUtils.validate.checkRequired(
 		}
 		if (value.size != null && !Number.isInteger(value.size)) {
 			throw new Error('size must be an integer or undefined');
+		}
+		if (value.checksum != null && typeof value.checksum !== 'string') {
+			throw new Error('checksum must be a string or undefined');
 		}
 		try {
 			return JSON.stringify(value);

@@ -15,9 +15,14 @@ helpers.describe('WebResource', (test) => {
 		content_type: 'image/png',
 		content_disposition: null,
 		size: buf.byteLength,
+		checksum: null,
 	};
 	describe('fetchProcessing', () => {
 		test.fetch(JSON.stringify(webResource), webResource);
+		test.fetch(JSON.stringify({ ...webResource, checksum: '123' }), {
+			...webResource,
+			checksum: '123',
+		});
 	});
 
 	describe('validate not required props absent', () => {
@@ -111,5 +116,18 @@ helpers.describe('WebResource', (test) => {
 				new Error('size must be an integer or undefined'),
 			);
 		}
+	});
+
+	describe('validate checksum is not a string', () => {
+		const wrongChecksum = {
+			filename: 'logo.png',
+			href: 'test',
+			checksum: [1, 2, 3],
+		};
+		test.validate(
+			wrongChecksum,
+			true,
+			new Error('checksum must be a string or undefined'),
+		);
 	});
 });

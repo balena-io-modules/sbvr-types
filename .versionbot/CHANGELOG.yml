@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add checksum to WebResource
+      hash: be6a1e9bacad51f99d685f491b3bf81545536adb
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otávio Jacobi
+  version: 6.1.0
+  title: ""
+  date: 2023-10-03T22:49:47.984Z
+- commits:
     - subject: Change contents to snake_case
       hash: aaa12269901e364533cf2aa45a958948ce0339de
       body: ""

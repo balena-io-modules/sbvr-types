@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency @types/chai-datetime to ^0.0.39
+      hash: 428c5a2c94bd753cc2ffc6d1e012c3a743e1b4d2
+      body: |
+        Update @types/chai-datetime from 0.0.37 to 0.0.39
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+  version: 6.1.1
+  title: ""
+  date: 2024-01-02T18:54:07.180Z
+- commits:
     - subject: Add checksum to WebResource
       hash: be6a1e9bacad51f99d685f491b3bf81545536adb
       body: ""

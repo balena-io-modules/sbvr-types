@@ -28,7 +28,7 @@
     "@types/chai-datetime": "^0.0.39",
     "@types/mocha": "^10.0.0",
     "@types/sha.js": "^2.4.0",
-    "chai": "^4.3.7",
+    "chai": "^5.0.0",
     "chai-datetime": "^1.8.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",

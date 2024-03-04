@@ -1,4 +1,21 @@
 - commits:
+    - subject: Return `ISODateString` instead of `date`
+      hash: 37e2d446c0ec11f2e3a1ab41b1a205280062bd5d
+      body: >
+        The internal and external representation of the returned object from
+        pinejs should be consistent.
+
+        Pinejs internal interface will return date or date time fields as date object. For the external interface the object is JSON.stringified so that date becomes an ISO string anyway.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: fisehara <harald@balena.io>
+        signed-off-by: fisehara <harald@balena.io>
+      author: fisehara
+  version: 7.0.0
+  title: ""
+  date: 2024-03-04T17:37:23.873Z
+- commits:
     - subject: Update dependency @types/chai-datetime to ^0.0.39
       hash: 428c5a2c94bd753cc2ffc6d1e012c3a743e1b4d2
       body: |

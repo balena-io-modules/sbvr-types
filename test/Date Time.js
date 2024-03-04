@@ -3,9 +3,9 @@ import * as helpers from './helpers';
 helpers.describe('Date Time', function (test) {
 	const now = new Date();
 	describe('fetchProcessing', function () {
-		test.fetch(now, now);
-		test.fetch(now.toString(), now);
-		test.fetch(now.getTime(), now);
+		test.fetch(now, now.toISOString());
+		test.fetch(now.toString(), new Date(now.toString()).toISOString());
+		test.fetch(now.getTime(), new Date(now.getTime()).toISOString());
 		test.fetch(null, null);
 	});
 

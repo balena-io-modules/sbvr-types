@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency @balena/abstract-sql-compiler to v9
+      hash: 37684ebb1692f97780dd27056b9cfe299c456b3c
+      body: |
+        Update @balena/abstract-sql-compiler from 8.5.0 to 9.0.4
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+  version: 7.0.1
+  title: ""
+  date: 2024-03-04T19:48:17.416Z
+- commits:
     - subject: Return `ISODateString` instead of `date`
       hash: 37e2d446c0ec11f2e3a1ab41b1a205280062bd5d
       body: >

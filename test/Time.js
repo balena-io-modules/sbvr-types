@@ -6,7 +6,10 @@ helpers.describe('Time', function (test) {
 	now.setMonth(0);
 	now.setDate(1);
 	describe('fetchProcessing', function () {
-		test.fetch(now.toTimeString(), now);
+		test.fetch(
+			now.toTimeString(),
+			new Date('Thu, 01 Jan 1970 ' + now.toTimeString()).toISOString(),
+		);
 		test.fetch(null, null);
 	});
 

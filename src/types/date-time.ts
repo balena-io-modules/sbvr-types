@@ -10,10 +10,13 @@ export const types = {
 };
 
 export const fetchProcessing = (data: any) => {
-	if (data == null || data instanceof Date) {
+	if (data == null) {
 		return data;
 	}
-	return new Date(data);
+	if (!(data instanceof Date)) {
+		data = new Date(data);
+	}
+	return data.toISOString();
 };
 
 export const nativeFactTypes = {

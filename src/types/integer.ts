@@ -9,9 +9,13 @@ export const types = {
 	},
 };
 
+type WriteType = number;
+type DbWriteType = number;
+
 export const nativeFactTypes = {
 	Integer: TypeUtils.nativeFactTypeTemplates.comparison,
 	Real: TypeUtils.nativeFactTypeTemplates.comparison,
 };
 
-export const validate = TypeUtils.validate.integer;
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.integer;

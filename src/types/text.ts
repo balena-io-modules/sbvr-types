@@ -9,6 +9,9 @@ export const types = {
 	},
 };
 
+type WriteType = string;
+type DbWriteType = string;
+
 export const nativeProperties = {
 	has: {
 		Length: (from: string) => ['CharacterLength', from],
@@ -24,4 +27,5 @@ export const nativeFactTypes = {
 	},
 };
 
-export const validate = TypeUtils.validate.text();
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.text();

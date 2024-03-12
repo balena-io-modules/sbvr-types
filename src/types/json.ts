@@ -10,6 +10,8 @@ export const types = {
 };
 
 type ReadType = Record<string, any> | any[];
+type WriteType = Record<string, any> | any[];
+type DbWriteType = string;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (typeof data === 'string') {
@@ -18,15 +20,16 @@ export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	return data;
 };
 
-export const validate = TypeUtils.validate.checkRequired((value) => {
-	// Disallow primitives
-	if (typeof value !== 'object') {
-		throw new Error(`is not an object/array: ${typeof value}`);
-	}
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.checkRequired((value) => {
+		// Disallow primitives
+		if (typeof value !== 'object') {
+			throw new Error(`is not an object/array: ${typeof value}`);
+		}
 
-	try {
-		return JSON.stringify(value);
-	} catch {
-		throw new Error('cannot be turned into JSON: ' + value);
-	}
-});
+		try {
+			return JSON.stringify(value);
+		} catch {
+			throw new Error('cannot be turned into JSON: ' + value);
+		}
+	});

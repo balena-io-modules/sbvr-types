@@ -18,12 +18,16 @@ export const types = {
 	},
 };
 
-export const validate = TypeUtils.validate.checkRequired(async (value) => {
-	if (typeof value !== 'string') {
-		throw new Error('is not a string');
-	}
-	const salt = await bcrypt.genSalt();
-	return bcrypt.hash(value, salt);
-});
+type WriteType = string;
+type DbWriteType = string;
+
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.checkRequired(async (value) => {
+		if (typeof value !== 'string') {
+			throw new Error('is not a string');
+		}
+		const salt = await bcrypt.genSalt();
+		return bcrypt.hash(value, salt);
+	});
 
 export const compare = bcrypt.compare.bind(bcrypt);

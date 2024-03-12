@@ -9,4 +9,8 @@ export const types = {
 	},
 };
 
-export const validate = TypeUtils.validate.text();
+type WriteType = string;
+type DbWriteType = string;
+
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.text();

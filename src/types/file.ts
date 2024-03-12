@@ -8,26 +8,30 @@ export const types = {
 	},
 };
 
-export const validate = TypeUtils.validate.checkRequired((value) => {
-	if (Buffer.isBuffer(value)) {
-		return value;
-	}
-	if (typeof value !== 'string') {
-		throw new Error(`could not be converted to binary: ${typeof value}`);
-	}
-	if (value.length % 2 !== 0) {
-		throw new Error(
-			'could not be converted to binary: hex string must have an even length',
-		);
-	}
-	if (!/^[a-fA-F0-9]*$/.test(value)) {
-		throw new Error(
-			'could not be converted to binary: hex string must contain only hex characters',
-		);
-	}
-	try {
-		return Buffer.from(value, 'hex');
-	} catch (e: any) {
-		throw new Error(`could not be converted to binary: ${e.message}`);
-	}
-});
+type WriteType = Buffer | string;
+type DbWriteType = Buffer;
+
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.checkRequired((value) => {
+		if (Buffer.isBuffer(value)) {
+			return value;
+		}
+		if (typeof value !== 'string') {
+			throw new Error(`could not be converted to binary: ${typeof value}`);
+		}
+		if (value.length % 2 !== 0) {
+			throw new Error(
+				'could not be converted to binary: hex string must have an even length',
+			);
+		}
+		if (!/^[a-fA-F0-9]*$/.test(value)) {
+			throw new Error(
+				'could not be converted to binary: hex string must contain only hex characters',
+			);
+		}
+		try {
+			return Buffer.from(value, 'hex');
+		} catch (e: any) {
+			throw new Error(`could not be converted to binary: ${e.message}`);
+		}
+	});

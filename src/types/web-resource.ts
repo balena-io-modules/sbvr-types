@@ -33,6 +33,8 @@ export const types = {
 };
 
 type ReadType = WebResource;
+type WriteType = WebResource;
+type DbWriteType = string;
 
 export const nativeProperties = {
 	has: {
@@ -121,8 +123,8 @@ export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
  * Returns a Stringified WebResource that will be persisted on the DB
  *
  */
-export const validate = TypeUtils.validate.checkRequired(
-	async (value: WebResource) => {
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.checkRequired(async (value: WebResource) => {
 		if (typeof value !== 'object') {
 			throw new Error(`is not an object: ${typeof value}`);
 		}
@@ -158,5 +160,4 @@ export const validate = TypeUtils.validate.checkRequired(
 		} catch (e: any) {
 			throw new Error("can't stringify JSON content");
 		}
-	},
-);
+	});

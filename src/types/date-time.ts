@@ -10,6 +10,8 @@ export const types = {
 };
 
 type ReadType = string;
+type WriteType = string | number;
+type DbWriteType = Date;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (data == null) {
@@ -37,4 +39,5 @@ export const nativeNames = {
 	'Current Time': ['Now'],
 };
 
-export const validate = TypeUtils.validate.date;
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.date;

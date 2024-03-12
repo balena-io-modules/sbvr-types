@@ -2,7 +2,9 @@ import * as helpers from './helpers';
 
 helpers.describe('Boolean', function (test) {
 	describe('types', function () {
-		for (const db of Object.keys(test.types)) {
+		for (const db of Object.keys(test.types) as Array<
+			keyof typeof test.types
+		>) {
 			const typeTest = test.types[db];
 			describe(db, function () {
 				typeTest(' NOT NULL', '', 'BOOLEAN DEFAULT FALSE NOT NULL');

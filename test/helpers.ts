@@ -7,23 +7,42 @@ chai.use(chaiDateTime);
 
 const { expect } = chai;
 
-const $describe = (typeName, fn) => {
+type TestFn = (
+	...inputs: [
+		...unknown[],
+		expected:
+			| Error
+			| null
+			| string
+			| number
+			| boolean
+			| Date
+			| Buffer
+			| unknown[]
+			| Record<string, unknown>
+			| ((result: any) => void | Promise<void>),
+	]
+) => void;
+
+const $describe = <T extends keyof typeof types>(
+	typeName: T,
+	fn: (opts: {
+		type: (typeof types)[T];
+		types: { postgres: TestFn; mysql: TestFn; websql: TestFn };
+		fetch: TestFn;
+		validate: TestFn;
+	}) => void,
+) => {
 	const type = types[typeName];
-	const test = function (methodName) {
-		/** @type {any} */
-		let method = type;
-		if (!Array.isArray(methodName)) {
-			methodName = [methodName];
-		}
-		for (const n of methodName) {
-			method = method[n];
-		}
+	const test = function (
+		method: undefined | string | ((...params: any[]) => any),
+	): TestFn {
 		if (typeof method !== 'function') {
 			const v = method;
 			method = () => v;
 		}
 
-		return function (...inputs) {
+		return function (...inputs: [...unknown[], expected: unknown]) {
 			const expected = inputs.pop();
 			if (expected instanceof Error) {
 				it(`should reject ${util.inspect(inputs)} with ${
@@ -65,12 +84,12 @@ const $describe = (typeName, fn) => {
 		fn({
 			type,
 			types: {
-				postgres: test(['types', 'postgres']),
-				mysql: test(['types', 'mysql']),
-				websql: test(['types', 'websql']),
+				postgres: test(type.types.postgres),
+				mysql: test(type.types.mysql),
+				websql: test(type.types.websql),
 			},
-			fetch: test('fetchProcessing'),
-			validate: test('validate'),
+			fetch: test('fetchProcessing' in type ? type.fetchProcessing : undefined),
+			validate: test(type.validate),
 		}),
 	);
 };

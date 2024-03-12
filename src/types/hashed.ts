@@ -4,10 +4,8 @@ import * as TypeUtils from '../type-utils';
 
 let bcrypt: typeof Bcrypt;
 try {
-	// tslint:disable-next-line:no-var-requires
 	bcrypt = require('bcrypt');
 } catch {
-	// tslint:disable-next-line:no-var-requires
 	bcrypt = require('bcryptjs');
 }
 

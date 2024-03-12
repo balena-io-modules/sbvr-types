@@ -38,14 +38,14 @@ export const nativeProperties = {
 };
 
 export const fetchProcessing = (data: number) => {
-	// tslint:disable:no-bitwise
+	/* eslint-disable no-bitwise */
 	return {
 		r: (data >> 16) & 0xff,
 		g: (data >> 8) & 0xff,
 		b: data & 0xff,
 		a: (data >> 24) & 0xff,
 	};
-	// tslint:enable:no-bitwise
+	/* eslint-enable no-bitwise */
 };
 
 export const validate = TypeUtils.validate.checkRequired((value) => {
@@ -67,7 +67,7 @@ export const validate = TypeUtils.validate.checkRequired((value) => {
 						component,
 				);
 			}
-			// tslint:disable:no-bitwise
+			/* eslint-disable no-bitwise */
 			switch (component.toLowerCase()) {
 				case 'r':
 				case 'red':
@@ -88,7 +88,7 @@ export const validate = TypeUtils.validate.checkRequired((value) => {
 				default:
 					throw new Error('has an unknown component: ' + component);
 			}
-			// tslint:enable:no-bitwise
+			/* eslint-enable no-bitwise */
 		});
 	}
 	return processedValue;

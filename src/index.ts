@@ -3,6 +3,7 @@ export type { SbvrType };
 
 import * as BigInteger from './types/big-integer';
 import * as BigSerial from './types/big-serial';
+// eslint-disable-next-line id-denylist
 import * as Boolean from './types/boolean';
 import * as CaseInsensitiveText from './types/case-insensitive-text';
 import * as Color from './types/color';
@@ -28,6 +29,7 @@ export { WebResource as WebResourceType } from './types/web-resource';
 export default {
 	'Big Integer': BigInteger,
 	'Big Serial': BigSerial,
+	// eslint-disable-next-line id-denylist
 	Boolean,
 	'Case Insensitive Text': CaseInsensitiveText,
 	Color,

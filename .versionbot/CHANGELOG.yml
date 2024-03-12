@@ -1,4 +1,15 @@
 - commits:
+    - subject: "Tests: convert to typescript"
+      hash: a78e1c02edc63927ae978f57afdd5edea25adec1
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.0.2
+  title: ""
+  date: 2024-03-12T15:06:28.057Z
+- commits:
     - subject: Update dependency @balena/abstract-sql-compiler to v9
       hash: 37684ebb1692f97780dd27056b9cfe299c456b3c
       body: |
@@ -17,7 +28,9 @@
         The internal and external representation of the returned object from
         pinejs should be consistent.
 
-        Pinejs internal interface will return date or date time fields as date object. For the external interface the object is JSON.stringified so that date becomes an ISO string anyway.
+        Pinejs internal interface will return date or date time fields as date
+        object. For the external interface the object is JSON.stringified so
+        that date becomes an ISO string anyway.
       footer:
         Change-type: major
         change-type: major

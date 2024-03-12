@@ -98,7 +98,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (typeof data === 'string') {
 		try {
 			refData = JSON.parse(data);
-		} catch (e: any) {
+		} catch {
 			throw new Error(`Invalid JSON: ${data}`);
 		}
 	} else if (typeof data === 'object') {
@@ -157,7 +157,7 @@ export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
 		}
 		try {
 			return JSON.stringify(value);
-		} catch (e: any) {
+		} catch {
 			throw new Error("can't stringify JSON content");
 		}
 	});

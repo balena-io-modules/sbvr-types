@@ -32,6 +32,8 @@ export const types = {
 	},
 };
 
+type ReadType = WebResource;
+
 export const nativeProperties = {
 	has: {
 		Filename: (
@@ -86,7 +88,7 @@ export const nativeProperties = {
  * @param data string|object
  * @returns a WebResource parsed from the DB
  */
-export const fetchProcessing = (data: any) => {
+export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	let refData: WebResource;
 	if (data === null) {
 		return data;
@@ -98,7 +100,7 @@ export const fetchProcessing = (data: any) => {
 			throw new Error(`Invalid JSON: ${data}`);
 		}
 	} else if (typeof data === 'object') {
-		refData = data;
+		refData = data as WebResource;
 	} else {
 		throw new Error(`can't be read from stored value ${typeof data}`);
 	}

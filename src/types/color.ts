@@ -16,6 +16,13 @@ export const types = {
 	},
 };
 
+type ReadType = {
+	r: number;
+	g: number;
+	b: number;
+	a: number;
+};
+
 export const nativeProperties = {
 	has: {
 		'Red Component': (from: string) => [
@@ -37,7 +44,10 @@ export const nativeProperties = {
 	},
 };
 
-export const fetchProcessing = (data: number) => {
+export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
+	if (typeof data !== 'number') {
+		throw new Error('Fetched color is not an integer: ' + typeof data);
+	}
 	/* eslint-disable no-bitwise */
 	return {
 		r: (data >> 16) & 0xff,

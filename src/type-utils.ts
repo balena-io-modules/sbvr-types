@@ -3,7 +3,7 @@ export interface DatabaseTypeFn {
 	castType: string;
 }
 export type DatabaseType = string | DatabaseTypeFn;
-export interface SbvrType {
+export interface SbvrType<Read = unknown> {
 	types: {
 		odata: {
 			name: string;
@@ -13,9 +13,11 @@ export interface SbvrType {
 		mysql: DatabaseType;
 		websql: DatabaseType;
 	};
-	fetchProcessing?: (field: any) => any;
+	fetchProcessing?: FetchProcessing<Read>;
 	validate: (value: any, required: boolean) => Promise<any>;
 }
+
+export type FetchProcessing<Read> = (data: unknown) => Read | null | undefined;
 
 const checkRequired = <T>(validateFn: (value: any) => T) => {
 	function runCheck(value: any, required: true): Promise<T>;

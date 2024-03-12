@@ -9,7 +9,9 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = (data: any) => {
+type ReadType = Record<string, any> | any[];
+
+export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (typeof data === 'string') {
 		return JSON.parse(data);
 	}

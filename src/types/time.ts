@@ -9,7 +9,9 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = (data: any) => {
+type ReadType = string;
+
+export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (data != null) {
 		// We append the date of the epoch so that we can parse this as a valid date.
 		return new Date('Thu, 01 Jan 1970 ' + data).toISOString();

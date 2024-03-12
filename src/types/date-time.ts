@@ -9,14 +9,21 @@ export const types = {
 	},
 };
 
-export const fetchProcessing = (data: any) => {
+type ReadType = string;
+
+export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (data == null) {
 		return data;
 	}
-	if (!(data instanceof Date)) {
-		data = new Date(data);
+	let date: Date;
+	if (data instanceof Date) {
+		date = data;
+	} else if (typeof data === 'string' || typeof data === 'number') {
+		date = new Date(data);
+	} else {
+		throw new Error('Fetched date time is not valid: ' + typeof data);
 	}
-	return data.toISOString();
+	return date.toISOString();
 };
 
 export const nativeFactTypes = {

@@ -1,4 +1,15 @@
 - commits:
+    - subject: Improve fetchProcessing typings
+      hash: 0512e2c89ad83458b91cbaa380b8de729db81342
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.0.3
+  title: ""
+  date: 2024-03-12T15:51:33.314Z
+- commits:
     - subject: "Tests: convert to typescript"
       hash: a78e1c02edc63927ae978f57afdd5edea25adec1
       body: ""

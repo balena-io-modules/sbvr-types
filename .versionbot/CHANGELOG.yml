@@ -1,4 +1,15 @@
 - commits:
+    - subject: Remove unnecessary catch bindings
+      hash: fcef4ec9f19378eea8d0dea167b2bd1958831306
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.0.5
+  title: ""
+  date: 2024-03-13T15:50:57.151Z
+- commits:
     - subject: Improve validate typings
       hash: 6ed4746379e8b038e4a148ca6f6c4c1e52aa67a2
       body: ""

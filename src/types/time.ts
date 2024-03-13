@@ -10,6 +10,8 @@ export const types = {
 };
 
 type ReadType = string;
+type WriteType = number | string;
+type DbWriteType = string;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	if (data != null) {
@@ -19,10 +21,17 @@ export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	return data;
 };
 
-export const validate = async (value: any, required: boolean) => {
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> = (async (
+	value,
+	required,
+) => {
 	const date = await TypeUtils.validate.date(value, required);
 	if (date == null) {
 		return date;
 	}
 	return date.toLocaleTimeString();
+}) as {
+	(value: WriteType, required: true): Promise<DbWriteType>;
+	(value: WriteType, required: false): Promise<DbWriteType | null>;
+	(value: WriteType, required: boolean): Promise<DbWriteType | null>;
 };

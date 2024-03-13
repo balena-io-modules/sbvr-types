@@ -30,14 +30,18 @@ export const types = {
 	},
 };
 
+type WriteType = string;
+type DbWriteType = string;
+
 export const validateSync = sha256;
 
-export const validate = TypeUtils.validate.checkRequired((value) => {
-	if (typeof value !== 'string') {
-		throw new Error('is not a string');
-	}
-	return sha256(value);
-});
+export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+	TypeUtils.validate.checkRequired((value) => {
+		if (typeof value !== 'string') {
+			throw new Error('is not a string');
+		}
+		return sha256(value);
+	});
 
 export const compare = async (value: string, result: string) => {
 	return sha256(value) === result;

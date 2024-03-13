@@ -3,7 +3,7 @@ export interface DatabaseTypeFn {
 	castType: string;
 }
 export type DatabaseType = string | DatabaseTypeFn;
-export interface SbvrType<Read = unknown> {
+export interface SbvrType<Read = unknown, Write = any, DbWrite = unknown> {
 	types: {
 		odata: {
 			name: string;
@@ -14,16 +14,24 @@ export interface SbvrType<Read = unknown> {
 		websql: DatabaseType;
 	};
 	fetchProcessing?: FetchProcessing<Read>;
-	validate: (value: any, required: boolean) => Promise<any>;
+	validate: Validate<Write, DbWrite>;
 }
 
 export type FetchProcessing<Read> = (data: unknown) => Read | null | undefined;
+export interface Validate<Write, DbWrite> {
+	(value: Write, required: true): Promise<DbWrite>;
+	(value: Write, required: false): Promise<DbWrite | null>;
+	(value: Write, required: boolean): Promise<DbWrite | null>;
+}
 
-const checkRequired = <T>(validateFn: (value: any) => T) => {
-	function runCheck(value: any, required: true): Promise<T>;
+const checkRequired = <T>(validateFn: (value: any) => T | Promise<T>) => {
+	function runCheck(value: unknown, required: true): Promise<T>;
 	function runCheck(value: undefined | null, required: false): Promise<null>;
-	function runCheck(value: any, required: boolean): Promise<T | null>;
-	async function runCheck(value: any, required: boolean): Promise<T | null> {
+	function runCheck(value: unknown, required: boolean): Promise<T | null>;
+	async function runCheck(
+		value: unknown,
+		required: boolean,
+	): Promise<T | null> {
 		if (value == null) {
 			if (required) {
 				throw new Error('cannot be null');
@@ -53,7 +61,7 @@ export const nativeFactTypeTemplates = {
 
 export const validate = {
 	checkRequired,
-	integer: checkRequired((value: any) => {
+	integer: checkRequired((value) => {
 		const processedValue = parseInt(value, 10);
 		if (Number.isNaN(processedValue)) {
 			throw new Error('is not a number: ' + value);
@@ -61,7 +69,7 @@ export const validate = {
 		return processedValue;
 	}),
 	text: (length?: number) =>
-		checkRequired((value: any) => {
+		checkRequired((value) => {
 			if (typeof value !== 'string') {
 				throw new Error('is not a string: ' + value);
 			}
@@ -72,7 +80,7 @@ export const validate = {
 			}
 			return value;
 		}),
-	date: checkRequired((value: any) => {
+	date: checkRequired((value) => {
 		let processedValue = Number(value);
 		if (Number.isNaN(processedValue)) {
 			processedValue = value;

@@ -1,4 +1,15 @@
 - commits:
+    - subject: Improve validate typings
+      hash: 6ed4746379e8b038e4a148ca6f6c4c1e52aa67a2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.0.4
+  title: ""
+  date: 2024-03-13T01:47:54.313Z
+- commits:
     - subject: Improve fetchProcessing typings
       hash: 0512e2c89ad83458b91cbaa380b8de729db81342
       body: ""

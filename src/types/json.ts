@@ -9,8 +9,19 @@ export const types = {
 	},
 };
 
-type ReadType = Record<string, any> | any[];
-type WriteType = Record<string, any> | any[];
+type JSON = string | number | boolean | null | JSON[] | { [key: string]: JSON };
+type JSONable =
+	| string
+	| number
+	| boolean
+	| null
+	| undefined
+	| JSONable[]
+	| { [key: string]: JSONable }
+	| { toJSON(): JSONable };
+
+type ReadType = { [key: string]: JSON } | JSON[];
+type WriteType = { [key: string]: JSONable } | JSONable[];
 type DbWriteType = string;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {

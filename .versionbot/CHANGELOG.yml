@@ -1,4 +1,15 @@
 - commits:
+    - subject: Improve JSON typings
+      hash: 487000677cbc9decdcc0029b24f7c6de81216b57
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.0.6
+  title: ""
+  date: 2024-03-21T15:44:08.831Z
+- commits:
     - subject: Remove unnecessary catch bindings
       hash: fcef4ec9f19378eea8d0dea167b2bd1958831306
       body: ""

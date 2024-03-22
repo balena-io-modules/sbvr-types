@@ -30,12 +30,12 @@ export const types = {
 	},
 };
 
-type WriteType = string;
+export type Types = TypeUtils.TsTypes<string, string>;
 type DbWriteType = string;
 
 export const validateSync = sha256;
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((value) => {
 		if (typeof value !== 'string') {
 			throw new Error('is not a string');

@@ -16,15 +16,15 @@ export const types = {
 	},
 };
 
-type ReadType = boolean;
-type WriteType = boolean | 0 | 1;
+export type Types = TypeUtils.TsTypes<boolean, boolean | 0 | 1>;
 type DbWriteType = boolean;
 
 // `BOOLEAN` on sqlite/websql is just an alias for `INTEGER` hence the `=== 1` check
-export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) =>
-	data === true || data === 1;
+export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
+	data,
+) => data === true || data === 1;
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((originalValue) => {
 		// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"
 		const value = Number(originalValue);

@@ -32,8 +32,7 @@ export const types = {
 	},
 };
 
-type ReadType = WebResource;
-type WriteType = WebResource;
+export type Types = TypeUtils.TsTypes<WebResource, WebResource>;
 type DbWriteType = string;
 
 export const nativeProperties = {
@@ -90,7 +89,9 @@ export const nativeProperties = {
  * @param data string|object
  * @returns a WebResource parsed from the DB
  */
-export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
+export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
+	data,
+) => {
 	let refData: WebResource;
 	if (data === null) {
 		return data;
@@ -123,7 +124,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
  * Returns a Stringified WebResource that will be persisted on the DB
  *
  */
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired(async (value: WebResource) => {
 		if (typeof value !== 'object') {
 			throw new Error(`is not an object: ${typeof value}`);

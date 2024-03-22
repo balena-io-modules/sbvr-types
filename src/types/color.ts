@@ -16,13 +16,13 @@ export const types = {
 	},
 };
 
-type ReadType = {
+type ColorObj = {
 	r: number;
 	g: number;
 	b: number;
 	a: number;
 };
-type WriteType = number | ReadType;
+export type Types = TypeUtils.TsTypes<ColorObj, number | ColorObj>;
 type DbWriteType = number;
 
 export const nativeProperties = {
@@ -46,7 +46,9 @@ export const nativeProperties = {
 	},
 };
 
-export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
+export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
+	data,
+) => {
 	if (typeof data !== 'number') {
 		throw new Error('Fetched color is not an integer: ' + typeof data);
 	}
@@ -60,7 +62,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
 	/* eslint-enable no-bitwise */
 };
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((value) => {
 		let processedValue: number;
 		if (typeof value !== 'object') {

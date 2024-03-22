@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-type WriteType = string;
+export type Types = TypeUtils.TsTypes<string, string>;
 type DbWriteType = string;
 
 export const nativeProperties = {
@@ -27,5 +27,5 @@ export const nativeFactTypes = {
 	},
 };
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.text();

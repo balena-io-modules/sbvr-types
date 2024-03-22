@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-type WriteType = number;
+export type Types = TypeUtils.TsTypes<number, number>;
 type DbWriteType = number;
 
 export const nativeFactTypes = {
@@ -17,7 +17,7 @@ export const nativeFactTypes = {
 	Real: TypeUtils.nativeFactTypeTemplates.comparison,
 };
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((value) => {
 		const processedValue = parseFloat(value);
 		if (Number.isNaN(processedValue)) {

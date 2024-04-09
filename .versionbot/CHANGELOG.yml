@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency @balena/lint to v8
+      hash: 58e3db3861e13d463a5535b60d533280de70c4c1
+      body: |
+        Update @balena/lint from 7.3.0 to 8.0.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+  version: 7.0.7
+  title: ""
+  date: 2024-04-09T01:07:54.165Z
+- commits:
     - subject: Improve JSON typings
       hash: 487000677cbc9decdcc0029b24f7c6de81216b57
       body: ""

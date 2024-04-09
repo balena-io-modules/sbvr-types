@@ -9,7 +9,7 @@
     "pretest": "npm run prepare",
     "test": "mocha",
     "posttest": "npm run lint",
-    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\" && tsc"
+    "prepare": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module && tsc"
   },
   "repository": "https://github.com/balena-io-modules/sbvr-types.git",
   "author": "",
@@ -29,7 +29,7 @@
     "@types/sha.js": "^2.4.4",
     "chai": "^4.4.1",
     "chai-datetime": "^1.8.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.0",
     "lint-staged": "^15.2.2",
     "mocha": "^10.3.0",
     "ts-node": "^10.9.2",

@@ -14,6 +14,9 @@ Term:       Big Integer
 Term:       Serial
 	Concept Type: Integer
 	Note: An auto-incrementing 'Integer'.
+Term:       Big Serial
+	Concept Type: Integer
+	Note: An auto-incrementing 'Big Integer'.
 Term:       Case Insensitive Text
 	Concept Type: Text
 	Note: A 'Text' type that is compared case insensitively.

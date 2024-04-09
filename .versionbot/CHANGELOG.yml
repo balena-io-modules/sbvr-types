@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add Big Serial to Type.sbvr
+      hash: c5add0fc65e8e78ab481e97d37aeb8353c082b57
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Josh Bowling
+  version: 7.0.9
+  title: ""
+  date: 2024-04-09T10:03:09.812Z
+- commits:
     - subject: Update prepare script for husky v9
       hash: 72d7dac84880aa8604345a6fee74ec3eacbe1176
       body: ""

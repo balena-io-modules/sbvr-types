@@ -1,4 +1,23 @@
 - commits:
+    - subject: Update prepare script for husky v9
+      hash: 72d7dac84880aa8604345a6fee74ec3eacbe1176
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Josh Bowling
+    - subject: Update dependency husky to v9
+      hash: 3a3e4f4e2ae95b5691cb31a1448854318e5b8cc5
+      body: |
+        Update husky from 8.0.3 to 9.0.11
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Self-hosted Renovate Bot
+  version: 7.0.8
+  title: ""
+  date: 2024-04-09T01:25:47.103Z
+- commits:
     - subject: Update dependency @balena/lint to v8
       hash: 58e3db3861e13d463a5535b60d533280de70c4c1
       body: |

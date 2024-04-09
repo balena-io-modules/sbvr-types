@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update Big Serial concept type to Big Integer
+      hash: 6343737f7eb62282ebb2b572faf2b91716508a8b
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Josh Bowling
+  version: 7.0.10
+  title: ""
+  date: 2024-04-09T11:21:31.060Z
+- commits:
     - subject: Add Big Serial to Type.sbvr
       hash: c5add0fc65e8e78ab481e97d37aeb8353c082b57
       body: ""

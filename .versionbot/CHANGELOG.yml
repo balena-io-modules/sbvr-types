@@ -1,4 +1,15 @@
 - commits:
+    - subject: Export typescript read/write types for each sbvr type
+      hash: 66b9a012e242533372ce34a73e31f6e3aac93d91
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 7.1.0
+  title: ""
+  date: 2024-04-25T11:57:56.975Z
+- commits:
     - subject: Update Big Serial concept type to Big Integer
       hash: 6343737f7eb62282ebb2b572faf2b91716508a8b
       body: ""

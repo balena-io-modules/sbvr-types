@@ -20,18 +20,22 @@ type JSONable =
 	| { [key: string]: JSONable }
 	| { toJSON(): JSONable };
 
-type ReadType = { [key: string]: JSON } | JSON[];
-type WriteType = { [key: string]: JSONable } | JSONable[];
+export type Types = TypeUtils.TsTypes<
+	{ [key: string]: JSON } | JSON[],
+	{ [key: string]: JSONable } | JSONable[]
+>;
 type DbWriteType = string;
 
-export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
+export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
+	data,
+) => {
 	if (typeof data === 'string') {
 		return JSON.parse(data);
 	}
 	return data;
 };
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((value) => {
 		// Disallow primitives
 		if (typeof value !== 'object') {

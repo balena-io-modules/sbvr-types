@@ -9,11 +9,12 @@ export const types = {
 	},
 };
 
-type ReadType = string;
-type WriteType = string | number;
+export type Types = TypeUtils.TsTypes<string, string | number>;
 type DbWriteType = Date;
 
-export const fetchProcessing: TypeUtils.FetchProcessing<ReadType> = (data) => {
+export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
+	data,
+) => {
 	if (data == null) {
 		return data;
 	}
@@ -35,5 +36,5 @@ export const nativeFactTypes = {
 	},
 };
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.date;

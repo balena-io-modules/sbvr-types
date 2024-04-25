@@ -16,6 +16,10 @@ export interface SbvrType<Read = unknown, Write = any, DbWrite = unknown> {
 	fetchProcessing?: FetchProcessing<Read>;
 	validate: Validate<Write, DbWrite>;
 }
+export interface TsTypes<Read, Write> {
+	Read: Read;
+	Write: Write;
+}
 
 export type FetchProcessing<Read> = (data: unknown) => Read | null | undefined;
 export interface Validate<Write, DbWrite> {

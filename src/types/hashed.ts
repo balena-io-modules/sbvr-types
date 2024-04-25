@@ -18,10 +18,10 @@ export const types = {
 	},
 };
 
-type WriteType = string;
+export type Types = TypeUtils.TsTypes<string, string>;
 type DbWriteType = string;
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired(async (value) => {
 		if (typeof value !== 'string') {
 			throw new Error('is not a string');

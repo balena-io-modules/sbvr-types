@@ -9,8 +9,8 @@ export const types = {
 	},
 };
 
-type WriteType = number;
+export type Types = TypeUtils.TsTypes<number, number>;
 type DbWriteType = number;
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.integer;

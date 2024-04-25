@@ -8,10 +8,10 @@ export const types = {
 	},
 };
 
-type WriteType = Buffer | string;
+export type Types = TypeUtils.TsTypes<Buffer, Buffer | string>;
 type DbWriteType = Buffer;
 
-export const validate: TypeUtils.Validate<WriteType, DbWriteType> =
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((value) => {
 		if (Buffer.isBuffer(value)) {
 			return value;

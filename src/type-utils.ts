@@ -93,6 +93,12 @@ export const validate = {
 		}
 		return processedValue;
 	}),
+	bigint: checkRequired((value) => {
+		if (value === '') {
+			throw new Error('Cannot convert empty string to a BigInt');
+		}
+		return BigInt(value);
+	}),
 	text: (length?: number) =>
 		checkRequired((value) => {
 			if (typeof value !== 'string') {

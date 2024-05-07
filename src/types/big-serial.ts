@@ -1,4 +1,5 @@
 import * as TypeUtils from '../type-utils';
+export { fetchProcessing } from './big-integer';
 
 const mysqlType: TypeUtils.DatabaseTypeFn = (
 	necessity: string,
@@ -23,8 +24,8 @@ export const types = {
 	},
 };
 
-export type Types = TypeUtils.TsTypes<number, number>;
-type DbWriteType = number;
+export type Types = TypeUtils.TsTypes<bigint, number | bigint>;
+type DbWriteType = bigint;
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	TypeUtils.validate.integer;
+	TypeUtils.validate.bigint;

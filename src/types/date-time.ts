@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-export type Types = TypeUtils.TsTypes<string, string | number>;
+export type Types = TypeUtils.TsTypes<string, string | number | Date>;
 type DbWriteType = Date;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (

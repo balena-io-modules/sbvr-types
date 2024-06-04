@@ -1,4 +1,15 @@
 - commits:
+    - subject: Accept `Date` for the write types of `Date Time`/`Date`/`Time`
+      hash: eb03c8fb593fad76c74dad57a3d45625daf44d76
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.1.1
+  title: ""
+  date: 2024-06-04T09:59:12.864Z
+- commits:
     - subject: Export typescript read/write types for each sbvr type
       hash: 66b9a012e242533372ce34a73e31f6e3aac93d91
       body: ""

@@ -30,4 +30,7 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		return bcrypt.hash(value, salt);
 	});
 
-export const compare = bcrypt.compare.bind(bcrypt);
+export const compare: (
+	data: string | Buffer,
+	encrypted: string,
+) => Promise<boolean> = bcrypt.compare.bind(bcrypt);

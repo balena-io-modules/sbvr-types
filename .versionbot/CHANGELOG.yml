@@ -1,4 +1,17 @@
 - commits:
+    - subject: Explicitly type the `compare` function for `hashed`
+      hash: 6ece56f531ba9507fb090003bd3216e90b2f583b
+      body: |
+        This avoids the need for downstream users to have the bcrypt types
+        available whilst also avoiding accidental breaking changes
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.1.2
+  title: ""
+  date: 2024-06-12T12:19:17.354Z
+- commits:
     - subject: Accept `Date` for the write types of `Date Time`/`Date`/`Time`
       hash: eb03c8fb593fad76c74dad57a3d45625daf44d76
       body: ""

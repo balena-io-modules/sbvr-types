@@ -1,3 +1,7 @@
+import type {
+	CurrentTimestampNode,
+	LessThanNode,
+} from '@balena/abstract-sql-compiler';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -29,15 +33,15 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	return date.toISOString();
 };
 
-export const nativeFactTypes = {
+export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 	'Date Time': {
 		...TypeUtils.nativeFactTypeTemplates.equality,
-		'is before': (from: string, to: string) => ['LessThan', from, to],
+		'is before': (from, to): LessThanNode => ['LessThan', from, to],
 	},
 };
 
-export const nativeNames = {
-	'Current Time': ['Now'],
+export const nativeNames: TypeUtils.NativeNames = {
+	'Current Time': ['CurrentTimestamp'] satisfies CurrentTimestampNode,
 };
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =

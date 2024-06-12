@@ -12,7 +12,7 @@ export const types = {
 export type Types = TypeUtils.TsTypes<number, number>;
 type DbWriteType = number;
 
-export const nativeFactTypes = {
+export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 	Integer: TypeUtils.nativeFactTypeTemplates.comparison,
 	Real: TypeUtils.nativeFactTypeTemplates.comparison,
 };

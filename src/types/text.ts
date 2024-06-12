@@ -1,3 +1,9 @@
+import type {
+	CharacterLengthNode,
+	StartsWithNode,
+	EndsWithNode,
+	ContainsNode,
+} from '@balena/abstract-sql-compiler';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -12,18 +18,18 @@ export const types = {
 export type Types = TypeUtils.TsTypes<string, string>;
 type DbWriteType = string;
 
-export const nativeProperties = {
+export const nativeProperties: TypeUtils.NativeProperties = {
 	has: {
-		Length: (from: string) => ['CharacterLength', from],
+		Length: (from): CharacterLengthNode => ['CharacterLength', from],
 	},
 };
 
-export const nativeFactTypes = {
+export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 	Text: {
 		...TypeUtils.nativeFactTypeTemplates.equality,
-		'starts with': (from: string, to: string) => ['Startswith', from, to],
-		'ends with': (from: string, to: string) => ['Endswith', from, to],
-		contains: (from: string, to: string) => ['Contains', from, to],
+		'starts with': (from, to): StartsWithNode => ['StartsWith', from, to],
+		'ends with': (from, to): EndsWithNode => ['EndsWith', from, to],
+		contains: (from, to): ContainsNode => ['Contains', from, to],
 	},
 };
 

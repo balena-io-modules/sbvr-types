@@ -1,3 +1,4 @@
+import type { LessThanNode } from '@balena/abstract-sql-compiler';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -29,10 +30,10 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	return date.toISOString();
 };
 
-export const nativeFactTypes = {
+export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 	Date: {
 		...TypeUtils.nativeFactTypeTemplates.equality,
-		'is before': (from: string, to: string) => ['LessThan', from, to],
+		'is before': (from, to): LessThanNode => ['LessThan', from, to],
 	},
 };
 

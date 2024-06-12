@@ -15,6 +15,7 @@ type TestFn = (
 			| null
 			| string
 			| number
+			| bigint
 			| boolean
 			| Date
 			| Buffer

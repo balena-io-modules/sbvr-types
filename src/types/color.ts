@@ -1,3 +1,7 @@
+import type {
+	BitwiseAndNode,
+	BitwiseShiftRightNode,
+} from '@balena/abstract-sql-compiler';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -25,23 +29,27 @@ type ColorObj = {
 export type Types = TypeUtils.TsTypes<ColorObj, number | ColorObj>;
 type DbWriteType = number;
 
-export const nativeProperties = {
+export const nativeProperties: TypeUtils.NativeProperties = {
 	has: {
-		'Red Component': (from: string) => [
+		'Red Component': (from): BitwiseAndNode => [
 			'BitwiseAnd',
-			['BitwiseShiftRight', from, 16],
-			255,
+			['BitwiseShiftRight', from, ['Number', 16]],
+			['Number', 255],
 		],
-		'Green Component': (from: string) => [
+		'Green Component': (from): BitwiseAndNode => [
 			'BitwiseAnd',
-			['BitwiseShiftRight', from, 8],
-			255,
+			['BitwiseShiftRight', from, ['Number', 8]],
+			['Number', 255],
 		],
-		'Blue Component': (from: string) => ['BitwiseShiftRight', from, 255],
-		'Alpha Component': (from: string) => [
+		'Blue Component': (from): BitwiseShiftRightNode => [
+			'BitwiseShiftRight',
+			from,
+			['Number', 255],
+		],
+		'Alpha Component': (from): BitwiseAndNode => [
 			'BitwiseAnd',
-			['BitwiseShiftRight', from, 24],
-			255,
+			['BitwiseShiftRight', from, ['Number', 24]],
+			['Number', 255],
 		],
 	},
 };

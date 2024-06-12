@@ -1,3 +1,24 @@
+import type {
+	AnyTypeNodes,
+	EqualsNode,
+	LessThanNode,
+	LessThanOrEqualNode,
+	ReferencedFieldNode,
+} from '@balena/abstract-sql-compiler';
+
+export type NativeNames = Record<string, AnyTypeNodes>;
+export type NativeProperties = Record<
+	string,
+	Record<string, (from: ReferencedFieldNode) => AnyTypeNodes>
+>;
+export type NativeFactTypes = Record<
+	string,
+	Record<
+		string,
+		(from: ReferencedFieldNode, to: ReferencedFieldNode) => AnyTypeNodes
+	>
+>;
+
 export interface DatabaseTypeFn {
 	(necessity: string, index: string): string;
 	castType: string;
@@ -48,20 +69,20 @@ const checkRequired = <T>(validateFn: (value: any) => T | Promise<T>) => {
 };
 
 const equality = {
-	'is equal to': (from: string, to: string) => ['Equals', from, to],
-};
+	'is equal to': (from, to): EqualsNode => ['Equals', from, to],
+} satisfies NativeFactTypes[string];
 export const nativeFactTypeTemplates = {
 	equality,
 	comparison: {
-		'is less than': (from: string, to: string) => ['LessThan', from, to],
-		'is less than or equal to': (from: string, to: string) => [
+		'is less than': (from, to): LessThanNode => ['LessThan', from, to],
+		'is less than or equal to': (from, to): LessThanOrEqualNode => [
 			'LessThanOrEqual',
 			from,
 			to,
 		],
 		...equality,
 	},
-};
+} satisfies Record<string, NativeFactTypes[string]>;
 
 export const validate = {
 	checkRequired,

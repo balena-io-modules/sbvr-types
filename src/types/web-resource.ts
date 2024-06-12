@@ -2,7 +2,6 @@ import * as TypeUtils from '../type-utils';
 import type {
 	CastNode,
 	ExtractJSONPathAsTextNode,
-	ReferencedFieldNode,
 } from '@balena/abstract-sql-compiler';
 
 export type WebResource = {
@@ -35,42 +34,34 @@ export const types = {
 export type Types = TypeUtils.TsTypes<WebResource, WebResource>;
 type DbWriteType = string;
 
-export const nativeProperties = {
+export const nativeProperties: TypeUtils.NativeProperties = {
 	has: {
-		Filename: (
-			referencedField: ReferencedFieldNode,
-		): ExtractJSONPathAsTextNode => [
+		Filename: (referencedField): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
 			['TextArray', ['EmbeddedText', 'filename']],
 		],
-		HRef: (referencedField: ReferencedFieldNode): ExtractJSONPathAsTextNode => [
+		HRef: (referencedField): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
 			['TextArray', ['EmbeddedText', 'href']],
 		],
-		'Content Type': (
-			referencedField: ReferencedFieldNode,
-		): ExtractJSONPathAsTextNode => [
+		'Content Type': (referencedField): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
 			['TextArray', ['EmbeddedText', 'content_type']],
 		],
-		'Content Disposition': (
-			referencedField: ReferencedFieldNode,
-		): ExtractJSONPathAsTextNode => [
+		'Content Disposition': (referencedField): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
 			['TextArray', ['EmbeddedText', 'content_disposition']],
 		],
-		Checksum: (
-			referencedField: ReferencedFieldNode,
-		): ExtractJSONPathAsTextNode => [
+		Checksum: (referencedField): ExtractJSONPathAsTextNode => [
 			'ExtractJSONPathAsText',
 			referencedField,
 			['TextArray', ['EmbeddedText', 'checksum']],
 		],
-		Size: (referencedField: ReferencedFieldNode): CastNode => [
+		Size: (referencedField): CastNode => [
 			'Cast',
 			[
 				'ExtractJSONPathAsText',

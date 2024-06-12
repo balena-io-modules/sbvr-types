@@ -1,4 +1,15 @@
 - commits:
+    - subject: Improve BigInteger and BigSerial support
+      hash: b9b1fc31b91220e66dcb23f43b92036d6e758045
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Josh Bowling
+  version: 8.0.0
+  title: ""
+  date: 2024-06-12T22:37:59.778Z
+- commits:
     - subject: Add typings for all abstract sql fragments, fixing where necessary
       hash: b84c335877236e3d389df064b3e7b2acd1a656ae
       body: ""

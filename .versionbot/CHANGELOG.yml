@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add typings for all abstract sql fragments, fixing where necessary
+      hash: b84c335877236e3d389df064b3e7b2acd1a656ae
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 7.1.3
+  title: ""
+  date: 2024-06-12T21:08:39.814Z
+- commits:
     - subject: Explicitly type the `compare` function for `hashed`
       hash: 6ece56f531ba9507fb090003bd3216e90b2f583b
       body: |

@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-export type Types = TypeUtils.TsTypes<bigint, number | bigint>;
+export type Types = TypeUtils.TsTypes<string, string | number | bigint>;
 type DbWriteType = bigint;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
@@ -26,7 +26,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	} else {
 		throw new Error('Fetched bigint is not valid: ' + typeof data);
 	}
-	return value;
+	return value.toString();
 };
 
 export const nativeFactTypes: TypeUtils.NativeFactTypes = {

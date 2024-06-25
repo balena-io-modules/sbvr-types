@@ -9,7 +9,7 @@ export const types = {
 	},
 };
 
-export type Types = TypeUtils.TsTypes<bigint, number | bigint>;
+export type Types = TypeUtils.TsTypes<string, string | number | bigint>;
 type DbWriteType = bigint;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
@@ -18,11 +18,11 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	if (data == null) {
 		return data;
 	}
-	let value: bigint;
-	if (typeof data === 'bigint') {
+	let value: string;
+	if (typeof data === 'string') {
 		value = data;
-	} else if (typeof data === 'string' || typeof data === 'number') {
-		value = BigInt(data);
+	} else if (typeof data === 'bigint' || typeof data === 'number') {
+		value = data.toString();
 	} else {
 		throw new Error('Fetched bigint is not valid: ' + typeof data);
 	}

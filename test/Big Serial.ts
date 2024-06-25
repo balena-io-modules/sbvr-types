@@ -26,11 +26,13 @@ helpers.describe('Big Serial', function (test) {
 	const testBigIntString = String(Number.MAX_SAFE_INTEGER) + '00000001';
 
 	describe('fetchProcessing', function () {
-		test.fetch(1, BigInt(1));
-		test.fetch('1', BigInt(1));
-		test.fetch('1', BigInt(1));
-		test.fetch(BigInt(testBigIntString), BigInt(testBigIntString));
-		test.fetch(testBigIntString, BigInt(testBigIntString));
+		test.fetch(BigInt(1), '1');
+		test.fetch(1, '1');
+		test.fetch('1', '1');
+		test.fetch(testBigIntString, testBigIntString);
+		test.fetch(BigInt(testBigIntString), testBigIntString);
+		test.fetch({}, new Error('Fetched bigint is not valid: object'));
+		test.fetch(null, null);
 	});
 
 	describe('validate', function () {

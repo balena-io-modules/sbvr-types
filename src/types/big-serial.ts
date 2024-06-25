@@ -24,7 +24,7 @@ export const types = {
 	},
 };
 
-export type Types = TypeUtils.TsTypes<bigint, number | bigint>;
+export type Types = TypeUtils.TsTypes<string, string | number | bigint>;
 type DbWriteType = bigint;
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =

@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@balena/abstract-sql-compiler": "^9.2.0",
-    "@balena/lint": "^8.0.2",
+    "@balena/lint": "^8.2.7",
     "@types/bcrypt": "^5.0.2",
     "@types/chai": "^4.3.16",
     "@types/chai-datetime": "^0.0.39",

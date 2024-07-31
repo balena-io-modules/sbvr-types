@@ -30,7 +30,7 @@ helpers.describe('WebResource', (test) => {
 			filename: 'logo.png',
 			href: 'test',
 		};
-		test.validate(smallWebResourceInput, true, async (value) => {
+		test.validate(smallWebResourceInput, true, (value) => {
 			expect(typeof value).to.equal('string');
 			const asObj = JSON.parse(value);
 			expect(asObj.filename).to.equal(smallWebResourceInput.filename);

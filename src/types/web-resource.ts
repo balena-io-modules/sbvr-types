@@ -116,7 +116,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
  *
  */
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	TypeUtils.validate.checkRequired(async (value: WebResource) => {
+	TypeUtils.validate.checkRequired((value: WebResource) => {
 		if (typeof value !== 'object') {
 			throw new Error(`is not an object: ${typeof value}`);
 		}

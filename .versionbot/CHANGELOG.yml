@@ -1,4 +1,18 @@
 - commits:
+    - subject: Update BigInteger and BigSerial TsTypes
+      hash: 45d3cd6262f094a0c43ffe308dccab4968c074be
+      body: |
+        Return big integer values as strings instead of bigint as we need to
+        parse them back into strings anyway when returning data from pine. The
+        new logic and types closely follow the same pattern we have for dates.
+      footer:
+        Change-type: major
+        change-type: major
+      author: Josh Bowling
+  version: 9.0.0
+  title: ""
+  date: 2024-08-02T00:05:31.143Z
+- commits:
     - subject: Improve BigInteger and BigSerial support
       hash: b9b1fc31b91220e66dcb23f43b92036d6e758045
       body: ""

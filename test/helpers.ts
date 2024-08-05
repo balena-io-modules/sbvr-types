@@ -81,7 +81,7 @@ const $describe = <T extends keyof typeof types>(
 		};
 	};
 
-	describe(typeName, () =>
+	describe(typeName, () => {
 		fn({
 			type,
 			types: {
@@ -91,8 +91,8 @@ const $describe = <T extends keyof typeof types>(
 			},
 			fetch: test('fetchProcessing' in type ? type.fetchProcessing : undefined),
 			validate: test(type.validate),
-		}),
-	);
+		});
+	});
 };
 
 export { $describe as describe };

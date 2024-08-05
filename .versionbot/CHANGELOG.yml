@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update @balena/lint to v8.2.7
+      hash: 630ca7d6cbe4fed2d41827205215a2f28a971aea
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Josh Bowling
+  version: 9.0.1
+  title: ""
+  date: 2024-08-05T08:18:14.129Z
+- commits:
     - subject: Update BigInteger and BigSerial TsTypes
       hash: 45d3cd6262f094a0c43ffe308dccab4968c074be
       body: |

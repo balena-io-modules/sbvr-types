@@ -10,6 +10,7 @@ import * as Color from './types/color';
 import * as ConceptType from './types/concept-type';
 import * as Date from './types/date';
 import * as DateTime from './types/date-time';
+import * as DateTimeRange from './types/date-time-range';
 import * as File from './types/file';
 import * as ForeignKey from './types/foreign-key';
 import * as Hashed from './types/hashed';
@@ -60,6 +61,7 @@ export default {
 	Color,
 	ConceptType,
 	'Date Time': DateTime,
+	'Date Time Range': DateTimeRange,
 	Date,
 	File,
 	ForeignKey,

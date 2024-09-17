@@ -1,4 +1,15 @@
 - commits:
+    - subject: Change the exported Types to an interface so that they can be augmented
+      hash: 29de4665e63bd4b5f1cfe75d3018ec29e10c1889
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+  version: 9.0.2
+  title: ""
+  date: 2024-09-17T12:44:29.082Z
+- commits:
     - subject: Update @balena/lint to v8.2.7
       hash: 630ca7d6cbe4fed2d41827205215a2f28a971aea
       body: ""

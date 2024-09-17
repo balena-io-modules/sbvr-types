@@ -26,7 +26,7 @@ import * as WebResource from './types/web-resource';
 
 export { WebResource as WebResourceType } from './types/web-resource';
 
-export type Types = {
+export interface Types {
 	'Big Integer': BigInteger.Types;
 	'Big Serial': BigSerial.Types;
 	// eslint-disable-next-line id-denylist
@@ -49,7 +49,7 @@ export type Types = {
 	Text: Text.Types;
 	Time: Time.Types;
 	WebResource: WebResource.Types;
-};
+}
 
 export default {
 	'Big Integer': BigInteger,

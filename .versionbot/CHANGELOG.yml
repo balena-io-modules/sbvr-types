@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add `is case insensitively equal to` for Text types
+      hash: c6414b8b53cb6935e2a496a31d29c7e90efefe38
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otavio Jacobi
+  version: 9.1.0
+  title: ""
+  date: 2024-10-24T15:56:32.550Z
+- commits:
     - subject: Change the exported Types to an interface so that they can be augmented
       hash: 29de4665e63bd4b5f1cfe75d3018ec29e10c1889
       body: ""

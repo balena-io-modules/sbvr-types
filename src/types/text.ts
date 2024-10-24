@@ -3,6 +3,7 @@ import type {
 	StartsWithNode,
 	EndsWithNode,
 	ContainsNode,
+	EqualsNode,
 } from '@balena/abstract-sql-compiler';
 import * as TypeUtils from '../type-utils';
 
@@ -27,6 +28,11 @@ export const nativeProperties: TypeUtils.NativeProperties = {
 export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 	Text: {
 		...TypeUtils.nativeFactTypeTemplates.equality,
+		'is case insensitively equal to': (from, to): EqualsNode => [
+			'Equals',
+			['Lower', from],
+			['Lower', to],
+		],
 		'starts with': (from, to): StartsWithNode => ['StartsWith', from, to],
 		'ends with': (from, to): EndsWithNode => ['EndsWith', from, to],
 		contains: (from, to): ContainsNode => ['Contains', from, to],

@@ -94,6 +94,9 @@ Fact type:  Text1 is equal to Text2
 	Synonymous Form: Text1 equals Text2
 	Synonymous Form: Text2 equals Text1
 
+Fact type:  Text1 is case insensitively equal to Text2
+	Synonymous Form: Text2 is case insensitively equal to Text1
+
 Fact type:  Text1 starts with Text2
 
 Fact type:  Text1 ends with Text2

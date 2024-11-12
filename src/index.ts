@@ -10,6 +10,7 @@ import * as Color from './types/color';
 import * as ConceptType from './types/concept-type';
 import * as Date from './types/date';
 import * as DateTime from './types/date-time';
+import * as DateTimeTZ from './types/date-time-tz';
 import * as File from './types/file';
 import * as ForeignKey from './types/foreign-key';
 import * as Hashed from './types/hashed';
@@ -36,6 +37,7 @@ export interface Types {
 	ConceptType: ConceptType.Types;
 	Date: Date.Types;
 	'Date Time': DateTime.Types;
+	'Date Time TZ': DateTimeTZ.Types;
 	File: File.Types;
 	ForeignKey: ForeignKey.Types;
 	Hashed: Hashed.Types;
@@ -60,6 +62,7 @@ export default {
 	Color,
 	ConceptType,
 	'Date Time': DateTime,
+	'Date Time TZ': DateTimeTZ,
 	Date,
 	File,
 	ForeignKey,

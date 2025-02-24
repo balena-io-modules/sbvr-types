@@ -1,4 +1,15 @@
 - commits:
+    - subject: Use big integer for webresource casting type
+      hash: 49acafb188c3cbf3cd16bbcc9b701d4cac8ca341
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otavio Jacobi
+  version: 9.2.0
+  title: ""
+  date: 2025-02-24T14:20:04.519Z
+- commits:
     - subject: Add `is case insensitively equal to` for Text types
       hash: c6414b8b53cb6935e2a496a31d29c7e90efefe38
       body: ""

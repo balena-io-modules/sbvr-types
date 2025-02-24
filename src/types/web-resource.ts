@@ -68,7 +68,7 @@ export const nativeProperties: TypeUtils.NativeProperties = {
 				referencedField,
 				['TextArray', ['EmbeddedText', 'size']],
 			],
-			'Integer',
+			'Big Integer',
 		],
 	},
 };

@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency @balena/abstract-sql-compiler to v10
+      hash: 4298ea50286d12237996b1fc50a028450647a16b
+      body: |
+        Update @balena/abstract-sql-compiler from 9.2.0 to 10.2.3
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 9.2.2
+  title: ""
+  date: 2025-03-24T02:59:46.151Z
+- commits:
     - subject: Update dependency @types/chai-datetime to v1
       hash: 3072ff0292859b64f981f5c6809a63ff13fc823f
       body: |

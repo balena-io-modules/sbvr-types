@@ -20,7 +20,7 @@
     "sha.js": "^2.4.11"
   },
   "devDependencies": {
-    "@balena/abstract-sql-compiler": "^9.2.0",
+    "@balena/abstract-sql-compiler": "^10.0.0",
     "@balena/lint": "^8.2.7",
     "@types/bcrypt": "^5.0.2",
     "@types/chai": "^4.3.16",

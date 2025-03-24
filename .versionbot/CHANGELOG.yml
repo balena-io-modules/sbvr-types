@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency @types/chai-datetime to v1
+      hash: 3072ff0292859b64f981f5c6809a63ff13fc823f
+      body: |
+        Update @types/chai-datetime from 0.0.39 to 1.0.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 9.2.1
+  title: ""
+  date: 2025-03-24T01:35:33.820Z
+- commits:
     - subject: Use big integer for webresource casting type
       hash: 49acafb188c3cbf3cd16bbcc9b701d4cac8ca341
       body: ""

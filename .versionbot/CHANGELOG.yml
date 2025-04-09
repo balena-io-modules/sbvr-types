@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency mocha to v11
+      hash: 3e0daf18580fc79877d008a9635be4e7153ca876
+      body: |
+        Update mocha from 10.8.2 to 11.1.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 9.2.3
+  title: ""
+  date: 2025-04-09T10:58:39.494Z
+- commits:
     - subject: Update dependency @balena/abstract-sql-compiler to v10
       hash: 4298ea50286d12237996b1fc50a028450647a16b
       body: |

@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update @balena/lint to 9.x
+      hash: 21e9201b585945ab7bdc6650f067b73359f0e07e
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 9.2.4
+  title: ""
+  date: 2025-04-10T12:49:03.449Z
+- commits:
     - subject: Update dependency mocha to v11
       hash: 3e0daf18580fc79877d008a9635be4e7153ca876
       body: |

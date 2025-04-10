@@ -4,8 +4,10 @@ import * as TypeUtils from '../type-utils';
 
 let bcrypt: typeof Bcrypt;
 try {
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
 	bcrypt = require('bcrypt');
 } catch {
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
 	bcrypt = require('bcryptjs');
 }
 

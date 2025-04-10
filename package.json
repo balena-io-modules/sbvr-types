@@ -16,7 +16,7 @@
   "license": "BSD",
   "optionalDependencies": {
     "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
+    "bcryptjs": "^3.0.0",
     "sha.js": "^2.4.11"
   },
   "devDependencies": {

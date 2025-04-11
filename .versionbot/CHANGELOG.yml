@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency bcryptjs to v3
+      hash: de6eb8f3cac0c9dcc2209df880333be31d550ad5
+      body: |
+        Update bcryptjs from 2.4.3 to 3.0.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 9.2.5
+  title: ""
+  date: 2025-04-11T10:48:47.730Z
+- commits:
     - subject: Update @balena/lint to 9.x
       hash: 21e9201b585945ab7bdc6650f067b73359f0e07e
       body: ""

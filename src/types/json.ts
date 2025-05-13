@@ -1,4 +1,5 @@
 import * as TypeUtils from '../type-utils';
+import type { CharacterLengthNode } from '@balena/abstract-sql-compiler';
 
 export const types = {
 	postgres: 'JSONB',
@@ -25,6 +26,15 @@ export type Types = TypeUtils.TsTypes<
 	{ [key: string]: JSONable } | JSONable[]
 >;
 type DbWriteType = string;
+
+export const nativeProperties: TypeUtils.NativeProperties = {
+	has: {
+		Length: (referencedField): CharacterLengthNode => [
+			'CharacterLength',
+			['Cast', referencedField, 'Text'],
+		],
+	},
+};
 
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,

@@ -31,7 +31,7 @@ export const types = {
 	},
 };
 
-export type Types = TypeUtils.TsTypes<WebResource, WebResource>;
+export type Types = TypeUtils.TsTypes<WebResource, WebResource | File>;
 type DbWriteType = string;
 
 export const nativeProperties: TypeUtils.NativeProperties = {

@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency lint-staged to v16
+      hash: 3a504c7aa334b2351439571caf17b59b49e6a53e
+      body: |
+        Update lint-staged from 15.5.2 to 16.0.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 9.2.6
+  title: ""
+  date: 2025-06-07T23:33:59.105Z
+- commits:
     - subject: Update dependency bcryptjs to v3
       hash: de6eb8f3cac0c9dcc2209df880333be31d550ad5
       body: |

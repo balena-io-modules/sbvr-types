@@ -5,11 +5,11 @@ import type {
 import * as TypeUtils from '../type-utils';
 
 export const types = {
-	postgres: 'TIMESTAMP',
+	postgres: 'TIMESTAMPTZ',
 	mysql: 'TIMESTAMP',
 	websql: 'INTEGER',
 	odata: {
-		name: 'Edm.DateTime',
+		name: 'Edm.DateTimeOffset',
 	},
 };
 

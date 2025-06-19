@@ -1,6 +1,6 @@
 import * as helpers from './helpers';
-import * as chai from 'chai';
-import * as chaiDateTime from 'chai-datetime';
+import chai from 'chai';
+import chaiDateTime from 'chai-datetime';
 
 chai.use(chaiDateTime);
 const { expect } = chai;

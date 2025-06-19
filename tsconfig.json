@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es2021",
+		"module": "Node18",
+		"target": "es2023",
 		"strict": true,
 		"noImplicitAny": true,
 		"noUncheckedIndexedAccess": true,
@@ -13,8 +13,7 @@
 		"declaration": true,
 		"skipLibCheck": true,
 		"rootDir": "src",
-		"outDir": "out",
-		"allowJs": true
+		"outDir": "out"
 	},
 	"include": [
 		"src/**/*"

@@ -1,4 +1,15 @@
 - commits:
+    - subject: Extend webresource write type with File api
+      hash: f5a0f83beecc65319b149735c6522f857b5b7028
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otavio Jacobi
+  version: 10.1.0
+  title: ""
+  date: 2025-06-19T16:01:41.144Z
+- commits:
     - subject: Drop support for no longer maintained node 16 & 18
       hash: 151b346d0e8cd3148306f07a7bb8abd48b69c440
       body: ""

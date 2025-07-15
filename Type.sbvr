@@ -40,6 +40,11 @@ Fact type:  Text has Length
 	Note: Length in characters
 	Necessity: Each Text has exactly one Length
 
+-- I guess this isn't even necessary since atm JSON has Concept Type: Text
+Fact type:  JSON has Length
+	Note: Length in characters
+	Necessity: Each TJSON has exactly one Length
+
 Fact type:  Integer1 is less than Integer2
 	Synonymous Form: Integer2 is greater than Integer1
 Fact type: Integer1 is less than or equal to Integer2

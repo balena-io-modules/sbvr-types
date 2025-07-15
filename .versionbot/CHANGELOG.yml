@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update DateTime to include time zone information
+      hash: 4888db5251dd7a510cfd72f1fae1376410a0e3e2
+      body: ""
+      footer:
+        Change-type: major
+        change-type: major
+      author: Josh Bowling
+  version: 11.0.0
+  title: ""
+  date: 2025-07-15T03:50:13.516Z
+- commits:
     - subject: Extend webresource write type with File api
       hash: f5a0f83beecc65319b149735c6522f857b5b7028
       body: ""

@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add the 'is represented by Text' property to the JSON type
+      hash: 4de0b318d04d63ef8c0ba5fa75e8a6282e9a09ec
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+        See: https://balena.fibery.io/Work/Project/API-Limit-size-of-large-fields-975
+        see: https://balena.fibery.io/Work/Project/API-Limit-size-of-large-fields-975
+      author: Thodoris Greasidis
+  version: 11.1.0
+  title: ""
+  date: 2025-07-31T15:05:45.750Z
+- commits:
     - subject: Update DateTime to include time zone information
       hash: 4888db5251dd7a510cfd72f1fae1376410a0e3e2
       body: ""

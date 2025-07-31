@@ -40,6 +40,10 @@ Fact type:  Text has Length
 	Note: Length in characters
 	Necessity: Each Text has exactly one Length
 
+Fact type:  JSON is represented by Text
+	Note: Casts the JSON to a text string
+	Necessity: Each JSON is represented by exactly one Text
+
 Fact type:  Integer1 is less than Integer2
 	Synonymous Form: Integer2 is greater than Integer1
 Fact type: Integer1 is less than or equal to Integer2

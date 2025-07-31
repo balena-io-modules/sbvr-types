@@ -1,4 +1,5 @@
 import * as TypeUtils from '../type-utils';
+import type { CastNode } from '@balena/abstract-sql-compiler';
 
 export const types = {
 	postgres: 'JSONB',
@@ -25,6 +26,12 @@ export type Types = TypeUtils.TsTypes<
 	{ [key: string]: JSONable } | JSONable[]
 >;
 type DbWriteType = string;
+
+export const nativeProperties: TypeUtils.NativeProperties = {
+	'is represented by': {
+		Text: (referencedField): CastNode => ['Cast', referencedField, 'Text'],
+	},
+};
 
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,

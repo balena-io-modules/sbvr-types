@@ -4,7 +4,7 @@ import type {
 	LessThanNode,
 	LessThanOrEqualNode,
 	ReferencedFieldNode,
-} from '@balena/abstract-sql-compiler';
+} from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
 
 export type NativeNames = Record<string, AnyTypeNodes>;
 export type NativeProperties = Record<

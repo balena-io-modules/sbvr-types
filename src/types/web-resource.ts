@@ -2,7 +2,7 @@ import * as TypeUtils from '../type-utils';
 import type {
 	CastNode,
 	ExtractJSONPathAsTextNode,
-} from '@balena/abstract-sql-compiler';
+} from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
 
 export type WebResource = {
 	filename: string;

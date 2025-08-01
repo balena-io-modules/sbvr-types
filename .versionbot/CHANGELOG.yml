@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update dev dependencies
+      hash: 5983e93e42c043443b2557b2f4aa533685bcf4bd
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 11.1.1
+  title: ""
+  date: 2025-08-01T13:35:46.141Z
+- commits:
     - subject: Add the 'is represented by Text' property to the JSON type
       hash: 4de0b318d04d63ef8c0ba5fa75e8a6282e9a09ec
       body: ""

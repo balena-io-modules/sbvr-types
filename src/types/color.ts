@@ -1,7 +1,7 @@
 import type {
 	BitwiseAndNode,
 	BitwiseShiftRightNode,
-} from '@balena/abstract-sql-compiler';
+} from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
 import * as TypeUtils from '../type-utils';
 
 export const types = {

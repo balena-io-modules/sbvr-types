@@ -1,4 +1,15 @@
 - commits:
+    - subject: Fix the JSON type being incorrectly marked as Concept Type of Text
+      hash: bc94439af75bdfbec32e3305b45618c455ad1e76
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+  version: 11.1.2
+  title: ""
+  date: 2025-08-04T10:36:00.407Z
+- commits:
     - subject: Update dev dependencies
       hash: 5983e93e42c043443b2557b2f4aa533685bcf4bd
       body: ""

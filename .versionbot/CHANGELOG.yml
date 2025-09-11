@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency chai to v6
+      hash: f274704db15b15d148a8ea66903c2ebf185f2b54
+      body: |
+        Update chai from 4.5.0 to 6.0.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 11.1.4
+  title: ""
+  date: 2025-09-11T02:02:03.461Z
+- commits:
     - subject: Update dependencies
       hash: 3079d1e0a086bd694edeb240a8183d61c41ddcf7
       body: ""

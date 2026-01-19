@@ -23,8 +23,10 @@ import * as ShortText from './types/short-text';
 import * as Text from './types/text';
 import * as Time from './types/time';
 import * as WebResource from './types/web-resource';
+import * as Tstzrange from './types/tstzrange.js';
 
 export { WebResource as WebResourceType } from './types/web-resource';
+export type { TstzrangeType } from './types/tstzrange';
 
 export interface Types {
 	'Big Integer': BigInteger.Types;
@@ -49,6 +51,7 @@ export interface Types {
 	Text: Text.Types;
 	Time: Time.Types;
 	WebResource: WebResource.Types;
+	Tstzrange: Tstzrange.Types;
 }
 
 export default {
@@ -74,6 +77,7 @@ export default {
 	Text,
 	Time,
 	WebResource,
+	Tstzrange,
 } satisfies {
 	[fieldType in keyof Types]: SbvrType;
 } & {

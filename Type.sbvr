@@ -155,3 +155,6 @@ Fact type:  WebResource has Content Disposition
 	Necessity: Each WebResource has at most one Content Disposition.
 Fact type:  WebResource has Size
 	Necessity: Each WebResource has at most one Size.
+
+Term:       Tstzrange
+	Note: A timestamp with timezone range type, represented as '[lower,upper)' in PostgreSQL.

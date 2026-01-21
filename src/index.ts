@@ -26,6 +26,7 @@ import * as Time from './types/time';
 import * as WebResource from './types/web-resource';
 
 export { WebResource as WebResourceType } from './types/web-resource';
+export { DateTimeRange as DateTimeRangeType } from './types/date-time-range';
 
 export interface Types {
 	'Big Integer': BigInteger.Types;
@@ -37,6 +38,7 @@ export interface Types {
 	ConceptType: ConceptType.Types;
 	Date: Date.Types;
 	'Date Time': DateTime.Types;
+	'Date Time Range': DateTimeRange.Types;
 	File: File.Types;
 	ForeignKey: ForeignKey.Types;
 	Hashed: Hashed.Types;

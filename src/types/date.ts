@@ -1,4 +1,6 @@
-import type { LessThanNode } from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
+import type { LessThanNode } from '@balena/abstract-sql-compiler' with {
+	'resolution-mode': 'import',
+};
 import * as TypeUtils from '../type-utils';
 
 export const types = {

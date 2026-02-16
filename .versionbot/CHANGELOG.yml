@@ -1,4 +1,15 @@
 - commits:
+    - subject: Update dependencies
+      hash: faa3686f258876ea0e58aa0f8c82026c9484a33e
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 11.1.5
+  title: ""
+  date: 2026-02-16T15:37:36.341Z
+- commits:
     - subject: Update dependency chai to v6
       hash: f274704db15b15d148a8ea66903c2ebf185f2b54
       body: |

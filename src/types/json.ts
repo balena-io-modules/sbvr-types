@@ -1,5 +1,7 @@
 import * as TypeUtils from '../type-utils';
-import type { CastNode } from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
+import type { CastNode } from '@balena/abstract-sql-compiler' with {
+	'resolution-mode': 'import',
+};
 
 export const types = {
 	postgres: 'JSONB',

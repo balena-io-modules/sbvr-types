@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"module": "Node18",
+		"module": "Node20",
 		"target": "es2023",
 		"strict": true,
 		"noImplicitAny": true,

@@ -10,6 +10,7 @@ import * as Color from './types/color';
 import * as ConceptType from './types/concept-type';
 import * as Date from './types/date';
 import * as DateTime from './types/date-time';
+import * as DateTimeRange from './types/date-time-range';
 import * as File from './types/file';
 import * as ForeignKey from './types/foreign-key';
 import * as Hashed from './types/hashed';
@@ -25,6 +26,7 @@ import * as Time from './types/time';
 import * as WebResource from './types/web-resource';
 
 export { WebResource as WebResourceType } from './types/web-resource';
+export { DateTimeRange as DateTimeRangeType } from './types/date-time-range';
 
 export interface Types {
 	'Big Integer': BigInteger.Types;
@@ -36,6 +38,7 @@ export interface Types {
 	ConceptType: ConceptType.Types;
 	Date: Date.Types;
 	'Date Time': DateTime.Types;
+	'Date Time Range': DateTimeRange.Types;
 	File: File.Types;
 	ForeignKey: ForeignKey.Types;
 	Hashed: Hashed.Types;
@@ -60,6 +63,7 @@ export default {
 	Color,
 	ConceptType,
 	'Date Time': DateTime,
+	'Date Time Range': DateTimeRange,
 	Date,
 	File,
 	ForeignKey,

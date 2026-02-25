@@ -4,6 +4,7 @@ Term:       Real
 Term:       Text
 Term:       Date
 Term:       Date Time
+Term:       Date Time Range
 Term:       Time
 Term:       Interval
 Term:       File

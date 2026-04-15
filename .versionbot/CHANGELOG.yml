@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add 'Date Time Range' type
+      hash: e638b470c7c0c086257dcb1a4c71cd657e131c37
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: jaomaloy <jan.maloy@balena.io>
+        signed-off-by: jaomaloy <jan.maloy@balena.io>
+      author: jaomaloy
+  version: 11.2.0
+  title: ""
+  date: 2026-04-15T08:57:50.937Z
+- commits:
     - subject: Revert flowzone pinning to master
       hash: 1eb5955a3b3d152ad747fa195d062bad7f7b402f
       body: ""

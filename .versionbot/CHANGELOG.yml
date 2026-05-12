@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency lint-staged to v17
+      hash: 75097e64db9d54e6845268efbd43a7640e35bdf0
+      body: |
+        Update lint-staged from 16.4.0 to 17.0.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 11.2.1
+  title: ""
+  date: 2026-05-12T03:18:02.312Z
+- commits:
     - subject: Add 'Date Time Range' type
       hash: e638b470c7c0c086257dcb1a4c71cd657e131c37
       body: ""

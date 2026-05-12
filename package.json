@@ -1,6 +1,6 @@
 {
   "name": "@balena/sbvr-types",
-  "version": "11.2.0",
+  "version": "11.2.1",
   "description": "SBVR type definitions.",
   "main": "out",
   "type": "commonjs",
@@ -52,6 +52,6 @@
     "npm": ">=8.1.0"
   },
   "versionist": {
-    "publishedAt": "2026-04-15T08:57:51.040Z"
+    "publishedAt": "2026-05-12T03:18:02.426Z"
   }
 }

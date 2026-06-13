@@ -1,4 +1,16 @@
 - commits:
+    - subject: Pin dependencies
+      hash: 21f7dfb9feccab840f3af20905063eef28adb21e
+      body: |
+        Update @types/bcrypt
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 11.2.2
+  title: ""
+  date: 2026-06-13T00:29:30.541Z
+- commits:
     - subject: Update dependency lint-staged to v17
       hash: 75097e64db9d54e6845268efbd43a7640e35bdf0
       body: |

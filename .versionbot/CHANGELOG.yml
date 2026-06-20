@@ -1,4 +1,16 @@
 - commits:
+    - subject: Pin dependencies
+      hash: 01f140aeaa425324a3d0709b969a2f0b1a435a47
+      body: |
+        Update typescript
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 11.2.4
+  title: ""
+  date: 2026-06-20T00:17:53.609Z
+- commits:
     - subject: Update typescript to 6.x
       hash: 7f7b234ab0f50116d40e59af4fc38e431af7dbe5
       body: ""

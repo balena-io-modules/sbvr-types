@@ -1,4 +1,5 @@
 import * as TypeUtils from '../type-utils';
+import z from 'zod';
 import * as date from './date';
 
 export const types = {
@@ -128,3 +129,13 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 			"Invalid tstzrange: expected 'empty' or object, got " + typeof value,
 		);
 	});
+
+export const schema = z.union([
+	z.literal('empty'),
+	z.strictObject({
+		lowerInclusive: z.boolean(),
+		lowerDate: TypeUtils.schema.date.nullish(),
+		upperInclusive: z.boolean(),
+		upperDate: TypeUtils.schema.date.nullish(),
+	}),
+]);

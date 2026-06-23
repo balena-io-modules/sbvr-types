@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiDateTime from 'chai-datetime';
-import types from '../';
+import types, { type SbvrType } from '../';
 import util from 'util';
 
 chai.use(chaiDateTime);
@@ -82,6 +82,14 @@ const $describe = <T extends keyof typeof types>(
 	};
 
 	describe(typeName, () => {
+		const validate = test(type.validate);
+		const schemaIntoValidate = test((value: unknown, required: boolean) => {
+			const v = type.schema.safeParse(value);
+			return (type.validate as SbvrType['validate'])(
+				v.success ? v.data : value,
+				required,
+			);
+		});
 		fn({
 			type,
 			types: {
@@ -90,7 +98,14 @@ const $describe = <T extends keyof typeof types>(
 				websql: test(type.types.websql),
 			},
 			fetch: test('fetchProcessing' in type ? type.fetchProcessing : undefined),
-			validate: test(type.validate),
+			validate: (...args) => {
+				describe('should work with direct validate', () => {
+					validate(...args);
+				});
+				describe('should work with schema parsing into validate', () => {
+					schemaIntoValidate(...args);
+				});
+			},
 		});
 	});
 };

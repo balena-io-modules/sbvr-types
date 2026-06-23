@@ -19,3 +19,5 @@ export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.integer;
+
+export const schema = TypeUtils.schema.integer;

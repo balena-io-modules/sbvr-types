@@ -1,3 +1,4 @@
+import z from 'zod';
 import * as TypeUtils from '../type-utils';
 export const types = {
 	postgres: 'BYTEA',
@@ -35,3 +36,18 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 			throw new Error(`could not be converted to binary: ${e.message}`);
 		}
 	});
+
+export const schema = z.union([
+	z.instanceof(Buffer),
+	z
+		.string()
+		.refine(
+			(v) => v.length % 2 === 0,
+			'could not be converted to binary: hex string must have an even length',
+		)
+		.refine(
+			(v) => /^[a-fA-F0-9]*$/.test(v),
+			'could not be converted to binary: hex string must contain only hex characters',
+		)
+		.transform((v) => Buffer.from(v, 'hex')),
+]);

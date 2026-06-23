@@ -3,6 +3,7 @@ import type {
 	BitwiseShiftRightNode,
 } from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
 import * as TypeUtils from '../type-utils';
+import z from 'zod';
 
 export const types = {
 	postgres: 'INTEGER',
@@ -116,3 +117,17 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		}
 		return processedValue;
 	});
+
+export const schema = z.union([
+	z.int(),
+	z.strictObject({
+		r: z.number().int().min(0).max(255).optional(),
+		red: z.number().int().min(0).max(255).optional(),
+		g: z.number().int().min(0).max(255).optional(),
+		green: z.number().int().min(0).max(255).optional(),
+		b: z.number().int().min(0).max(255).optional(),
+		blue: z.number().int().min(0).max(255).optional(),
+		a: z.number().int().min(0).max(255).optional(),
+		alpha: z.number().int().min(0).max(255).optional(),
+	}),
+]);

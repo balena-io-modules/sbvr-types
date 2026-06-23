@@ -36,3 +36,5 @@ export const compare: (
 	data: string | Buffer,
 	encrypted: string,
 ) => Promise<boolean> = bcrypt.compare.bind(bcrypt);
+
+export const schema = TypeUtils.schema.text;

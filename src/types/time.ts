@@ -34,3 +34,5 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		(value: Types['Write'], required: false): Promise<DbWriteType | null>;
 		(value: Types['Write'], required: boolean): Promise<DbWriteType | null>;
 	};
+
+export const schema = TypeUtils.schema.date;

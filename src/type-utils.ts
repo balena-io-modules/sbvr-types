@@ -5,6 +5,7 @@ import type {
 	LessThanOrEqualNode,
 	ReferencedFieldNode,
 } from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
+import z from 'zod';
 
 export type NativeNames = Record<string, AnyTypeNodes>;
 export type NativeProperties = Record<
@@ -36,6 +37,7 @@ export interface SbvrType<Read = unknown, Write = any, DbWrite = unknown> {
 	};
 	fetchProcessing?: FetchProcessing<Read>;
 	validate: Validate<Write, DbWrite>;
+	schema: z.ZodType;
 }
 export interface TsTypes<Read, Write> {
 	Read: Read;
@@ -83,6 +85,33 @@ export const nativeFactTypeTemplates = {
 		...equality,
 	},
 } satisfies Record<string, NativeFactTypes[string]>;
+
+export const schema = {
+	integer: z.preprocess((v) => {
+		if (typeof v === 'string') {
+			return parseInt(v, 10);
+		}
+		return v;
+	}, z.number().int()),
+	bigint: z
+		.union([z.string().refine((v) => v !== ''), z.number(), z.bigint()])
+		.transform((val) => BigInt(val)),
+	text: z.string(),
+	date: z
+		.union([z.string(), z.number(), z.date()])
+		.transform((v) => {
+			let processedValue: typeof v = Number(v);
+			if (Number.isNaN(processedValue)) {
+				processedValue = v;
+			}
+			const processedDate = new Date(processedValue);
+			if (Number.isNaN(processedDate.getTime())) {
+				return v;
+			}
+			return processedDate;
+		})
+		.pipe(z.date()),
+};
 
 export const validate = {
 	checkRequired,

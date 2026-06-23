@@ -15,6 +15,9 @@
   "repository": "https://github.com/balena-io-modules/sbvr-types.git",
   "author": "",
   "license": "BSD",
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
   "optionalDependencies": {
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",

@@ -1,3 +1,4 @@
+import z from 'zod';
 import * as TypeUtils from '../type-utils';
 
 const typeFunc: TypeUtils.DatabaseTypeFn = (
@@ -37,3 +38,15 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		}
 		return value === 1;
 	});
+
+export const schema = z.preprocess((v) => {
+	switch (v) {
+		case 0:
+		case '0':
+			return false;
+		case 1:
+		case '1':
+			return true;
+	}
+	return v;
+}, z.boolean());

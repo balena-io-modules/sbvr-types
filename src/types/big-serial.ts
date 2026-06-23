@@ -29,3 +29,5 @@ type DbWriteType = bigint;
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.bigint;
+
+export const schema = TypeUtils.schema.bigint;

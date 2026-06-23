@@ -14,3 +14,5 @@ type DbWriteType = string;
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.text(255);
+
+export const schema = TypeUtils.schema.text.max(255);

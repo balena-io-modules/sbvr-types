@@ -47,3 +47,5 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 export const compare = async (value: string, result: string) => {
 	return sha256(value) === result;
 };
+
+export const schema = TypeUtils.schema.text;

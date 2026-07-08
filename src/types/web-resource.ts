@@ -1,3 +1,4 @@
+import z from 'zod';
 import * as TypeUtils from '../type-utils';
 import type {
 	CastNode,
@@ -153,3 +154,12 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 			throw new Error("can't stringify JSON content");
 		}
 	});
+
+export const schema = z.strictObject({
+	filename: z.string(),
+	href: z.string(),
+	content_type: z.string().optional(),
+	content_disposition: z.string().optional(),
+	size: z.number().int().optional(),
+	checksum: z.string().optional(),
+});

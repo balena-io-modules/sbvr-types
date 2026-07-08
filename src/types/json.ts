@@ -1,3 +1,4 @@
+import z from 'zod';
 import * as TypeUtils from '../type-utils';
 import type { CastNode } from '@balena/abstract-sql-compiler' with {
 	'resolution-mode': 'import',
@@ -57,3 +58,8 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 			throw new Error('cannot be turned into JSON: ' + value);
 		}
 	});
+
+export const schema = z.union([
+	z.array(z.json()),
+	z.record(z.string(), z.json()),
+]);

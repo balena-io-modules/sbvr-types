@@ -1,4 +1,16 @@
 - commits:
+    - subject: Add zod schemas that can be used for early validation of types
+      hash: e529b0d268ca69b8d4e7e014a92ae89881ed128b
+      body: |
+        https://balena.fibery.io/Work/Project/1002
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 11.3.0
+  title: ""
+  date: 2026-07-08T14:10:15.380Z
+- commits:
     - subject: Update dependency lint-staged to v17.0.8
       hash: 49c3f9aa33055edada75d632fd4c4c1e8107d8d2
       body: |

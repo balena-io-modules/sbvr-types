@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependency flowzonify to v0.4.0
+      hash: c509991a943d544eb730f51c26e56adebc5fa064
+      body: |
+        Update flowzonify from 0.0.0 to 0.4.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 11.3.6
+  title: ""
+  date: 2026-08-25T11:15:13.161Z
+- commits:
     - subject: Update dependency mocha to v11.8.0
       hash: bc93743a37b25a694ae7e559c6808566be5d7a22
       body: |

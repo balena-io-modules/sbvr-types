@@ -31,7 +31,7 @@
     "@types/chai-datetime": "1.0.0",
     "@types/mocha": "10.0.10",
     "@types/sha.js": "2.4.4",
-    "chai": "6.2.2",
+    "chai": "6.3.0",
     "chai-datetime": "1.8.1",
     "husky": "9.1.7",
     "lint-staged": "17.6.0",

@@ -21,7 +21,7 @@ export type NativeFactTypes = Record<
 >;
 
 export interface DatabaseTypeFn {
-	(necessity: string, index: string): string;
+	(necessity: string, index: string, defaultValue?: string): string;
 	castType: string;
 }
 export type DatabaseType = string | DatabaseTypeFn;

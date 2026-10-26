@@ -73,6 +73,20 @@ const checkRequired = <T>(validateFn: (value: any) => T | Promise<T>) => {
 	return runCheck;
 };
 
+// Creates a validate function that accepts exactly what the schema accepts, returning the schema's output.
+// Pass a compiled schema (as all of the exported ones are), since validate runs for every value
+const fromSchema = <T>(
+	zodSchema: z.ZodType<T>,
+	errorMessage: (value: unknown) => string,
+) =>
+	checkRequired((value) => {
+		const result = zodSchema.safeParse(value);
+		if (!result.success) {
+			throw new Error(errorMessage(value));
+		}
+		return result.data;
+	});
+
 const equality = {
 	'is equal to': (from, to): EqualsNode => ['Equals', from, to],
 } satisfies NativeFactTypes[string];
@@ -89,38 +103,41 @@ export const nativeFactTypeTemplates = {
 	},
 } satisfies Record<string, NativeFactTypes[string]>;
 
+// Strings are only accepted if they are entirely an integer, with no fractional part, exponent or trailing text.
+// The number of significant digits is limited to what the type can hold, so that converting a long string
+// (which is slow for `BigInt`) is never attempted
+const integerString = /^\s*[+-]?0*\d{1,16}\s*$/;
+const bigintString = /^\s*[+-]?0*\d{1,19}\s*$/;
 // The schemas are compiled once at import (`z.compile` falls back to zod's runtime parser for anything it
 // can't compile), so that every user of them gets the compiled fast path
 export const schema = {
+	// `z.int()` only allows safe integers, so numbers and strings that would lose precision are rejected
 	integer: z.compile(
-		z.preprocess((v) => {
-			if (typeof v === 'string') {
-				return parseInt(v, 10);
-			}
-			return v;
-		}, z.number().int()),
+		z.union([
+			z.int(),
+			z.string().regex(integerString).transform(Number).pipe(z.int()),
+		]),
 	),
-	// `z.coerce` can't be compiled, so this converts with `BigInt` itself
 	bigint: z.compile(
 		z
-			.union([z.string().refine((v) => v !== ''), z.number(), z.bigint()])
-			.transform((v, ctx) => {
-				try {
-					return BigInt(v);
-				} catch {
-					ctx.issues.push({
-						code: 'invalid_type',
-						expected: 'bigint',
-						input: v,
-					});
-					return z.NEVER;
-				}
-			}),
+			.union([
+				z.bigint(),
+				z.int().transform(BigInt),
+				z.string().regex(bigintString).transform(BigInt),
+			])
+			// The range of a BIGINT on all the databases
+			.pipe(
+				z
+					.bigint()
+					.min(-(2n ** 63n))
+					.max(2n ** 63n - 1n),
+			),
 	),
 	text: z.compile(z.string()),
 	date: z.compile(
 		z
-			.union([z.string(), z.number(), z.date()])
+			// A blank string would otherwise be treated as `0`, ie the epoch
+			.union([z.string().trim().min(1), z.number(), z.date()])
 			.transform((v) => {
 				let processedValue: typeof v = Number(v);
 				if (Number.isNaN(processedValue)) {
@@ -138,19 +155,15 @@ export const schema = {
 
 export const validate = {
 	checkRequired,
-	integer: checkRequired((value) => {
-		const processedValue = parseInt(value, 10);
-		if (Number.isNaN(processedValue)) {
-			throw new Error('is not a number: ' + value);
-		}
-		return processedValue;
-	}),
-	bigint: checkRequired((value) => {
-		if (value === '') {
-			throw new Error('Cannot convert empty string to a BigInt');
-		}
-		return BigInt(value);
-	}),
+	fromSchema,
+	integer: fromSchema(
+		schema.integer,
+		(value) => 'is not an integer: ' + String(value),
+	),
+	bigint: fromSchema(
+		schema.bigint,
+		(value) => 'is not a big integer: ' + String(value),
+	),
 	text: (length?: number) =>
 		checkRequired((value) => {
 			if (typeof value !== 'string') {
@@ -167,15 +180,8 @@ export const validate = {
 			}
 			return value;
 		}),
-	date: checkRequired((value) => {
-		let processedValue = Number(value);
-		if (Number.isNaN(processedValue)) {
-			processedValue = value;
-		}
-		const processedDate = new Date(processedValue);
-		if (Number.isNaN(processedDate.getTime())) {
-			throw new Error('is not a valid date: ' + value);
-		}
-		return processedDate;
-	}),
+	date: fromSchema(
+		schema.date,
+		(value) => 'is not a valid date: ' + String(value),
+	),
 };

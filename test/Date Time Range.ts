@@ -306,6 +306,18 @@ helpers.describe('Date Time Range', (test) => {
 			new Error('Invalid lowerDate bound: not-a-date'),
 		);
 
+		// Error: A blank lowerDate is not the epoch
+		test.validate(
+			{
+				lowerDate: '',
+				upperDate: later,
+				lowerInclusive: true,
+				upperInclusive: false,
+			},
+			true,
+			new Error('Invalid lowerDate bound: '),
+		);
+
 		// Error: Invalid upperDate bound date
 		test.validate(
 			{

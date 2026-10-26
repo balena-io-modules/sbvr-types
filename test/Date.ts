@@ -14,5 +14,16 @@ helpers.describe('Date', function (test) {
 		test.validate(now.getTime(), true, now);
 		// `toString` doesn't include the milliseconds
 		test.validate(now.toString(), true, new Date(now.toString()));
+		test.validate(now.toISOString(), true, now);
+		// A blank string must not be read as 0, ie the epoch
+		test.validate('', true, new Error('is not a valid date: '));
+		test.validate(' ', true, new Error('is not a valid date:  '));
+		test.validate(true, true, new Error('is not a valid date: true'));
+		test.validate([], true, new Error('is not a valid date: '));
+		test.validate(
+			new Date(NaN),
+			true,
+			new Error('is not a valid date: Invalid Date'),
+		);
 	});
 });

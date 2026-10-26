@@ -14,27 +14,38 @@ helpers.describe('Big Integer', (test) => {
 	});
 
 	describe('validate', function () {
-		test.validate(
-			1.1,
-			new RangeError(
-				'The number 1.1 cannot be converted to a BigInt because it is not an integer',
-			),
-		);
-		test.validate('1.1', new SyntaxError('Cannot convert 1.1 to a BigInt'));
-		test.validate('', new Error('Cannot convert empty string to a BigInt'));
-		test.validate(
-			'testNotANumber',
-			new Error('Cannot convert testNotANumber to a BigInt'),
-		);
-		test.validate(
-			NaN,
-			new SyntaxError(
-				'The number NaN cannot be converted to a BigInt because it is not an integer',
-			),
-		);
+		const maxBigInt = 2n ** 63n - 1n;
+		const minBigInt = -(2n ** 63n);
 		test.validate(1, true, BigInt(1));
 		test.validate('1', true, BigInt(1));
-		test.validate(BigInt(testBigIntString), true, BigInt(testBigIntString));
-		test.validate(testBigIntString, true, BigInt(testBigIntString));
+		test.validate('0'.repeat(20) + '1', true, BigInt(1));
+		test.validate(' -1 ', true, BigInt(-1));
+		test.validate(Number.MAX_SAFE_INTEGER, true, 2n ** 53n - 1n);
+		test.validate(maxBigInt, true, maxBigInt);
+		test.validate(String(maxBigInt), true, maxBigInt);
+		test.validate(String(minBigInt), true, minBigInt);
+		for (const value of [
+			1.1,
+			'1.1',
+			'',
+			' ',
+			'testNotANumber',
+			'12abc',
+			// More digits than a BIGINT can have
+			'1'.repeat(20),
+			'0x10',
+			'1e3',
+			NaN,
+			true,
+			[1],
+			// Numbers outside the safe integer range have already lost precision
+			2 ** 53,
+			// Outside the range of a BIGINT
+			maxBigInt + 1n,
+			String(minBigInt - 1n),
+			testBigIntString,
+		]) {
+			test.validate(value, true, new Error(`is not a big integer: ${value}`));
+		}
 	});
 });

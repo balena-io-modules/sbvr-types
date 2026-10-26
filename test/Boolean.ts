@@ -23,6 +23,7 @@ helpers.describe('Boolean', function (test) {
 		test.fetch(1, true);
 		test.fetch(false, false);
 		test.fetch(true, true);
+		test.fetch(null, null);
 	});
 
 	describe('validate', function () {

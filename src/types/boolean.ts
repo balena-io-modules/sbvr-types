@@ -23,7 +23,12 @@ type DbWriteType = boolean;
 // `BOOLEAN` on sqlite/websql is just an alias for `INTEGER` hence the `=== 1` check
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
-) => data === true || data === 1;
+) => {
+	if (data == null) {
+		return data;
+	}
+	return data === true || data === 1;
+};
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((originalValue) => {

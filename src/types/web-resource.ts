@@ -8,11 +8,19 @@ import type {
 export type WebResource = {
 	filename: string;
 	href: string;
-	content_type?: string;
-	content_disposition?: string;
-	size?: number;
-	checksum?: string;
+	content_type?: string | null;
+	content_disposition?: string | null;
+	size?: number | null;
+	checksum?: string | null;
 };
+const webResourceProperties = new Set([
+	'filename',
+	'href',
+	'content_type',
+	'content_disposition',
+	'size',
+	'checksum',
+]);
 
 export const types = {
 	postgres: 'JSONB',
@@ -85,7 +93,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
 ) => {
 	let refData: WebResource;
-	if (data === null) {
+	if (data == null) {
 		return data;
 	}
 	if (typeof data === 'string') {
@@ -120,6 +128,11 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.checkRequired((value: WebResource) => {
 		if (typeof value !== 'object') {
 			throw new Error(`is not an object: ${typeof value}`);
+		}
+		for (const key of Object.keys(value)) {
+			if (!webResourceProperties.has(key)) {
+				throw new Error(`has an unknown property: ${key}`);
+			}
 		}
 		if (value.filename == null) {
 			throw new Error('filename is required and must be a string');
@@ -158,8 +171,8 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 export const schema = z.strictObject({
 	filename: z.string(),
 	href: z.string(),
-	content_type: z.string().optional(),
-	content_disposition: z.string().optional(),
-	size: z.number().int().optional(),
-	checksum: z.string().optional(),
+	content_type: z.string().nullish(),
+	content_disposition: z.string().nullish(),
+	size: z.number().int().nullish(),
+	checksum: z.string().nullish(),
 });

@@ -57,6 +57,9 @@ export const nativeProperties: TypeUtils.NativeProperties = {
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
 ) => {
+	if (data == null) {
+		return data;
+	}
 	if (typeof data !== 'number') {
 		throw new Error('Fetched color is not an integer: ' + typeof data);
 	}

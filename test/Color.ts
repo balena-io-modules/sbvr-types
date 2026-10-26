@@ -15,6 +15,7 @@ helpers.describe('Color', function (test) {
 			b: 255,
 			a: 255,
 		});
+		test.fetch(null, null);
 	});
 
 	describe('validate', function () {

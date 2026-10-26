@@ -16,23 +16,19 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
 ) => {
 	if (data != null) {
-		// We append the date of the epoch so that we can parse this as a valid date.
-		return new Date(`Thu, 01 Jan 1970 ${data}`).toISOString();
+		// We append the date of the epoch so that we can parse this as a valid date,
+		// and parse it as UTC as that is how `validate` stores it.
+		return new Date(`Thu, 01 Jan 1970 ${data} GMT`).toISOString();
 	}
 	return data;
 };
 
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	(async (value, required) => {
-		const date = await TypeUtils.validate.date(value, required);
-		if (date == null) {
-			return date;
-		}
-		return date.toLocaleTimeString();
-	}) as {
-		(value: Types['Write'], required: true): Promise<DbWriteType>;
-		(value: Types['Write'], required: false): Promise<DbWriteType | null>;
-		(value: Types['Write'], required: boolean): Promise<DbWriteType | null>;
-	};
+	TypeUtils.validate.checkRequired(async (value) => {
+		const date = await TypeUtils.validate.date(value, true);
+		// We store the UTC time as `HH:MM:SS.sss`, which unlike the locale format is the same everywhere
+		const isoString = date.toISOString();
+		return isoString.slice(isoString.indexOf('T') + 1, -1);
+	});
 
 export const schema = TypeUtils.schema.date;

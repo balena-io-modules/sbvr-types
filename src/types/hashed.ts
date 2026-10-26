@@ -1,3 +1,4 @@
+/// <reference types="node" preserve="true" />
 import type * as Bcrypt from 'bcrypt';
 
 import * as TypeUtils from '../type-utils';

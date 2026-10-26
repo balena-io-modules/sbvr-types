@@ -25,8 +25,8 @@ export type Types = TypeUtils.TsTypes<
 	| 'empty'
 	| {
 			lowerInclusive: boolean;
-			lowerDate?: string | number | Date;
-			upperDate?: string | number | Date;
+			lowerDate?: string | number | Date | null;
+			upperDate?: string | number | Date | null;
 			upperInclusive: boolean;
 	  }
 >;

@@ -41,6 +41,34 @@ helpers.describe('Color', function (test) {
 		);
 		test.validate(0, true, 0);
 		test.validate(-1, true, -1);
+		test.validate('255', true, 255);
+		// The unsigned form of -1
+		test.validate(0xffffffff, true, -1);
+		test.validate({ red: 1, green: 2, blue: 3, alpha: 4 }, true, 0x04010203);
+		test.validate({ g: 1 }, true, 0x100);
+		test.validate({}, true, 0);
+		for (const value of [2 ** 32, -(2 ** 31) - 1, 1.5, '12abc', true, []]) {
+			test.validate(
+				value,
+				true,
+				new Error(`is neither an integer or color object: ${value}`),
+			);
+		}
+		for (const component of [-1, 256, 1.5, '255', null]) {
+			test.validate(
+				{ r: component },
+				true,
+				new Error(
+					`has invalid component value of ${component} for component r`,
+				),
+			);
+		}
+		test.validate({ R: 1 }, true, new Error('has an unknown component: R'));
+		test.validate(
+			{ r: 1, red: 2 },
+			true,
+			new Error('has the same component more than once'),
+		);
 	});
 
 	describe('nativeProperties', function () {

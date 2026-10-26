@@ -73,65 +73,90 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	/* eslint-enable no-bitwise */
 };
 
-export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	TypeUtils.validate.checkRequired((value) => {
-		let processedValue: number;
-		if (typeof value !== 'object') {
-			processedValue = parseInt(value, 10);
-			if (Number.isNaN(processedValue)) {
-				throw new Error('is neither an integer or color object: ' + value);
-			}
-		} else {
-			processedValue = 0;
-			Object.keys(value).forEach((component) => {
-				const componentValue = value[component];
-				if (Number.isNaN(componentValue) || componentValue > 255) {
-					throw new Error(
-						'has invalid component value of ' +
-							componentValue +
-							' for component ' +
-							component,
-					);
-				}
-				/* eslint-disable no-bitwise */
-				switch (component.toLowerCase()) {
-					case 'r':
-					case 'red':
-						processedValue |= componentValue << 16;
-						break;
-					case 'g':
-					case 'green':
-						processedValue |= componentValue << 8;
-						break;
-					case 'b':
-					case 'blue':
-						processedValue |= componentValue;
-						break;
-					case 'a':
-					case 'alpha':
-						processedValue |= componentValue << 24;
-						break;
-					default:
-						throw new Error('has an unknown component: ' + component);
-				}
-				/* eslint-enable no-bitwise */
-			});
-		}
-		return processedValue;
-	});
-
+const component = z.int().min(0).max(255).optional();
 export const schema = z.compile(
 	z.union([
-		z.int(),
-		z.strictObject({
-			r: z.number().int().min(0).max(255).optional(),
-			red: z.number().int().min(0).max(255).optional(),
-			g: z.number().int().min(0).max(255).optional(),
-			green: z.number().int().min(0).max(255).optional(),
-			b: z.number().int().min(0).max(255).optional(),
-			blue: z.number().int().min(0).max(255).optional(),
-			a: z.number().int().min(0).max(255).optional(),
-			alpha: z.number().int().min(0).max(255).optional(),
-		}),
+		TypeUtils.schema.integer
+			// The unsigned form (eg 0xffffffff) is accepted as well as the signed form that the INTEGER column stores
+			.pipe(
+				z
+					.int()
+					.min(-(2 ** 31))
+					.max(2 ** 32 - 1),
+			)
+			// eslint-disable-next-line no-bitwise
+			.transform((v) => v | 0),
+		z
+			.strictObject({
+				r: component,
+				red: component,
+				g: component,
+				green: component,
+				b: component,
+				blue: component,
+				a: component,
+				alpha: component,
+			})
+			.refine(
+				(v) =>
+					(v.r == null || v.red == null) &&
+					(v.g == null || v.green == null) &&
+					(v.b == null || v.blue == null) &&
+					(v.a == null || v.alpha == null),
+				'has the same component more than once',
+			),
 	]),
 );
+
+const toInteger = (color: z.output<typeof schema>) => {
+	if (typeof color === 'number') {
+		return color;
+	}
+	/* eslint-disable no-bitwise */
+	return (
+		((color.a ?? color.alpha ?? 0) << 24) |
+		((color.r ?? color.red ?? 0) << 16) |
+		((color.g ?? color.green ?? 0) << 8) |
+		(color.b ?? color.blue ?? 0)
+	);
+	/* eslint-enable no-bitwise */
+};
+
+const components = new Set([
+	'r',
+	'red',
+	'g',
+	'green',
+	'b',
+	'blue',
+	'a',
+	'alpha',
+]);
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
+	TypeUtils.validate.fromSchema(
+		z.compile(schema.transform(toInteger)),
+		(value) => {
+			if (typeof value !== 'object' || value == null || Array.isArray(value)) {
+				return 'is neither an integer or color object: ' + String(value);
+			}
+			for (const [name, componentValue] of Object.entries(value)) {
+				if (!components.has(name)) {
+					return 'has an unknown component: ' + name;
+				}
+				if (
+					typeof componentValue !== 'number' ||
+					!Number.isInteger(componentValue) ||
+					componentValue < 0 ||
+					componentValue > 255
+				) {
+					return (
+						'has invalid component value of ' +
+						componentValue +
+						' for component ' +
+						name
+					);
+				}
+			}
+			return 'has the same component more than once';
+		},
+	);

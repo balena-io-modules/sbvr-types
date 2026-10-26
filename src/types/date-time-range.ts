@@ -32,9 +32,11 @@ export type Types = TypeUtils.TsTypes<
 >;
 type DbWriteType = string;
 
-// Regex handles PostgreSQL pg package format with quoted values (e.g., '["2024-01-01 00:00:00.123+00","2024-12-31 23:59:59+00")')
+// Regex handles PostgreSQL pg package format with quoted values (e.g., '["2024-01-01 00:00:00.123+00","2024-12-31 23:59:59+00")'),
+// as well as unquoted values, which is how PostgreSQL outputs infinite bounds (e.g., '["2024-01-01 00:00:00+00",infinity)')
+// and how `validate` formats ranges, which mysql/websql store as is (e.g., '[2024-01-01T00:00:00.000Z,)')
 const rangeRegexp =
-	/^(?<lowerBracket>[[(])(?:"(?<lowerValue>[^",]+)")?,(?:"(?<upperValue>[^",]+)")?(?<upperBracket>[)\]])$/;
+	/^(?<lowerBracket>[[(])"?(?<lowerValue>[^",]*)"?,"?(?<upperValue>[^",]*)"?(?<upperBracket>[)\]])$/;
 
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
@@ -59,8 +61,9 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 
 	const { lowerBracket, lowerValue, upperValue, upperBracket } = matchGroups;
 
+	// We treat infinite bounds as unbounded, as there is no way to represent them in the read type
 	let lowerDate: string | undefined;
-	if (lowerValue != null && lowerValue !== '') {
+	if (lowerValue != null && lowerValue !== '' && lowerValue !== '-infinity') {
 		try {
 			lowerDate = date.fetchProcessing(lowerValue)!;
 		} catch {
@@ -69,7 +72,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	}
 
 	let upperDate: string | undefined;
-	if (upperValue != null && upperValue !== '') {
+	if (upperValue != null && upperValue !== '' && upperValue !== 'infinity') {
 		try {
 			upperDate = date.fetchProcessing(upperValue)!;
 		} catch {

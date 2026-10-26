@@ -12,10 +12,10 @@ export const types = {
 		name: 'Self.Color',
 		complexType: `\
 <ComplexType Name="Color">
-	<Property Name="r" Nullable="false" Type="Edm.Int8"/>\
-	<Property Name="g" Nullable="false" Type="Edm.Int8"/>\
-	<Property Name="b" Nullable="false" Type="Edm.Int8"/>\
-	<Property Name="a" Nullable="false" Type="Edm.Int8"/>\
+	<Property Name="r" Nullable="false" Type="Edm.Byte"/>\
+	<Property Name="g" Nullable="false" Type="Edm.Byte"/>\
+	<Property Name="b" Nullable="false" Type="Edm.Byte"/>\
+	<Property Name="a" Nullable="false" Type="Edm.Byte"/>\
 </ComplexType>`,
 	},
 };

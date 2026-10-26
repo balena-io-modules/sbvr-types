@@ -18,20 +18,18 @@ export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 	Real: TypeUtils.nativeFactTypeTemplates.comparison,
 };
 
-export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	TypeUtils.validate.checkRequired((value) => {
-		const processedValue = parseFloat(value);
-		if (Number.isNaN(processedValue)) {
-			throw new Error('is not a number: ' + value);
-		}
-		return processedValue;
-	});
-
+// Strings are only accepted if they are entirely a decimal number, optionally with an exponent
+const realString = /^\s*[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\s*$/i;
+// `z.number()` rejects NaN and Infinity
 export const schema = z.compile(
-	z.preprocess((v) => {
-		if (typeof v === 'string') {
-			return parseFloat(v);
-		}
-		return v;
-	}, z.number()),
+	z.union([
+		z.number(),
+		z.string().regex(realString).transform(Number).pipe(z.number()),
+	]),
 );
+
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
+	TypeUtils.validate.fromSchema(
+		schema,
+		(value) => 'is not a number: ' + String(value),
+	);

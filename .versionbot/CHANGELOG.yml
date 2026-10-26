@@ -1,4 +1,18 @@
 - commits:
+    - subject: "Color: Fix the `Blue Component` native property"
+      hash: 26dc7ef09e9b08234879232eef8600ba35c28b2d
+      body: |
+        `Blue Component` shifted the value right by 255 bits instead of masking
+        the low 8 bits, so rules using it compared against 0 (or -1) instead of
+        the blue component. The README example had the same mistake.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.1
+  title: ""
+  date: 2026-10-26T16:13:33.248Z
+- commits:
     - subject: "Boolean: Return null when fetching a NULL boolean"
       hash: cc339c6973d8779553a02bcd637664640150e8ee
       body: |

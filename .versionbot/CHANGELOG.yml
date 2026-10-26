@@ -1,4 +1,20 @@
 - commits:
+    - subject: "Boolean: Return null when fetching a NULL boolean"
+      hash: cc339c6973d8779553a02bcd637664640150e8ee
+      body: |
+        A NULL boolean was returned as `false`, so a nullable boolean field
+        could not be told apart from one set to false.
+
+        We have never used nullable booleans in practice, but they should work
+        if we ever choose to.
+      footer:
+        Change-type: major
+        change-type: major
+      author: Pagan Gazzard
+  version: 12.0.0
+  title: ""
+  date: 2026-10-26T15:31:47.309Z
+- commits:
     - subject: Update dependency mocha to v12.0.3
       hash: 283cc4a126e4e026d4e4c07703ae9162d08f8bff
       body: |

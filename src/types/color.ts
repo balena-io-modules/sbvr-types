@@ -1,7 +1,6 @@
-import type {
-	BitwiseAndNode,
-	BitwiseShiftRightNode,
-} from '@balena/abstract-sql-compiler' with { 'resolution-mode': 'import' };
+import type { BitwiseAndNode } from '@balena/abstract-sql-compiler' with {
+	'resolution-mode': 'import',
+};
 import * as TypeUtils from '../type-utils';
 import z from 'zod';
 
@@ -42,8 +41,8 @@ export const nativeProperties: TypeUtils.NativeProperties = {
 			['BitwiseShiftRight', from, ['Number', 8]],
 			['Number', 255],
 		],
-		'Blue Component': (from): BitwiseShiftRightNode => [
-			'BitwiseShiftRight',
+		'Blue Component': (from): BitwiseAndNode => [
+			'BitwiseAnd',
 			from,
 			['Number', 255],
 		],

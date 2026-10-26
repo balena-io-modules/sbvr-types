@@ -114,7 +114,7 @@ nativeProperties:
 	'has':
 		'Red Component': (from) -> ['BitwiseAnd', ['BitwiseShiftRight', from, 16], 255]
 		'Green Component': (from) -> ['BitwiseAnd', ['BitwiseShiftRight', from, 8], 255]
-		'Blue Component': (from) -> ['BitwiseShiftRight', from, 255]
+		'Blue Component': (from) -> ['BitwiseAnd', from, 255]
 		'Alpha Component': (from) -> ['BitwiseAnd', ['BitwiseShiftRight', from, 24], 255]
 ```
 

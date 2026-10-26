@@ -1,0 +1,2 @@
+# Husky hooks are run by sh, which fails on CRLF line endings
+/.husky/** text eol=lf

@@ -4,6 +4,12 @@
   "description": "SBVR type definitions.",
   "main": "out",
   "type": "commonjs",
+  "files": [
+    "out",
+    "src",
+    "Type.sbvr",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "lint": "balena-lint -t tsconfig.dev.json src test && npx tsc --noEmit --project tsconfig.dev.json",
     "lint-fix": "balena-lint --fix -t tsconfig.dev.json src test",

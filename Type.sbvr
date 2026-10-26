@@ -139,6 +139,8 @@ Term:       Content Type
 	Concept Type: Short Text
 Term:       Content Disposition
 	Concept Type: Short Text
+Term:       Checksum
+	Concept Type: Short Text
 Term:       Size
 	Concept Type: Integer
 
@@ -156,3 +158,5 @@ Fact type:  WebResource has Content Disposition
 	Necessity: Each WebResource has at most one Content Disposition.
 Fact type:  WebResource has Size
 	Necessity: Each WebResource has at most one Size.
+Fact type:  WebResource has Checksum
+	Necessity: Each WebResource has at most one Checksum.

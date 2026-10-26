@@ -38,6 +38,9 @@ export interface SbvrType<Read = unknown, Write = any, DbWrite = unknown> {
 	fetchProcessing?: FetchProcessing<Read>;
 	validate: Validate<Write, DbWrite>;
 	schema: z.ZodType;
+	nativeProperties?: NativeProperties;
+	nativeFactTypes?: NativeFactTypes;
+	nativeNames?: NativeNames;
 }
 export interface TsTypes<Read, Write> {
 	Read: Read;

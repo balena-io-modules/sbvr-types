@@ -22,7 +22,7 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "zod": "^4.4.3"
+    "zod": "^4.5.0"
   },
   "optionalDependencies": {
     "bcrypt": "^6.0.0",

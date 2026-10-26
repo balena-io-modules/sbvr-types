@@ -1,4 +1,18 @@
 - commits:
+    - subject: "Color: Return null when fetching a NULL color"
+      hash: 7ab07d8992647b989ac8e85d6f975f530a72a4fa
+      body: |
+        pinejs runs `fetchProcessing` for every row, including NULL values, and
+        a NULL color threw "Fetched color is not an integer: object", failing
+        the whole request for any resource with an unset color.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.2
+  title: ""
+  date: 2026-10-26T16:40:17.449Z
+- commits:
     - subject: "Color: Fix the `Blue Component` native property"
       hash: 26dc7ef09e9b08234879232eef8600ba35c28b2d
       body: |

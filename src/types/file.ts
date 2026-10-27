@@ -1,3 +1,4 @@
+/// <reference types="node" preserve="true" />
 import z from 'zod';
 import * as TypeUtils from '../type-utils';
 export const types = {

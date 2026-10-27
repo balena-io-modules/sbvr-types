@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import * as helpers from './helpers';
 
 helpers.describe('Boolean', function (test) {
@@ -16,6 +17,12 @@ helpers.describe('Boolean', function (test) {
 				);
 			});
 		}
+	});
+
+	it('should type the default value argument of the type functions', () => {
+		expect(test.type.types.postgres(' NOT NULL', '', ' DEFAULT TRUE')).to.equal(
+			'BOOLEAN DEFAULT TRUE NOT NULL',
+		);
 	});
 
 	describe('fetchProcessing', function () {

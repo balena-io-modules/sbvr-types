@@ -1,4 +1,20 @@
 - commits:
+    - subject: Reference the node types from the declarations that use `Buffer`
+      hash: 3cb5e42787d3b9a255f7e5d2b97ad6c702824acc
+      body: |
+        The `File` and `Hashed` declarations use `Buffer` but did not reference
+        the node types, and TypeScript 6 no longer includes `@types/*` by
+        default. So for consumers that don't list `node` in their `types`,
+        `Buffer` silently became `any` (eg `Types['File']['Read']` accepted a
+        number) or, without `skipLibCheck`, failed to compile.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.4
+  title: ""
+  date: 2026-10-27T22:21:03.800Z
+- commits:
     - subject: Type `DatabaseTypeFn`'s default value argument
       hash: f1a188d23b86ec31a83523d4233a65e038042024
       body: |

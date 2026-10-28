@@ -1,4 +1,18 @@
 - commits:
+    - subject: "Color: Use `Edm.Byte` for the OData color components"
+      hash: 961a83b8d1d236bf4f0629772e0b85d0b6779dbe
+      body: |
+        `Edm.Int8` is not an OData primitive type. The components are 0-255,
+        which is `Edm.Byte`. A test now checks that every type uses valid OData
+        primitive types.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.6
+  title: ""
+  date: 2026-10-28T14:50:06.834Z
+- commits:
     - subject: Always use LF line endings for the husky hooks
       hash: 33f6069b3d47068989536685df7e39a7be4c67e6
       body: |

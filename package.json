@@ -30,7 +30,7 @@
     "@types/chai": "5.2.3",
     "@types/chai-datetime": "1.0.0",
     "@types/mocha": "10.0.10",
-    "@types/node": "^20.19.43",
+    "@types/node": "20.19.43",
     "@types/sha.js": "2.4.4",
     "chai": "6.3.0",
     "chai-datetime": "1.8.1",

@@ -1,4 +1,16 @@
 - commits:
+    - subject: Pin dependency @types/node to 20.19.43
+      hash: acf7e6775a12e3601f4a4617548b2d3e72199afe
+      body: |
+        Update @types/node
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: balena-renovate[bot]
+  version: 12.0.7
+  title: ""
+  date: 2026-10-31T01:10:46.741Z
+- commits:
     - subject: "Color: Use `Edm.Byte` for the OData color components"
       hash: 961a83b8d1d236bf4f0629772e0b85d0b6779dbe
       body: |

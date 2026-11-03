@@ -34,7 +34,9 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		try {
 			return Buffer.from(value, 'hex');
 		} catch (e: any) {
-			throw new Error(`could not be converted to binary: ${e.message}`);
+			throw new Error(`could not be converted to binary: ${e.message}`, {
+				cause: e,
+			});
 		}
 	});
 

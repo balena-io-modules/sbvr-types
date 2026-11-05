@@ -38,6 +38,11 @@ type DbWriteType = string;
 const rangeRegexp =
 	/^(?<lowerBracket>[[(])"?(?<lowerValue>[^",]*)"?,"?(?<upperValue>[^",]*)"?(?<upperBracket>[)\]])$/;
 
+/**
+ * Reads a `-infinity` lower or `infinity` upper bound as unbounded. Other infinite bounds (eg Postgres'
+ * `[infinity,infinity]`) can't be represented by the read type, so reading them throws. `validate` doesn't
+ * accept infinite bounds, so they can only be written with raw SQL.
+ */
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
 ) => {
@@ -60,8 +65,12 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	}
 
 	const { lowerBracket, lowerValue, upperValue, upperBracket } = matchGroups;
+	if (lowerValue === 'infinity' || upperValue === '-infinity') {
+		throw new Error(
+			`Unsupported infinite bound in tstzrange: ${data}. Only a -infinity lower bound and an infinity upper bound are supported`,
+		);
+	}
 
-	// We treat infinite bounds as unbounded, as there is no way to represent them in the read type
 	let lowerDate: string | undefined;
 	if (lowerValue != null && lowerValue !== '' && lowerValue !== '-infinity') {
 		try {

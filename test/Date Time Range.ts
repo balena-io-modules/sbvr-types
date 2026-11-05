@@ -101,10 +101,20 @@ helpers.describe('Date Time Range', (test) => {
 			lowerInclusive: true,
 			upperInclusive: true,
 		});
-		test.fetch(
+		// The read type can't represent these
+		for (const range of [
 			'[infinity,infinity]',
-			new Error('Invalid lower bound timestamp: infinity'),
-		);
+			'[-infinity,-infinity]',
+			'(infinity,)',
+			'(,-infinity)',
+		]) {
+			test.fetch(
+				range,
+				new Error(
+					`Unsupported infinite bound in tstzrange: ${range}. Only a -infinity lower bound and an infinity upper bound are supported`,
+				),
+			);
+		}
 		test.fetch(
 			'[2024-01-15T10:00:00.000Z,not-a-date)',
 			new Error('Invalid upper bound timestamp: not-a-date'),

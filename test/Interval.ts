@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+import types from '../';
 import * as helpers from './helpers';
 
 helpers.describe('Interval', (test) => {
@@ -30,5 +32,20 @@ helpers.describe('Interval', (test) => {
 	describe('validate', function () {
 		test.validate(1, true, 1);
 		test.validate('1', true, 1);
+		// Infinite intervals would read back as 0 on Postgres
+		it('should reject infinite intervals', async () => {
+			for (const value of [Infinity, -Infinity, 'infinity', '-infinity']) {
+				let error: unknown;
+				try {
+					await types.Interval.validate(value as number, true);
+				} catch (e) {
+					error = e;
+				}
+				expect(error, String(value)).to.be.an.instanceOf(Error);
+				// pinejs parses with the schema first
+				expect(types.Interval.schema.safeParse(value).success, String(value)).to
+					.be.false;
+			}
+		});
 	});
 });

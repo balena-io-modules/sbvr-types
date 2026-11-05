@@ -26,8 +26,14 @@ type PostgresInterval = Partial<
 >;
 const secondsPerDay = 24 * 60 * 60;
 
-// The pg module returns an INTERVAL as a `postgres-interval` object, so we convert it to seconds
-// the same way as postgres' `EXTRACT(EPOCH FROM ...)`, with a year as 365.25 days and a month as 30 days
+/**
+ * The pg module returns an INTERVAL as a `postgres-interval` object, so it's converted to seconds the same way
+ * as postgres' `EXTRACT(EPOCH FROM ...)`, with a year as 365.25 days and a month as 30 days.
+ *
+ * Limitation: postgres-interval parses `infinity`/`-infinity` (Postgres 17+), and intervals output with an
+ * `IntervalStyle` other than the default `postgres`, to an empty object, so they read as 0. `validate` only
+ * accepts integers, so infinite intervals can only be written with raw SQL.
+ */
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
 ) => {

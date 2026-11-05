@@ -120,6 +120,42 @@ export const integerInRange = (min: number, max: number) => {
 // The range of an INTEGER on all the databases
 const minInteger = -(2 ** 31);
 const maxInteger = 2 ** 31 - 1;
+// The furthest a `Date` can be from the epoch, in milliseconds
+const maxDate = 8.64e15;
+// An ISO 8601 date, optionally with a time and an offset, as `Date` parses them. A date-time without an offset
+// is in local time, and a date without a time is in UTC. Fractions of a second can have up to 9 digits (as eg
+// Python and Go send), as long as the digits after milliseconds are 0, so that nothing is truncated
+const isoDateString =
+	/^([+-]\d{6}|\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.\d{1,3}0{0,6})?)?(?:Z|[+-](\d{2}):(\d{2}))?)?$/;
+const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const isLeapYear = (year: number) =>
+	(year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+// `Date` silently rolls over out of range fields (eg 2020-02-30 is 2020-03-01), so they're checked here
+const parseIsoDate = (value: string, ctx: z.core.$RefinementCtx) => {
+	const match = isoDateString.exec(value);
+	// ECMAScript disallows -000000, but V8 parses it as 2001
+	if (match != null && match[1] !== '-000000') {
+		const field = (index: number) => Number(match[index] ?? 0);
+		const year = field(1);
+		const month = field(2);
+		const day = field(3);
+		if (
+			month >= 1 &&
+			month <= 12 &&
+			day >= 1 &&
+			day <= (month === 2 && isLeapYear(year) ? 29 : daysInMonth[month - 1]!) &&
+			field(4) <= 23 &&
+			field(5) <= 59 &&
+			field(6) <= 59 &&
+			field(7) <= 23 &&
+			field(8) <= 59
+		) {
+			return new Date(value);
+		}
+	}
+	ctx.issues.push({ code: 'invalid_format', format: 'date', input: value });
+	return z.NEVER;
+};
 // The schemas are compiled once at import (`z.compile` falls back to zod's runtime parser for anything it
 // can't compile), so that every user of them gets the compiled fast path
 export const schema = {
@@ -146,21 +182,18 @@ export const schema = {
 	),
 	text: z.compile(z.string()),
 	date: z.compile(
-		z
-			// A blank string would otherwise be treated as `0`, ie the epoch
-			.union([z.string().trim().min(1), z.number(), z.date()])
-			.transform((v) => {
-				let processedValue: typeof v = Number(v);
-				if (Number.isNaN(processedValue)) {
-					processedValue = v;
-				}
-				const processedDate = new Date(processedValue);
-				if (Number.isNaN(processedDate.getTime())) {
-					return v;
-				}
-				return processedDate;
-			})
-			.pipe(z.date()),
+		// Strings come first, as the most common input and the slowest to reach in a union
+		z.union([
+			z.string().transform(parseIsoDate).pipe(z.date()),
+			// `z.date()` rejects invalid dates
+			z.date(),
+			// Milliseconds since the epoch, within the range of a `Date`
+			z
+				.int()
+				.min(-maxDate)
+				.max(maxDate)
+				.transform((ms) => new Date(ms)),
+		]),
 	),
 };
 

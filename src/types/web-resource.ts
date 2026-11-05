@@ -155,11 +155,13 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		}
 	});
 
-export const schema = z.strictObject({
-	filename: z.string(),
-	href: z.string(),
-	content_type: z.string().optional(),
-	content_disposition: z.string().optional(),
-	size: z.number().int().optional(),
-	checksum: z.string().optional(),
-});
+export const schema = z.compile(
+	z.strictObject({
+		filename: z.string(),
+		href: z.string(),
+		content_type: z.string().optional(),
+		content_disposition: z.string().optional(),
+		size: z.number().int().optional(),
+		checksum: z.string().optional(),
+	}),
+);

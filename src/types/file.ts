@@ -40,17 +40,19 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		}
 	});
 
-export const schema = z.union([
-	z.instanceof(Buffer),
-	z
-		.string()
-		.refine(
-			(v) => v.length % 2 === 0,
-			'could not be converted to binary: hex string must have an even length',
-		)
-		.refine(
-			(v) => /^[a-fA-F0-9]*$/.test(v),
-			'could not be converted to binary: hex string must contain only hex characters',
-		)
-		.transform((v) => Buffer.from(v, 'hex')),
-]);
+export const schema = z.compile(
+	z.union([
+		z.instanceof(Buffer),
+		z
+			.string()
+			.refine(
+				(v) => v.length % 2 === 0,
+				'could not be converted to binary: hex string must have an even length',
+			)
+			.refine(
+				(v) => /^[a-fA-F0-9]*$/.test(v),
+				'could not be converted to binary: hex string must contain only hex characters',
+			)
+			.transform((v) => Buffer.from(v, 'hex')),
+	]),
+);

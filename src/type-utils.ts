@@ -89,31 +89,51 @@ export const nativeFactTypeTemplates = {
 	},
 } satisfies Record<string, NativeFactTypes[string]>;
 
+// The schemas are compiled once at import (`z.compile` falls back to zod's runtime parser for anything it
+// can't compile), so that every user of them gets the compiled fast path
 export const schema = {
-	integer: z.preprocess((v) => {
-		if (typeof v === 'string') {
-			return parseInt(v, 10);
-		}
-		return v;
-	}, z.number().int()),
-	bigint: z
-		.union([z.string().refine((v) => v !== ''), z.number(), z.bigint()])
-		.pipe(z.coerce.bigint()),
-	text: z.string(),
-	date: z
-		.union([z.string(), z.number(), z.date()])
-		.transform((v) => {
-			let processedValue: typeof v = Number(v);
-			if (Number.isNaN(processedValue)) {
-				processedValue = v;
+	integer: z.compile(
+		z.preprocess((v) => {
+			if (typeof v === 'string') {
+				return parseInt(v, 10);
 			}
-			const processedDate = new Date(processedValue);
-			if (Number.isNaN(processedDate.getTime())) {
-				return v;
-			}
-			return processedDate;
-		})
-		.pipe(z.date()),
+			return v;
+		}, z.number().int()),
+	),
+	// `z.coerce` can't be compiled, so this converts with `BigInt` itself
+	bigint: z.compile(
+		z
+			.union([z.string().refine((v) => v !== ''), z.number(), z.bigint()])
+			.transform((v, ctx) => {
+				try {
+					return BigInt(v);
+				} catch {
+					ctx.issues.push({
+						code: 'invalid_type',
+						expected: 'bigint',
+						input: v,
+					});
+					return z.NEVER;
+				}
+			}),
+	),
+	text: z.compile(z.string()),
+	date: z.compile(
+		z
+			.union([z.string(), z.number(), z.date()])
+			.transform((v) => {
+				let processedValue: typeof v = Number(v);
+				if (Number.isNaN(processedValue)) {
+					processedValue = v;
+				}
+				const processedDate = new Date(processedValue);
+				if (Number.isNaN(processedDate.getTime())) {
+					return v;
+				}
+				return processedDate;
+			})
+			.pipe(z.date()),
+	),
 };
 
 export const validate = {

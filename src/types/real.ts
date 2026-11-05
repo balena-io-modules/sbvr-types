@@ -27,9 +27,11 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		return processedValue;
 	});
 
-export const schema = z.preprocess((v) => {
-	if (typeof v === 'string') {
-		return parseFloat(v);
-	}
-	return v;
-}, z.number());
+export const schema = z.compile(
+	z.preprocess((v) => {
+		if (typeof v === 'string') {
+			return parseFloat(v);
+		}
+		return v;
+	}, z.number()),
+);

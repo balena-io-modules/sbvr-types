@@ -23,6 +23,10 @@ helpers.describe('WebResource', (test) => {
 			...webResource,
 			checksum: '123',
 		});
+		test.fetch(null, null);
+		test.fetch(undefined, (result) => {
+			expect(result).to.equal(undefined);
+		});
 	});
 
 	describe('validate not required props absent', () => {
@@ -36,6 +40,29 @@ helpers.describe('WebResource', (test) => {
 			expect(asObj.filename).to.equal(smallWebResourceInput.filename);
 			expect(asObj.href).to.be.not.null;
 		});
+	});
+
+	describe('validate with null optional props', () => {
+		const nullProps = {
+			filename: 'logo.png',
+			href: 'test',
+			content_type: null,
+			content_disposition: null,
+			size: null,
+			checksum: null,
+		};
+		test.validate(nullProps, true, JSON.stringify(nullProps));
+		it('should be accepted by the schema', () => {
+			expect(test.type.schema.safeParse(nullProps).success).to.equal(true);
+		});
+	});
+
+	describe('validate with an unknown prop', () => {
+		test.validate(
+			{ filename: 'logo.png', href: 'test', extra: 'x' },
+			true,
+			new Error('has an unknown property: extra'),
+		);
 	});
 
 	describe('validate when not an object', () => {

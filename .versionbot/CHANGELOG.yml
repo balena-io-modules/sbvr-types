@@ -1,4 +1,18 @@
 - commits:
+    - subject: Stop skipping type checks of declaration files
+      hash: 33eb165f3570a6b10b46b0ac9777b2088d1a60e6
+      body: >
+        `skipLibCheck` hides errors in the `.d.ts` files we compile against, and
+        types that fail to resolve there silently become `any`. Checking them
+        means issues in dependencies' typings now fail the build instead.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.9
+  title: ""
+  date: 2026-11-05T00:36:28.138Z
+- commits:
     - subject: Update @balena/lint to 11.x
       hash: 8f9389dc5eddb2b589b3861e867f41f332fb27ba
       body: ""

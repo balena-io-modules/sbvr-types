@@ -19,7 +19,7 @@ export const nativeFactTypes: TypeUtils.NativeFactTypes = {
 };
 
 // Strings are only accepted if they are entirely a decimal number, optionally with an exponent
-const realString = /^\s*[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\s*$/i;
+const realString = /^[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i;
 // `z.number()` rejects NaN and Infinity
 export const schema = z.compile(
 	z.union([

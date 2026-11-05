@@ -19,7 +19,7 @@ helpers.describe('Big Integer', (test) => {
 		test.validate(1, true, BigInt(1));
 		test.validate('1', true, BigInt(1));
 		test.validate('0'.repeat(20) + '1', true, BigInt(1));
-		test.validate(' -1 ', true, BigInt(-1));
+		test.validate('-1', true, BigInt(-1));
 		test.validate(Number.MAX_SAFE_INTEGER, true, 2n ** 53n - 1n);
 		test.validate(maxBigInt, true, maxBigInt);
 		test.validate(String(maxBigInt), true, maxBigInt);
@@ -29,6 +29,9 @@ helpers.describe('Big Integer', (test) => {
 			'1.1',
 			'',
 			' ',
+			// Surrounding whitespace isn't part of an integer
+			' 1',
+			'1 ',
 			'testNotANumber',
 			'12abc',
 			// More digits than a BIGINT can have

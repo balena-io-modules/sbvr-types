@@ -106,8 +106,8 @@ export const nativeFactTypeTemplates = {
 // Strings are only accepted if they are entirely an integer, with no fractional part, exponent or trailing text.
 // The number of significant digits is limited to what the type can hold, so that converting a long string
 // (which is slow for `BigInt`) is never attempted
-const integerString = /^\s*[+-]?0*\d{1,16}\s*$/;
-const bigintString = /^\s*[+-]?0*\d{1,19}\s*$/;
+const integerString = /^[+-]?0*\d{1,16}$/;
+const bigintString = /^[+-]?0*\d{1,19}$/;
 // The schemas are compiled once at import (`z.compile` falls back to zod's runtime parser for anything it
 // can't compile), so that every user of them gets the compiled fast path
 export const schema = {

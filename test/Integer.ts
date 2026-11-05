@@ -5,7 +5,7 @@ helpers.describe('Integer', (test) => {
 		test.validate(1, true, 1);
 		test.validate('1', true, 1);
 		test.validate('0'.repeat(20) + '1', true, 1);
-		test.validate(' +1 ', true, 1);
+		test.validate('+1', true, 1);
 		test.validate('-1', true, -1);
 		test.validate(2 ** 31, true, 2 ** 31);
 		for (const value of [
@@ -19,6 +19,10 @@ helpers.describe('Integer', (test) => {
 			'0x10',
 			'',
 			' ',
+			// Surrounding whitespace isn't part of an integer
+			' 1',
+			'1 ',
+			'\n1',
 			true,
 			[1],
 			{},

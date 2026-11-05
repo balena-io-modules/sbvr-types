@@ -12,7 +12,8 @@ export const types = {
 export type Types = TypeUtils.TsTypes<number, number>;
 type DbWriteType = number;
 
+// Postgres stores an INTERVAL, which isn't limited to the range of an INTEGER
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	TypeUtils.validate.integer;
+	TypeUtils.validate.safeInteger;
 
-export const schema = TypeUtils.schema.integer;
+export const schema = TypeUtils.schema.safeInteger;

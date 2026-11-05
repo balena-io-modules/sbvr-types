@@ -108,15 +108,26 @@ export const nativeFactTypeTemplates = {
 // (which is slow for `BigInt`) is never attempted
 const integerString = /^[+-]?0*\d{1,16}$/;
 const bigintString = /^[+-]?0*\d{1,19}$/;
+// An integer, or a string of one, from `min` to `max`. `z.int()` only allows safe integers, so numbers and
+// strings that would lose precision are rejected too
+export const integerInRange = (min: number, max: number) => {
+	const integer = z.int().min(min).max(max);
+	return z.union([
+		integer,
+		z.string().regex(integerString).transform(Number).pipe(integer),
+	]);
+};
+// The range of an INTEGER on all the databases
+const minInteger = -(2 ** 31);
+const maxInteger = 2 ** 31 - 1;
 // The schemas are compiled once at import (`z.compile` falls back to zod's runtime parser for anything it
 // can't compile), so that every user of them gets the compiled fast path
 export const schema = {
-	// `z.int()` only allows safe integers, so numbers and strings that would lose precision are rejected
-	integer: z.compile(
-		z.union([
-			z.int(),
-			z.string().regex(integerString).transform(Number).pipe(z.int()),
-		]),
+	// For INTEGER columns
+	integer: z.compile(integerInRange(minInteger, maxInteger)),
+	// For integers that aren't stored in an INTEGER column, eg Interval's seconds
+	safeInteger: z.compile(
+		integerInRange(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER),
 	),
 	bigint: z.compile(
 		z
@@ -156,8 +167,13 @@ export const schema = {
 export const validate = {
 	checkRequired,
 	fromSchema,
-	integer: fromSchema(
-		schema.integer,
+	integer: fromSchema(schema.integer, (value) =>
+		schema.safeInteger.safeParse(value).success
+			? `is outside the integer range (${minInteger} to ${maxInteger}): ${String(value)}`
+			: 'is not an integer: ' + String(value),
+	),
+	safeInteger: fromSchema(
+		schema.safeInteger,
 		(value) => 'is not an integer: ' + String(value),
 	),
 	bigint: fromSchema(

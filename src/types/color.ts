@@ -76,14 +76,8 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 const component = z.int().min(0).max(255).optional();
 export const schema = z.compile(
 	z.union([
-		TypeUtils.schema.integer
-			// The unsigned form (eg 0xffffffff) is accepted as well as the signed form that the INTEGER column stores
-			.pipe(
-				z
-					.int()
-					.min(-(2 ** 31))
-					.max(2 ** 32 - 1),
-			)
+		// The unsigned form (eg 0xffffffff) is accepted as well as the signed form that the INTEGER column stores
+		TypeUtils.integerInRange(-(2 ** 31), 2 ** 32 - 1)
 			// eslint-disable-next-line no-bitwise
 			.transform((v) => v | 0),
 		z

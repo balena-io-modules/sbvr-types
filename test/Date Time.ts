@@ -12,6 +12,7 @@ helpers.describe('Date Time', function (test) {
 	describe('validate', function () {
 		test.validate(now, true, now);
 		test.validate(now.getTime(), true, now);
-		test.validate(now.toString(), true, now);
+		// `toString` doesn't include the milliseconds
+		test.validate(now.toString(), true, new Date(now.toString()));
 	});
 });

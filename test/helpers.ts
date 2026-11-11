@@ -72,7 +72,7 @@ const $describe = <T extends keyof typeof types>(
 					if (isFunc) {
 						return expected(result);
 					} else if (expected instanceof Date) {
-						return expect(result).to.equalDate(expected);
+						return expect(result).to.equalTime(expected);
 					} else {
 						return expect(result).to.deep.equal(expected);
 					}

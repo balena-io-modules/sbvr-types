@@ -94,7 +94,18 @@ const isJSON = (value: unknown): boolean => {
 
 // `z.json()` is recursive, which `z.compile` can't compile, so the same check is done in one custom schema
 export const schema = z.compile(
-	z.custom<Types['Read']>(
-		(value) => typeof value === 'object' && value !== null && isJSON(value),
-	),
+	z.custom<Types['Read']>((value) => {
+		if (typeof value !== 'object' || value === null) {
+			return false;
+		}
+		try {
+			return isJSON(value);
+		} catch (err) {
+			// A cycle, or nesting too deep for the call stack
+			if (err instanceof RangeError) {
+				return false;
+			}
+			throw err;
+		}
+	}),
 );

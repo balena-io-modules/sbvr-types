@@ -1,4 +1,20 @@
 - commits:
+    - subject: "Tests: Compare dates including the time of day"
+      hash: 247daef7e8fe9751beaa03670905747e3ed45572
+      body: |
+        The test helper compared `Date` results with chai-datetime's
+        `equalDate`, which only compares the calendar date, so a wrong time or
+        timezone offset went unnoticed. It now uses `equalTime`, which showed
+        that the `toString()` tests expected milliseconds that `toString()`
+        doesn't include.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.10
+  title: ""
+  date: 2026-11-11T07:55:57.151Z
+- commits:
     - subject: Stop skipping type checks of declaration files
       hash: 33eb165f3570a6b10b46b0ac9777b2088d1a60e6
       body: >

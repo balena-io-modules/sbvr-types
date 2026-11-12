@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+import type { Types } from '../';
 import * as helpers from './helpers';
 
 helpers.describe('Date Time Range', (test) => {
@@ -66,6 +68,16 @@ helpers.describe('Date Time Range', (test) => {
 	});
 
 	describe('validate', () => {
+		it('should type null bounds as unbounded', async () => {
+			const unbounded: Types['Date Time Range']['Write'] = {
+				lowerDate: null,
+				upperDate: null,
+				lowerInclusive: false,
+				upperInclusive: false,
+			};
+			expect(await test.type.validate(unbounded, true)).to.equal('(,)');
+		});
+
 		test.validate('empty', true, 'empty');
 
 		test.validate(

@@ -1,4 +1,17 @@
 - commits:
+    - subject: Only publish the build, sources, vocabulary and changelog
+      hash: 9e2b434b48d90e70c753e6bb37cf63929eaba53c
+      body: |
+        The package only excluded `/test`, so it also published the CI, husky,
+        versionbot and editor config and the tsconfigs.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.11
+  title: ""
+  date: 2026-11-12T02:11:27.662Z
+- commits:
     - subject: "Tests: Compare dates including the time of day"
       hash: 247daef7e8fe9751beaa03670905747e3ed45572
       body: |

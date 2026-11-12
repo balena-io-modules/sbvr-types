@@ -1,4 +1,19 @@
 - commits:
+    - subject: Add the native members to the `SbvrType` interface
+      hash: c284ab58b5ac5d2c27be14ccc5d63910c2781b46
+      body: |
+        `nativeProperties`, `nativeFactTypes` and `nativeNames` are used by
+        lf-to-abstract-sql, but were not part of `SbvrType`, so a custom type
+        typed as an `SbvrType` could not declare them and they were not checked,
+        including for this module's own types in `index.ts`.
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 12.1.0
+  title: ""
+  date: 2026-11-12T11:26:22.868Z
+- commits:
     - subject: "Short Text: Count the length in characters when validating"
       hash: 7cbc7620c9140f0bea916e33fbab867b10e3fa77
       body: |

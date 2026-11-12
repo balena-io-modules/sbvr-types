@@ -1,4 +1,21 @@
 - commits:
+    - subject: "Short Text: Count the length in characters when validating"
+      hash: 7cbc7620c9140f0bea916e33fbab867b10e3fa77
+      body: |
+        `validate` compared the UTF-16 length (`.length`) against the limit,
+        so text with characters outside the BMP, eg 200 emoji (400 code units),
+        was rejected although VARCHAR(255) counts characters and would store
+        it. The schema's `.max(255)` already counts characters since zod 4.5,
+        so the zod dependency is bumped to that and `validate` now uses zod's
+        `codePointLength` to match it.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.13
+  title: ""
+  date: 2026-11-12T04:22:34.661Z
+- commits:
     - subject: "Date Time Range: Allow null bounds in the `Write` type"
       hash: 1481ff0bd790cd91db68c392aec9d46dd2510c37
       body: |

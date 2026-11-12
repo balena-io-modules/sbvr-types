@@ -1,4 +1,44 @@
 - commits:
+    - subject: "JSON: Reject cycles and over-deep nesting instead of throwing"
+      hash: 4e897fcd98ceb2aa21107e14310e83dcc7358cf1
+      body: |
+        The recursive check overflows the call stack on a cyclic value or very
+        deep nesting, so the schema threw a `RangeError` rather than failing to
+        parse (pinejs still turned that into a 400). It now treats the overflow
+        as invalid JSON. This adds no measurable cost per parse; a depth
+        parameter or an iterative check cost up to ~1.3x on typical values.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: Compile the schemas with `z.compile`
+      hash: 9a7b44c19b6f08434bf2dbfdc76fab6991e41d85
+      body: |
+        Every exported schema is now compiled once at import, so direct users
+        of the schemas get zod's compiled fast path too. `z.compile` falls back
+        to the runtime parser for anything it can't compile, including where
+        `new Function` isn't allowed. It requires zod 4.5.
+
+        Two schemas couldn't be compiled, which also stopped pinejs from
+        compiling the validator of any table using them:
+        - Big Integer/Big Serial used `z.coerce.bigint()`, and now convert with
+          `BigInt` in a transform, accepting and rejecting the same values.
+        - JSON used the recursive `z.json()`, and now uses a single custom check
+          that accepts the same values. It returns the value as is rather than
+          a copy, so a parsed `__proto__` key, which the copy silently dropped,
+          is now kept.
+
+        In a pinejs-style compiled validator, a JSON field now takes ~0.18 µs
+        per parse instead of ~2.7 µs, and a Big Integer ~90 ns instead of
+        ~120 ns. Compiling the schemas takes ~10-15 ms once per process.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.1.1
+  title: ""
+  date: 2026-11-12T11:33:18.070Z
+- commits:
     - subject: Add the native members to the `SbvrType` interface
       hash: c284ab58b5ac5d2c27be14ccc5d63910c2781b46
       body: |

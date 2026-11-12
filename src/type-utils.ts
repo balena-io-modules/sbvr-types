@@ -133,10 +133,14 @@ export const validate = {
 			if (typeof value !== 'string') {
 				throw new Error('is not a string: ' + value);
 			}
+			// Count characters rather than UTF-16 code units, as the databases and zod's `.max()` do
 			if (length != null && value.length > length) {
-				throw new Error(
-					'longer than ' + length + ' characters (' + value.length + ')',
-				);
+				const valueLength = z.util.codePointLength(value);
+				if (valueLength > length) {
+					throw new Error(
+						'longer than ' + length + ' characters (' + valueLength + ')',
+					);
+				}
 			}
 			return value;
 		}),

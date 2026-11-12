@@ -1,4 +1,18 @@
 - commits:
+    - subject: "Date Time Range: Allow null bounds in the `Write` type"
+      hash: 1481ff0bd790cd91db68c392aec9d46dd2510c37
+      body: |
+        `validate` and the schema accept `null` for an unbounded `lowerDate` or
+        `upperDate` (and the tests use it), but the `Write` type only allowed
+        them to be omitted.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.0.12
+  title: ""
+  date: 2026-11-12T04:10:17.663Z
+- commits:
     - subject: Only publish the build, sources, vocabulary and changelog
       hash: 9e2b434b48d90e70c753e6bb37cf63929eaba53c
       body: |

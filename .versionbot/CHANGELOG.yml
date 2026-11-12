@@ -1,4 +1,27 @@
 - commits:
+    - subject: "JSON: Only accept values that turn into a JSON object/array"
+      hash: 5b92907f0b6a258fb16ab6c5ff804a1330089d56
+      body: |
+        `validate` only checked that the value was an object, but an object
+        with a `toJSON` can still turn into a primitive, eg a Date was stored
+        as a JSON string, which postgres/mysql then return as a plain string
+        that `fetchProcessing` fails to parse, failing every read of the row.
+        `{ toJSON: () => undefined }` also turned into `undefined`, skipping
+        the required check. These are now rejected, and the error for values
+        that can't be stringified includes the reason instead of
+        `[object Object]`.
+
+        The `Write` type now only allows JSON values, as the `z.json()` schema
+        does: it previously also allowed `undefined` and `toJSON` objects,
+        which pinejs rejects with a 400 since it validates with the schema.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.2.1
+  title: ""
+  date: 2026-11-12T11:50:58.912Z
+- commits:
     - subject: "Type.sbvr: Add the `WebResource has Checksum` fact type"
       hash: 890f57867c77dc0269d959cf78055b66eb0d2dd6
       body: |

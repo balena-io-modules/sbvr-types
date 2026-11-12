@@ -130,12 +130,14 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		);
 	});
 
-export const schema = z.union([
-	z.literal('empty'),
-	z.strictObject({
-		lowerInclusive: z.boolean(),
-		lowerDate: TypeUtils.schema.date.nullish(),
-		upperInclusive: z.boolean(),
-		upperDate: TypeUtils.schema.date.nullish(),
-	}),
-]);
+export const schema = z.compile(
+	z.union([
+		z.literal('empty'),
+		z.strictObject({
+			lowerInclusive: z.boolean(),
+			lowerDate: TypeUtils.schema.date.nullish(),
+			upperInclusive: z.boolean(),
+			upperDate: TypeUtils.schema.date.nullish(),
+		}),
+	]),
+);

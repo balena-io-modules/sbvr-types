@@ -1,3 +1,4 @@
+import z from 'zod';
 import * as TypeUtils from '../type-utils';
 
 export const types = {
@@ -15,4 +16,4 @@ type DbWriteType = string;
 export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 	TypeUtils.validate.text(255);
 
-export const schema = TypeUtils.schema.text.max(255);
+export const schema = z.compile(TypeUtils.schema.text.max(255));

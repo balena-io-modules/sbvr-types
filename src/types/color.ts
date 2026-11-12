@@ -120,16 +120,18 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 		return processedValue;
 	});
 
-export const schema = z.union([
-	z.int(),
-	z.strictObject({
-		r: z.number().int().min(0).max(255).optional(),
-		red: z.number().int().min(0).max(255).optional(),
-		g: z.number().int().min(0).max(255).optional(),
-		green: z.number().int().min(0).max(255).optional(),
-		b: z.number().int().min(0).max(255).optional(),
-		blue: z.number().int().min(0).max(255).optional(),
-		a: z.number().int().min(0).max(255).optional(),
-		alpha: z.number().int().min(0).max(255).optional(),
-	}),
-]);
+export const schema = z.compile(
+	z.union([
+		z.int(),
+		z.strictObject({
+			r: z.number().int().min(0).max(255).optional(),
+			red: z.number().int().min(0).max(255).optional(),
+			g: z.number().int().min(0).max(255).optional(),
+			green: z.number().int().min(0).max(255).optional(),
+			b: z.number().int().min(0).max(255).optional(),
+			blue: z.number().int().min(0).max(255).optional(),
+			a: z.number().int().min(0).max(255).optional(),
+			alpha: z.number().int().min(0).max(255).optional(),
+		}),
+	]),
+);

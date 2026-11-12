@@ -1,4 +1,19 @@
 - commits:
+    - subject: "Type.sbvr: Add the `WebResource has Checksum` fact type"
+      hash: 890f57867c77dc0269d959cf78055b66eb0d2dd6
+      body: |
+        `WebResource` has a `Checksum` native property, but the vocabulary did
+        not declare the `Checksum` term or the fact type, so models could not
+        use it (`... has a Checksum (Type)` failed to parse). A test now checks
+        that every native property and name is declared in the vocabulary.
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+  version: 12.2.0
+  title: ""
+  date: 2026-11-12T11:44:20.395Z
+- commits:
     - subject: "JSON: Reject cycles and over-deep nesting instead of throwing"
       hash: 4e897fcd98ceb2aa21107e14310e83dcc7358cf1
       body: |

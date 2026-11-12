@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+import type { Types } from '../';
 import * as helpers from './helpers';
 
 helpers.describe('JSON', function (test) {
@@ -23,7 +25,25 @@ helpers.describe('JSON', function (test) {
 	describe('validate', function () {
 		test.validate(obj, true, JSON.stringify(obj));
 		test.validate(arr, true, JSON.stringify(arr));
-		test.validate(dateObj, true, JSON.stringify(dateObj));
+		test.validate(
+			dateObj,
+			true,
+			new Error(
+				`is not an object/array once turned into JSON: ${JSON.stringify(dateObj)}`,
+			),
+		);
+		test.validate(
+			{ toJSON: () => undefined },
+			true,
+			new Error('is not an object/array once turned into JSON: undefined'),
+		);
+		test.validate(
+			{ a: 1n },
+			true,
+			new Error(
+				'cannot be turned into JSON: Do not know how to serialize a BigInt',
+			),
+		);
 		test.validate(
 			num,
 			false,
@@ -49,5 +69,14 @@ helpers.describe('JSON', function (test) {
 			false,
 			new Error(`is not an object/array: ${typeof numberObj}`),
 		);
+	});
+
+	it('should only allow JSON values in the Write type, like the schema', () => {
+		// @ts-expect-error - `undefined` is not a JSON value
+		const undefinedProp: Types['JSON']['Write'] = { a: undefined };
+		// @ts-expect-error - a Date is not a JSON value, even though it has a `toJSON`
+		const dateProp: Types['JSON']['Write'] = { a: dateObj };
+		expect(test.type.schema.safeParse(undefinedProp).success).to.equal(false);
+		expect(test.type.schema.safeParse(dateProp).success).to.equal(false);
 	});
 });

@@ -14,19 +14,10 @@ export const types = {
 };
 
 type JSON = string | number | boolean | null | JSON[] | { [key: string]: JSON };
-type JSONable =
-	| string
-	| number
-	| boolean
-	| null
-	| undefined
-	| JSONable[]
-	| { [key: string]: JSONable }
-	| { toJSON(): JSONable };
 
 export type Types = TypeUtils.TsTypes<
 	{ [key: string]: JSON } | JSON[],
-	{ [key: string]: JSONable } | JSONable[]
+	{ [key: string]: JSON } | JSON[]
 >;
 type DbWriteType = string;
 
@@ -52,11 +43,18 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 			throw new Error(`is not an object/array: ${typeof value}`);
 		}
 
+		let json: string | undefined;
 		try {
-			return JSON.stringify(value);
-		} catch {
-			throw new Error('cannot be turned into JSON: ' + value);
+			json = JSON.stringify(value);
+		} catch (e: any) {
+			throw new Error(`cannot be turned into JSON: ${e.message}`, { cause: e });
 		}
+		// An object with a `toJSON`, eg a Date, can still turn into a primitive, which postgres/mysql
+		// would then return as that primitive and `fetchProcessing` would fail to parse
+		if (json == null || (!json.startsWith('{') && !json.startsWith('['))) {
+			throw new Error(`is not an object/array once turned into JSON: ${json}`);
+		}
+		return json;
 	});
 
 // Whether a value is JSON, ie what `z.json()` accepts: plain objects and arrays of strings, finite numbers,

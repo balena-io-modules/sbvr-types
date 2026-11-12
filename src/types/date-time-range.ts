@@ -36,7 +36,7 @@ type DbWriteType = string;
 // as well as unquoted values, which is how PostgreSQL outputs infinite bounds (e.g., '["2024-01-01 00:00:00+00",infinity)')
 // and how `validate` formats ranges, which mysql/websql store as is (e.g., '[2024-01-01T00:00:00.000Z,)')
 const rangeRegexp =
-	/^(?<lowerBracket>[[(])"?(?<lowerValue>[^",]*)"?,"?(?<upperValue>[^",]*)"?(?<upperBracket>[)\]])$/;
+	/^(?<lowerBracket>[[(])(?<lowerQuote>"?)(?<lowerValue>[^",()[\]]*)\k<lowerQuote>,(?<upperQuote>"?)(?<upperValue>[^",()[\]]*)\k<upperQuote>(?<upperBracket>[)\]])$/;
 
 /**
  * Reads a `-infinity` lower or `infinity` upper bound as unbounded. Other infinite bounds (eg Postgres'

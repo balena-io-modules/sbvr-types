@@ -119,6 +119,24 @@ helpers.describe('Date Time Range', (test) => {
 			'[2024-01-15T10:00:00.000Z,not-a-date)',
 			new Error('Invalid upper bound timestamp: not-a-date'),
 		);
+		// Unbalanced quotes and bounds with brackets or parentheses are rejected
+		for (const range of [
+			'["2024-01-15T10:00:00Z,2024-01-15T12:00:00Z)',
+			'[2024-01-15T10:00:00Z",2024-01-15T12:00:00Z)',
+			'[2024-01-15T10:00:00Z,"2024-01-15T12:00:00Z)',
+			'[2024-01-15T10:00:00Z,2024-01-15T12:00:00Z")',
+			'[2024-01-15 10:00:00+00 (junk),)',
+			'[2024-01-15 10:00:00+00 [junk],)',
+			'(,2024-01-15 12:00:00+00 (junk))',
+			'["2024-01-15 10:00:00+00 (junk)",)',
+		]) {
+			test.fetch(
+				range,
+				new Error(
+					`Invalid tstzrange format: ${range}. Expected format like '[2024-01-01T00:00:00Z,2024-12-31T23:59:59Z)' or 'empty'`,
+				),
+			);
+		}
 		test.fetch(
 			'2024-01-15T10:00:00.000Z',
 			new Error(

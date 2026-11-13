@@ -1,4 +1,22 @@
 - commits:
+    - subject: "Tests: Fail when the schema rejects a value that validate accepts"
+      hash: 0d32bc7d79639fc83c1be4f4475a44673d0ee277
+      body: |
+        The "schema parsing into validate" tests fell back to validating the
+        raw value when the schema rejected it, so they passed even when the
+        schema wrongly rejected a valid value, which pinejs turns into a 400
+        (eg WebResource's null optional properties). They now mirror pinejs:
+        the schema is made optional/nullish as pinejs does for required/
+        non-required fields, and if it rejects a value, `validate` must reject
+        it as well, with the expected error.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.2.3
+  title: ""
+  date: 2026-11-13T00:51:19.873Z
+- commits:
     - subject: Ensure quotes are balanced in date-time-range
       hash: 7fdec9649224a28f6d120212d0cdc15af027daf3
       body: ""

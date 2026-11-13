@@ -60,6 +60,90 @@ helpers.describe('Date Time Range', (test) => {
 			upperInclusive: true,
 		});
 
+		// The PostgreSQL format, with a space separated timestamp
+		test.fetch('["2024-01-15 10:00:00+00","2024-01-15 12:00:00+00")', {
+			lowerDate: '2024-01-15T10:00:00.000Z',
+			upperDate: '2024-01-15T12:00:00.000Z',
+			lowerInclusive: true,
+			upperInclusive: false,
+		});
+
+		// Unquoted, as `validate` writes it and mysql/websql store it as is
+		test.fetch('[2024-01-15T10:00:00.000Z,2024-01-15T12:00:00.000Z)', {
+			lowerDate: '2024-01-15T10:00:00.000Z',
+			upperDate: '2024-01-15T12:00:00.000Z',
+			lowerInclusive: true,
+			upperInclusive: false,
+		});
+		test.fetch('(2024-01-15T10:00:00.000Z,)', {
+			lowerDate: '2024-01-15T10:00:00.000Z',
+			lowerInclusive: false,
+			upperInclusive: false,
+		});
+		test.fetch('[,2024-01-15T12:00:00.000Z]', {
+			upperDate: '2024-01-15T12:00:00.000Z',
+			lowerInclusive: true,
+			upperInclusive: true,
+		});
+		test.fetch('(,)', {
+			lowerInclusive: false,
+			upperInclusive: false,
+		});
+
+		// PostgreSQL outputs infinite bounds unquoted, they are treated as unbounded
+		test.fetch('["2024-01-15 10:00:00+00",infinity)', {
+			lowerDate: '2024-01-15T10:00:00.000Z',
+			lowerInclusive: true,
+			upperInclusive: false,
+		});
+		test.fetch('[-infinity,"2024-01-15 12:00:00+00"]', {
+			upperDate: '2024-01-15T12:00:00.000Z',
+			lowerInclusive: true,
+			upperInclusive: true,
+		});
+		// The read type can't represent these
+		for (const range of [
+			'[infinity,infinity]',
+			'[-infinity,-infinity]',
+			'(infinity,)',
+			'(,-infinity)',
+		]) {
+			test.fetch(
+				range,
+				new Error(
+					`Unsupported infinite bound in tstzrange: ${range}. Only a -infinity lower bound and an infinity upper bound are supported`,
+				),
+			);
+		}
+		test.fetch(
+			'[2024-01-15T10:00:00.000Z,not-a-date)',
+			new Error('Invalid upper bound timestamp: not-a-date'),
+		);
+		// Unbalanced quotes and bounds with brackets or parentheses are rejected
+		for (const range of [
+			'["2024-01-15T10:00:00Z,2024-01-15T12:00:00Z)',
+			'[2024-01-15T10:00:00Z",2024-01-15T12:00:00Z)',
+			'[2024-01-15T10:00:00Z,"2024-01-15T12:00:00Z)',
+			'[2024-01-15T10:00:00Z,2024-01-15T12:00:00Z")',
+			'[2024-01-15 10:00:00+00 (junk),)',
+			'[2024-01-15 10:00:00+00 [junk],)',
+			'(,2024-01-15 12:00:00+00 (junk))',
+			'["2024-01-15 10:00:00+00 (junk)",)',
+		]) {
+			test.fetch(
+				range,
+				new Error(
+					`Invalid tstzrange format: ${range}. Expected format like '[2024-01-01T00:00:00Z,2024-12-31T23:59:59Z)' or 'empty'`,
+				),
+			);
+		}
+		test.fetch(
+			'2024-01-15T10:00:00.000Z',
+			new Error(
+				"Invalid tstzrange format: 2024-01-15T10:00:00.000Z. Expected format like '[2024-01-01T00:00:00Z,2024-12-31T23:59:59Z)' or 'empty'",
+			),
+		);
+
 		// Empty range
 		test.fetch('empty', 'empty');
 
@@ -165,6 +249,17 @@ helpers.describe('Date Time Range', (test) => {
 			true,
 			'[2024-01-15T10:00:00.000Z,2024-01-15T12:00:00.000Z]',
 		);
+
+		it('should fetch back what it validates', async () => {
+			const value = {
+				lowerDate: '2024-01-15T10:00:00.000Z',
+				upperDate: '2024-01-15T12:00:00.000Z',
+				lowerInclusive: false,
+				upperInclusive: true,
+			};
+			const stored = await test.type.validate(value, true);
+			expect(test.type.fetchProcessing(stored)).to.deep.equal(value);
+		});
 
 		// Error: Invalid string format (only 'empty' literal allowed)
 		test.validate(

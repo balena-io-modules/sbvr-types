@@ -32,10 +32,17 @@ export type Types = TypeUtils.TsTypes<
 >;
 type DbWriteType = string;
 
-// Regex handles PostgreSQL pg package format with quoted values (e.g., '["2024-01-01 00:00:00.123+00","2024-12-31 23:59:59+00")')
+// Regex handles PostgreSQL pg package format with quoted values (e.g., '["2024-01-01 00:00:00.123+00","2024-12-31 23:59:59+00")'),
+// as well as unquoted values, which is how PostgreSQL outputs infinite bounds (e.g., '["2024-01-01 00:00:00+00",infinity)')
+// and how `validate` formats ranges, which mysql/websql store as is (e.g., '[2024-01-01T00:00:00.000Z,)')
 const rangeRegexp =
-	/^(?<lowerBracket>[[(])(?:"(?<lowerValue>[^",]+)")?,(?:"(?<upperValue>[^",]+)")?(?<upperBracket>[)\]])$/;
+	/^(?<lowerBracket>[[(])(?<lowerQuote>"?)(?<lowerValue>[^",()[\]]*)\k<lowerQuote>,(?<upperQuote>"?)(?<upperValue>[^",()[\]]*)\k<upperQuote>(?<upperBracket>[)\]])$/;
 
+/**
+ * Reads a `-infinity` lower or `infinity` upper bound as unbounded. Other infinite bounds (eg Postgres'
+ * `[infinity,infinity]`) can't be represented by the read type, so reading them throws. `validate` doesn't
+ * accept infinite bounds, so they can only be written with raw SQL.
+ */
 export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	data,
 ) => {
@@ -58,9 +65,14 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	}
 
 	const { lowerBracket, lowerValue, upperValue, upperBracket } = matchGroups;
+	if (lowerValue === 'infinity' || upperValue === '-infinity') {
+		throw new Error(
+			`Unsupported infinite bound in tstzrange: ${data}. Only a -infinity lower bound and an infinity upper bound are supported`,
+		);
+	}
 
 	let lowerDate: string | undefined;
-	if (lowerValue != null && lowerValue !== '') {
+	if (lowerValue != null && lowerValue !== '' && lowerValue !== '-infinity') {
 		try {
 			lowerDate = date.fetchProcessing(lowerValue)!;
 		} catch {
@@ -69,7 +81,7 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	}
 
 	let upperDate: string | undefined;
-	if (upperValue != null && upperValue !== '') {
+	if (upperValue != null && upperValue !== '' && upperValue !== 'infinity') {
 		try {
 			upperDate = date.fetchProcessing(upperValue)!;
 		} catch {

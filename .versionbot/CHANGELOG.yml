@@ -1,4 +1,24 @@
 - commits:
+    - subject: "WebResource: Accept null optional properties in the schema"
+      hash: 894d396bc97de3459ccb49d57884e492764e731d
+      body: |
+        `validate` accepts `null` for `content_type`, `content_disposition`,
+        `size` and `checksum`, stores it, and `fetchProcessing` returns it, and
+        the OData metadata declares them `Nullable="true"`, but the schema only
+        allowed them to be absent, so pinejs rejected such writes with a 400.
+
+        The `WebResource` type now includes `null` for those properties, which
+        matches what is read back. `validate` also rejects unknown properties,
+        as the schema already does (they were stored but never read back), and
+        `fetchProcessing` returns `undefined` as is instead of throwing.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.2.4
+  title: ""
+  date: 2026-11-13T01:51:16.784Z
+- commits:
     - subject: "Tests: Fail when the schema rejects a value that validate accepts"
       hash: 0d32bc7d79639fc83c1be4f4475a44673d0ee277
       body: |

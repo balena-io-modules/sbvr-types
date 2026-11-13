@@ -1,4 +1,18 @@
 - commits:
+    - subject: "SHA: Ignore CHAR padding when comparing"
+      hash: 0492898a7ce6fb766dadd6f46c060d09c6e129ef
+      body: |
+        The `$sha256$<base64>` value is 52 characters, but the column is
+        CHAR(54), which PostgreSQL blank pads and returns padded, so `compare`
+        was always false for a hash read back from PostgreSQL.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.2.5
+  title: ""
+  date: 2026-11-13T02:18:52.201Z
+- commits:
     - subject: "WebResource: Accept null optional properties in the schema"
       hash: 894d396bc97de3459ccb49d57884e492764e731d
       body: |

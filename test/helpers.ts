@@ -83,13 +83,23 @@ const $describe = <T extends keyof typeof types>(
 
 	describe(typeName, () => {
 		const validate = test(type.validate);
-		const schemaIntoValidate = test((value: unknown, required: boolean) => {
-			const v = type.schema.safeParse(value);
-			return (type.validate as SbvrType['validate'])(
-				v.success ? v.data : value,
-				required,
-			);
-		});
+		// This mirrors pinejs, which rejects the request if the schema fails, and otherwise validates the schema's output
+		const schemaIntoValidate = test(
+			async (value: unknown, required: boolean) => {
+				const schema = required
+					? type.schema.optional()
+					: type.schema.nullish();
+				const v = schema.safeParse(value);
+				if (!v.success) {
+					// So `validate` must reject the values that the schema rejects, and we check its error
+					await (type.validate as SbvrType['validate'])(value, required);
+					throw new Error(
+						`the schema rejects a value that validate accepts: ${v.error.message}`,
+					);
+				}
+				return await (type.validate as SbvrType['validate'])(v.data, required);
+			},
+		);
 		fn({
 			type,
 			types: {

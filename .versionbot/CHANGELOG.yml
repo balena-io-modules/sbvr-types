@@ -1,4 +1,19 @@
 - commits:
+    - subject: "Hashed: Reject values longer than bcrypt's 72 byte limit"
+      hash: e5b71a8a5553ca24de8c0c58361bbd90cf3a3145
+      body: |
+        bcrypt (and bcryptjs) only hash the first 72 bytes, so a longer value
+        matched every value sharing its first 72 bytes, eg a long passphrase
+        would accept any suffix. `validate` and the schema now reject values
+        over 72 bytes (UTF-8). Existing hashes compare as before.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.2.6
+  title: ""
+  date: 2026-11-13T03:49:10.182Z
+- commits:
     - subject: "SHA: Ignore CHAR padding when comparing"
       hash: 0492898a7ce6fb766dadd6f46c060d09c6e129ef
       body: |

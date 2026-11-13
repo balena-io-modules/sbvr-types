@@ -45,7 +45,8 @@ export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
 
 // eslint-disable-next-line @typescript-eslint/require-await -- This needs to return a promise for backwards compatibility, can be changed in next major
 export const compare = async (value: string, result: string) => {
-	return sha256(value) === result;
+	// The value is shorter than the CHAR(54) column, which postgres blank pads when read
+	return sha256(value) === result.trimEnd();
 };
 
 export const schema = TypeUtils.schema.text;

@@ -1,4 +1,33 @@
 - commits:
+    - subject: "Interval: Document that infinite postgres intervals read as 0"
+      hash: 232213e0e5b8bebb2a3dcd5a89a104f86fa05925
+      body: |
+        postgres-interval parses `infinity`/`-infinity` intervals (Postgres
+        17+), and intervals output with a non-default `IntervalStyle`, to an
+        empty object, the same as for a zero interval, so they read as 0. This
+        can't be told apart in `fetchProcessing`, so it's now documented
+        there, with a test that `validate` keeps rejecting infinite values so
+        they can only be written with raw SQL.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+    - subject: "Interval: Fetch postgres intervals as a number of seconds"
+      hash: 2227f30ce838e28a143deab740ec93a83df3980a
+      body: |
+        `validate` writes a number, and mysql/websql return it as such, which
+        is what the `Read` type says. But the pg module returns an INTERVAL as
+        a `postgres-interval` object (eg `{"seconds":5}`), which was returned
+        as is. It is now converted to seconds like postgres' `EXTRACT(EPOCH
+        FROM ...)`, with a year as 365.25 days and a month as 30 days.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 12.2.7
+  title: ""
+  date: 2026-11-13T04:03:46.766Z
+- commits:
     - subject: "Hashed: Reject values longer than bcrypt's 72 byte limit"
       hash: e5b71a8a5553ca24de8c0c58361bbd90cf3a3145
       body: |

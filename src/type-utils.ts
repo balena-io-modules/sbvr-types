@@ -73,6 +73,20 @@ const checkRequired = <T>(validateFn: (value: any) => T | Promise<T>) => {
 	return runCheck;
 };
 
+// Creates a validate function that accepts exactly what the schema accepts, returning the schema's output.
+// Pass a compiled schema (as all of the exported ones are), since validate runs for every value
+const fromSchema = <T>(
+	zodSchema: z.ZodType<T>,
+	errorMessage: (value: unknown) => string,
+) =>
+	checkRequired((value) => {
+		const result = zodSchema.safeParse(value);
+		if (!result.success) {
+			throw new Error(errorMessage(value));
+		}
+		return result.data;
+	});
+
 const equality = {
 	'is equal to': (from, to): EqualsNode => ['Equals', from, to],
 } satisfies NativeFactTypes[string];
@@ -89,68 +103,116 @@ export const nativeFactTypeTemplates = {
 	},
 } satisfies Record<string, NativeFactTypes[string]>;
 
+// Strings are only accepted if they are entirely an integer, with no fractional part, exponent or trailing text.
+// The number of significant digits is limited to what the type can hold, so that converting a long string
+// (which is slow for `BigInt`) is never attempted
+const integerString = /^[+-]?0*\d{1,16}$/;
+const bigintString = /^[+-]?0*\d{1,19}$/;
+// An integer, or a string of one, from `min` to `max`. `z.int()` only allows safe integers, so numbers and
+// strings that would lose precision are rejected too
+export const integerInRange = (min: number, max: number) => {
+	const integer = z.int().min(min).max(max);
+	return z.union([
+		integer,
+		z.string().regex(integerString).transform(Number).pipe(integer),
+	]);
+};
+// The range of an INTEGER on all the databases
+const minInteger = -(2 ** 31);
+const maxInteger = 2 ** 31 - 1;
+// The furthest a `Date` can be from the epoch, in milliseconds
+const maxDate = 8.64e15;
+// An ISO 8601 date, optionally with a time and an offset, as `Date` parses them. A date-time without an offset
+// is in local time, and a date without a time is in UTC. Fractions of a second can have up to 9 digits (as eg
+// Python and Go send), as long as the digits after milliseconds are 0, so that nothing is truncated
+const isoDateString =
+	/^([+-]\d{6}|\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.\d{1,3}0{0,6})?)?(?:Z|[+-](\d{2}):(\d{2}))?)?$/;
+const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const isLeapYear = (year: number) =>
+	(year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+// `Date` silently rolls over out of range fields (eg 2020-02-30 is 2020-03-01), so they're checked here
+const parseIsoDate = (value: string, ctx: z.core.$RefinementCtx) => {
+	const match = isoDateString.exec(value);
+	// ECMAScript disallows -000000, but V8 parses it as 2001
+	if (match != null && match[1] !== '-000000') {
+		const field = (index: number) => Number(match[index] ?? 0);
+		const year = field(1);
+		const month = field(2);
+		const day = field(3);
+		if (
+			month >= 1 &&
+			month <= 12 &&
+			day >= 1 &&
+			day <= (month === 2 && isLeapYear(year) ? 29 : daysInMonth[month - 1]!) &&
+			field(4) <= 23 &&
+			field(5) <= 59 &&
+			field(6) <= 59 &&
+			field(7) <= 23 &&
+			field(8) <= 59
+		) {
+			return new Date(value);
+		}
+	}
+	ctx.issues.push({ code: 'invalid_format', format: 'date', input: value });
+	return z.NEVER;
+};
 // The schemas are compiled once at import (`z.compile` falls back to zod's runtime parser for anything it
 // can't compile), so that every user of them gets the compiled fast path
 export const schema = {
-	integer: z.compile(
-		z.preprocess((v) => {
-			if (typeof v === 'string') {
-				return parseInt(v, 10);
-			}
-			return v;
-		}, z.number().int()),
+	// For INTEGER columns
+	integer: z.compile(integerInRange(minInteger, maxInteger)),
+	// For integers that aren't stored in an INTEGER column, eg Interval's seconds
+	safeInteger: z.compile(
+		integerInRange(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER),
 	),
-	// `z.coerce` can't be compiled, so this converts with `BigInt` itself
 	bigint: z.compile(
 		z
-			.union([z.string().refine((v) => v !== ''), z.number(), z.bigint()])
-			.transform((v, ctx) => {
-				try {
-					return BigInt(v);
-				} catch {
-					ctx.issues.push({
-						code: 'invalid_type',
-						expected: 'bigint',
-						input: v,
-					});
-					return z.NEVER;
-				}
-			}),
+			.union([
+				z.bigint(),
+				z.int().transform(BigInt),
+				z.string().regex(bigintString).transform(BigInt),
+			])
+			// The range of a BIGINT on all the databases
+			.pipe(
+				z
+					.bigint()
+					.min(-(2n ** 63n))
+					.max(2n ** 63n - 1n),
+			),
 	),
 	text: z.compile(z.string()),
 	date: z.compile(
-		z
-			.union([z.string(), z.number(), z.date()])
-			.transform((v) => {
-				let processedValue: typeof v = Number(v);
-				if (Number.isNaN(processedValue)) {
-					processedValue = v;
-				}
-				const processedDate = new Date(processedValue);
-				if (Number.isNaN(processedDate.getTime())) {
-					return v;
-				}
-				return processedDate;
-			})
-			.pipe(z.date()),
+		// Strings come first, as the most common input and the slowest to reach in a union
+		z.union([
+			z.string().transform(parseIsoDate).pipe(z.date()),
+			// `z.date()` rejects invalid dates
+			z.date(),
+			// Milliseconds since the epoch, within the range of a `Date`
+			z
+				.int()
+				.min(-maxDate)
+				.max(maxDate)
+				.transform((ms) => new Date(ms)),
+		]),
 	),
 };
 
 export const validate = {
 	checkRequired,
-	integer: checkRequired((value) => {
-		const processedValue = parseInt(value, 10);
-		if (Number.isNaN(processedValue)) {
-			throw new Error('is not a number: ' + value);
-		}
-		return processedValue;
-	}),
-	bigint: checkRequired((value) => {
-		if (value === '') {
-			throw new Error('Cannot convert empty string to a BigInt');
-		}
-		return BigInt(value);
-	}),
+	fromSchema,
+	integer: fromSchema(schema.integer, (value) =>
+		schema.safeInteger.safeParse(value).success
+			? `is outside the integer range (${minInteger} to ${maxInteger}): ${String(value)}`
+			: 'is not an integer: ' + String(value),
+	),
+	safeInteger: fromSchema(
+		schema.safeInteger,
+		(value) => 'is not an integer: ' + String(value),
+	),
+	bigint: fromSchema(
+		schema.bigint,
+		(value) => 'is not a big integer: ' + String(value),
+	),
 	text: (length?: number) =>
 		checkRequired((value) => {
 			if (typeof value !== 'string') {
@@ -167,15 +229,8 @@ export const validate = {
 			}
 			return value;
 		}),
-	date: checkRequired((value) => {
-		let processedValue = Number(value);
-		if (Number.isNaN(processedValue)) {
-			processedValue = value;
-		}
-		const processedDate = new Date(processedValue);
-		if (Number.isNaN(processedDate.getTime())) {
-			throw new Error('is not a valid date: ' + value);
-		}
-		return processedDate;
-	}),
+	date: fromSchema(
+		schema.date,
+		(value) => 'is not a valid date: ' + String(value),
+	),
 };

@@ -16,6 +16,11 @@ helpers.describe('Time', function (test) {
 	describe('validate', function () {
 		test.validate(now, true, now.toLocaleTimeString());
 		test.validate(now.getTime(), true, now.toLocaleTimeString());
-		test.validate(now.toString(), true, now.toLocaleTimeString());
+		test.validate(now.toISOString(), true, now.toLocaleTimeString());
+		test.validate(
+			now.toString(),
+			true,
+			new Error(`is not a valid date: ${now.toString()}`),
+		);
 	});
 });

@@ -39,5 +39,15 @@ helpers.describe('Boolean', function (test) {
 		test.validate(false, true, false);
 		test.validate(true, true, true);
 		test.validate('true', true, new Error('is not a boolean: "true" (string)'));
+		test.validate('0', true, false);
+		test.validate('1', true, true);
+		test.validate('', true, new Error('is not a boolean: "" (string)'));
+		test.validate(' ', true, new Error('is not a boolean: " " (string)'));
+		test.validate('0x1', true, new Error('is not a boolean: "0x1" (string)'));
+		test.validate('1.0', true, new Error('is not a boolean: "1.0" (string)'));
+		test.validate(2, true, new Error('is not a boolean: 2 (number)'));
+		test.validate([], true, new Error('is not a boolean: [] (object)'));
+		test.validate([1], true, new Error('is not a boolean: [1] (object)'));
+		test.validate(1n, true, new Error('is not a boolean: 1 (bigint)'));
 	});
 });

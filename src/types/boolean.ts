@@ -30,20 +30,6 @@ export const fetchProcessing: TypeUtils.FetchProcessing<Types['Read']> = (
 	return data === true || data === 1;
 };
 
-export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
-	TypeUtils.validate.checkRequired((originalValue) => {
-		// We use Number rather than parseInt as it deals with booleans and will return NaN for things like "a1"
-		const value = Number(originalValue);
-		if (value !== 0 && value !== 1) {
-			throw new Error(
-				`is not a boolean: ${JSON.stringify(
-					originalValue,
-				)} (${typeof originalValue})`,
-			);
-		}
-		return value === 1;
-	});
-
 export const schema = z.compile(
 	z.preprocess((v) => {
 		switch (v) {
@@ -57,3 +43,15 @@ export const schema = z.compile(
 		return v;
 	}, z.boolean()),
 );
+
+export const validate: TypeUtils.Validate<Types['Write'], DbWriteType> =
+	TypeUtils.validate.fromSchema(schema, (originalValue) => {
+		let value: string | undefined;
+		try {
+			value = JSON.stringify(originalValue);
+		} catch {
+			// eg a bigint
+			value = String(originalValue);
+		}
+		return `is not a boolean: ${value} (${typeof originalValue})`;
+	});
